@@ -44,46 +44,28 @@ openclaw:
   name: OpenClaw
   paginated: true
 
-# ── OpenClaw peer projects ────────────────────────────────────────────────────
+# ── AI agent ecosystem projects ──────────────────────────────────────────────
 # Tracked alongside OpenClaw for cross-ecosystem comparison.
+# This fork tracks agent platforms/toolkits plus agent infrastructure rather than
+# only OpenClaw-named peer projects.
 
 openclaw_peers:
-  - id: nanobot
-    repo: HKUDS/nanobot
-    name: NanoBot
-    paginated: true
-  - id: zeroclaw
-    repo: zeroclaw-labs/zeroclaw
-    name: Zeroclaw
-  - id: picoclaw
-    repo: sipeed/picoclaw
-    name: PicoClaw
-    paginated: true
-  - id: nanoclaw
-    repo: qwibitai/nanoclaw
-    name: NanoClaw
-  - id: ironclaw
-    repo: nearai/ironclaw
-    name: IronClaw
-  - id: lobsterai
-    repo: netease-youdao/LobsterAI
-    name: LobsterAI
-  - id: tinyclaw
-    repo: TinyAGI/tinyclaw
-    name: TinyClaw
-  - id: moltis
-    repo: moltis-org/moltis
-    name: Moltis
-  - id: copaw
-    repo: agentscope-ai/CoPaw
-    name: CoPaw
-  - id: zeptoclaw
-    repo: qhkm/zeptoclaw
-    name: ZeptoClaw
-  - id: easyclaw
-    repo: gaoyangz77/easyclaw
-    name: EasyClaw
   - id: hermes-agent
     repo: NousResearch/hermes-agent
     name: Hermes Agent
+    paginated: true
+  - id: openhands-sdk
+    repo: OpenHands/software-agent-sdk
+    name: OpenHands SDK
+  - id: pi
+    repo: earendil-works/pi
+    name: Pi
+    paginated: true
+  - id: litellm
+    repo: BerriAI/litellm
+    name: LiteLLM
+    paginated: true
+  - id: temporal
+    repo: temporalio/temporal
+    name: Temporal
     paginated: true

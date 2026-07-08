@@ -2,7 +2,7 @@
 
 English | [中文](./README.zh.md)
 
-A GitHub Actions workflow that runs every morning at 08:00 CST. It tracks GitHub activity from AI CLI tools, OpenClaw and its peer projects in the AI agent ecosystem, scrapes official news and research from Anthropic and OpenAI, and monitors the GitHub AI trending repos daily — then publishes bilingual (Chinese + English) daily digests as GitHub Issues and committed Markdown files. Weekly and monthly rollup reports are also generated automatically.
+A GitHub Actions workflow that runs every morning at 08:00 CST. It tracks GitHub activity from AI CLI tools, OpenClaw and agent platform / SDK / infrastructure ecosystem projects, scrapes official news and research from Anthropic and OpenAI, and monitors the GitHub AI trending repos daily — then publishes bilingual (Chinese + English) daily digests as GitHub Issues and committed Markdown files. Weekly and monthly rollup reports are also generated automatically.
 
 ## Web UI
 
@@ -110,21 +110,16 @@ PRs and issues are fetched without a date filter and sorted by popularity (comme
 
 ### OpenClaw + AI agent ecosystem (GitHub)
 
-OpenClaw is tracked as the primary reference project. Ten peer projects in the personal AI assistant / autonomous agent space are tracked alongside it for cross-ecosystem comparison.
+OpenClaw is tracked as the primary reference project. Agent platforms, SDKs, model gateways, and execution orchestration infrastructure are tracked alongside it for cross-ecosystem comparison.
 
 | Project | Repository | Stars |
 |---------|-----------|-------|
-| OpenClaw | [openclaw/openclaw](https://github.com/openclaw/openclaw) | 240.5k |
-| NanoBot | [HKUDS/nanobot](https://github.com/HKUDS/nanobot) | 26.9k |
-| Zeroclaw | [zeroclaw-labs/zeroclaw](https://github.com/zeroclaw-labs/zeroclaw) | 21.2k |
-| PicoClaw | [sipeed/picoclaw](https://github.com/sipeed/picoclaw) | 21.1k |
-| NanoClaw | [qwibitai/nanoclaw](https://github.com/qwibitai/nanoclaw) | 16.6k |
-| IronClaw | [nearai/ironclaw](https://github.com/nearai/ironclaw) | 3.9k |
-| LobsterAI | [netease-youdao/LobsterAI](https://github.com/netease-youdao/LobsterAI) | 3.0k |
-| TinyClaw | [TinyAGI/tinyclaw](https://github.com/TinyAGI/tinyclaw) | 2.8k |
-| CoPaw | [agentscope-ai/CoPaw](https://github.com/agentscope-ai/CoPaw) | 2.2k |
-| ZeptoClaw | [qhkm/zeptoclaw](https://github.com/qhkm/zeptoclaw) | 394 |
-| EasyClaw | [gaoyangz77/easyclaw](https://github.com/gaoyangz77/easyclaw) | 102 |
+| OpenClaw | [openclaw/openclaw](https://github.com/openclaw/openclaw) | 382.1k |
+| Hermes Agent | [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) | 211.1k |
+| Pi | [earendil-works/pi](https://github.com/earendil-works/pi) | 68.5k |
+| LiteLLM | [BerriAI/litellm](https://github.com/BerriAI/litellm) | 52.9k |
+| Temporal | [temporalio/temporal](https://github.com/temporalio/temporal) | 21.5k |
+| OpenHands SDK | [OpenHands/software-agent-sdk](https://github.com/OpenHands/software-agent-sdk) | 879 |
 
 ### GitHub AI Trending
 
@@ -155,7 +150,7 @@ New articles are detected by comparing sitemap `lastmod` timestamps against a pe
 - Fetches issues, pull requests, and releases updated in the last 24 hours across all tracked repos
 - Tracks trending Claude Code Skills — sorted by community engagement, not recency
 - Generates a per-tool summary for each CLI repository and a cross-tool comparative analysis
-- Generates a deep OpenClaw project report plus a cross-ecosystem comparison against 10 peer projects
+- Generates a deep OpenClaw project report plus a cross-ecosystem comparison against agent platforms, SDKs, model gateways, and execution infrastructure
 - Scrapes official Anthropic and OpenAI web content via sitemaps; detects new articles incrementally
 - Monitors GitHub Trending daily + searches 6 AI topic tags; classifies repos by dimension and extracts trend signals
 - Fetches top-30 AI stories from Hacker News (last 24h, ranked by points); generates community sentiment report
@@ -243,7 +238,7 @@ Files are written to `digests/YYYY-MM-DD/`:
 | File | Content | GitHub Issue label |
 |------|---------|-------------------|
 | `ai-cli.md` | CLI digest — cross-tool comparison + per-tool details | `digest` |
-| `ai-agents.md` | OpenClaw deep report + cross-ecosystem comparison + 10 peer details | `openclaw` |
+| `ai-agents.md` | OpenClaw deep report + cross-ecosystem comparison across agent platforms / SDKs / infrastructure | `openclaw` |
 | `ai-web.md` | Official web content report (only written when new content exists) | `web` |
 | `ai-trending.md` | GitHub AI trending report — repos classified by dimension + trend signals (only written when data is available) | `trending` |
 | `ai-hn.md` | Hacker News AI community digest — top stories + sentiment analysis (only written when fetch succeeds) | `hn` |
@@ -274,7 +269,7 @@ Each report is generated in both Chinese (`ai-cli.md`) and English (`ai-cli-en.m
 
 `ai-agents.md` / `ai-agents-en.md` structure:
 ```
-Issues: N | PRs: N | Projects covered: 10
+Issues: N | PRs: N | Projects covered: 6
 
 ## OpenClaw Deep Dive
   Today's summary / Releases / Project progress / Community highlights /
@@ -284,17 +279,12 @@ Issues: N | PRs: N | Projects covered: 10
   Ecosystem overview / Activity table / OpenClaw positioning /
   Shared technical directions / Differentiation / Community maturity / Trend signals
 
-## Peer Project Reports
-  <details> Zeroclaw   — Today's summary / Releases / Progress / ... (8 sections)
-  <details> EasyClaw   — ...
-  <details> LobsterAI  — ...
-  <details> ZeptoClaw  — ...
-  <details> NanoBot    — ...
-  <details> PicoClaw   — ...
-  <details> NanoClaw   — ...
-  <details> IronClaw   — ...
-  <details> TinyClaw   — ...
-  <details> CoPaw      — ...
+## Ecosystem Project Reports
+  <details> Hermes Agent   — Today's summary / Releases / Progress / ... (8 sections)
+  <details> OpenHands SDK  — ...
+  <details> Pi             — ...
+  <details> LiteLLM        — ...
+  <details> Temporal       — ...
 ```
 
 `ai-web.md` / `ai-web-en.md` structure:
