@@ -1,5 +1,6 @@
 name: CI
 
+# Fork note: touched once so GitHub registers this workflow on the fork.
 on:
   push:
     branches: [main]

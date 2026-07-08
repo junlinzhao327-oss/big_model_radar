@@ -1,5 +1,6 @@
 name: Monthly Big Model Radar
 
+# Fork note: touched once so GitHub registers this workflow on the fork.
 on:
   schedule:
     # 每月1日 02:00 UTC = 10:00 CST，日报运行后2小时

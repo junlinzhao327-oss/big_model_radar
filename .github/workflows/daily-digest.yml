@@ -1,5 +1,6 @@
 name: Daily Big Model Radar
 
+# Fork note: touched once so GitHub registers this workflow on the fork.
 on:
   schedule:
     # 每天 00:00 UTC = 08:00 CST (UTC+8)
