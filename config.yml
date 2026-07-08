@@ -83,3 +83,7 @@ openclaw_peers:
   - id: easyclaw
     repo: gaoyangz77/easyclaw
     name: EasyClaw
+  - id: hermes-agent
+    repo: NousResearch/hermes-agent
+    name: Hermes Agent
+    paginated: true
