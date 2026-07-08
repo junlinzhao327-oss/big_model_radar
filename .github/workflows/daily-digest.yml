@@ -3,8 +3,8 @@ name: Daily Big Model Radar
 # Fork note: touched once so GitHub registers this workflow on the fork.
 on:
   schedule:
-    # 每天 00:00 UTC = 08:00 CST (UTC+8)
-    - cron: "0 0 * * *"
+    # 每天 22:20 UTC = 次日 06:20 CST (UTC+8)
+    - cron: "20 22 * * *"
   workflow_dispatch:
 
 permissions:
