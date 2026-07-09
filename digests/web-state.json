@@ -1,6 +1,6 @@
 {
   "anthropic": {
-    "lastChecked": "2026-07-09T22:36:07.254Z",
+    "lastChecked": "2026-07-09T23:41:01.960Z",
     "seenUrls": {
       "https://www.anthropic.com/news/responsible-scaling-policy-v3": "2026-02-25T23:57:06.000Z",
       "https://www.anthropic.com/research/deprecation-updates-opus-3": "2026-02-25T20:58:11.000Z",
@@ -420,7 +420,7 @@
     }
   },
   "openai": {
-    "lastChecked": "2026-07-09T22:35:58.480Z",
+    "lastChecked": "2026-07-09T23:41:02.610Z",
     "seenUrls": {
       "https://openai.com/index/arvind-kc-chief-people-officer/": "2026-05-29T00:25:33.242Z",
       "https://openai.com/index/put-ai-to-work-for-your-product-team/": "2026-07-09T09:34:45.634Z",
@@ -1118,7 +1118,7 @@
       "https://openai.com/index/model-disproves-discrete-geometry-conjecture/": "2026-06-03T04:01:03.645Z",
       "https://openai.com/business/learn/gartner-2026-agentic-coding-leader/": "2026-07-09T21:55:22.048Z",
       "https://openai.com/index/building-self-improving-tax-agents-with-codex/": "2026-06-04T19:16:32.732Z",
-      "https://openai.com/index/previewing-gpt-5-6-sol/": "2026-07-09T22:31:34.512Z",
+      "https://openai.com/index/previewing-gpt-5-6-sol/": "2026-07-09T23:28:12.556Z",
       "https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug/": "2026-07-06T16:31:15.664Z",
       "https://openai.com/index/how-agents-are-transforming-work/": "2026-07-06T15:42:40.613Z",
       "https://openai.com/index/deployment-simulation/": "2026-07-06T01:55:00.815Z",
@@ -1146,8 +1146,8 @@
       "https://openai.com/index/openai-frontier-governance-framework/": "2026-06-04T08:13:48.422Z",
       "https://openai.com/index/introducing-gpt-live/": "2026-07-09T21:51:38.826Z",
       "https://openai.com/index/separating-signal-from-noise-coding-evaluations/": "2026-07-09T21:05:10.942Z",
-      "https://openai.com/index/gpt-5-6/": "2026-07-09T22:35:38.707Z",
-      "https://openai.com/index/chatgpt-for-your-most-ambitious-work/": "2026-07-09T22:28:10.029Z",
+      "https://openai.com/index/gpt-5-6/": "2026-07-09T23:40:48.704Z",
+      "https://openai.com/index/chatgpt-for-your-most-ambitious-work/": "2026-07-09T23:21:31.314Z",
       "https://openai.com/index/gpt-5-6-preferred-model-microsoft-365-copilot/": "2026-07-09T21:32:35.015Z",
       "https://openai.com/index/bio-bug-bounty/": "2026-07-09T17:31:54.568Z"
     }
