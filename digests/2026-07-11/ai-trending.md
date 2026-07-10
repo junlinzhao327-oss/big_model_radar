@@ -1,103 +1,106 @@
 # AI 开源趋势日报 2026-07-11
 
-> 数据来源: GitHub Trending + GitHub Search API | 生成时间: 2026-07-10 22:36 UTC
+> 数据来源: GitHub Trending + GitHub Search API | 生成时间: 2026-07-10 23:17 UTC
 
 ---
 
-# AI 开源趋势日报 · 2026-07-11
-
-## 一、今日速览
-
-今日 GitHub AI 开源生态呈现三大热点：**Agent Skills 标准** 成为社区爆发点，`addyosmani/agent-skills`、`mattpocock/skills`、`obra/superpowers` 三个项目同时冲上 Trending，合计新增近 3,700 stars，标志着“AI 编程代理技能文件”正在形成事实标准。**AI Agent 的持久记忆层** 继续获得关注，腾讯开源的 `TencentDB-Agent-Memory` 以 4 级渐进式流水线提供全本地长时记忆，新增 134 stars。**专为 AI 代理设计的办公套件** `iOfficeAI/OfficeCLI` 单日新增 1,210 stars，显示垂直场景 Agent 工具需求旺盛。此外，主题搜索中大量 AI Agent 类项目（如 hermes-agent、career-ops、Agent-Reach）均以数十万 star 成为社区中坚力量，RAG 与向量数据库生态持续繁荣，`llama_index`、`ragflow`、`mem0` 等项目保持高热度。
+# 📊 AI 开源趋势日报 | 2026-07-11
 
 ---
 
-## 二、各维度热门项目
+## 1. 今日速览
+
+- **Agent Skills 生态大爆发**：`addyosmani/agent-skills`、`mattpocock/skills`、`obra/superpowers` 三个技能库项目同时冲上 Trending 榜，合计今日斩获超 3,700 stars，标志着“AI 编码 agent 技能”正向标准化、工业化迈进。
+- **MCP 协议持续渗透**：`DesktopCommanderMCP` 为 Claude 提供终端控制，`stitch-skills` 推出兼容 MCP 的技能库，腾讯云 `TencentDB-Agent-Memory` 则用本地 4 级流水线实现 Agent 长期记忆，大厂与社区合力填充 MCP 生态。
+- **AI 办公自动化新星**：`iOfficeAI/OfficeCLI` 今日新增 1,210 stars，专为 AI 代理读写 Office 文件而生，单二进制、无需 Office 安装，直接对标传统办公软件。
+- **多智能体金融交易框架**：`TauricResearch/TradingAgents` 以 9.2 万 stars 成为 RAG 主题下的黑马，LLM 驱动的多智能体量化交易系统获得社区高度认可。
+- **向量数据库与记忆层竞争白热化**：`mem0`、`cognee`、`memvid` 等轻量级记忆层项目崛起，与 `milvus`、`qdrant` 等传统向量 DB 形成差异化竞争。
+
+---
+
+## 2. 各维度热门项目
 
 ### 🔧 AI 基础工具（框架、SDK、推理引擎、CLI）
 
-| 项目 | Stars（今日新增） | 一句话说明 |
-|------|-------------------|-----------|
-| [ollama/ollama](https://github.com/ollama/ollama) | ⭐175,889 | 本地运行新一代开源模型（Kimi、GLM、DeepSeek等）的一站式 CLI 工具，LLM 入门必选。 |
-| [huggingface/transformers](https://github.com/huggingface/transformers) | ⭐162,457 | 业界标准模型框架，支持文本、视觉、音频、多模态模型的推理与训练。 |
-| [vllm-project/vllm](https://github.com/vllm-project/vllm) | ⭐85,926 | 高吞吐、低内存的 LLM 推理引擎，生产级部署首选。 |
-| [TencentCloud/TencentDB-Agent-Memory](https://github.com/TencentCloud/TencentDB-Agent-Memory) | ⭐0 (+134 today) | 全本地、零外部依赖的 AI Agent 长时记忆层，4 级渐进式流水线设计。 |
-| [davila7/claude-code-templates](https://github.com/davila7/claude-code-templates) | ⭐0 (+104 today) | 为 Claude Code 提供配置与监控的 CLI，降低 Agent 使用门槛。 |
-| [open-compass/opencompass](https://github.com/open-compass/opencompass) | ⭐7,184 | 覆盖 100+ 数据集的大模型评估平台，支持 Llama3、Mistral、Qwen 等。 |
-| [0xPlaygrounds/rig](https://github.com/0xPlaygrounds/rig) | ⭐7,886 | Rust 生态的模块化 LLM 应用框架，支持可扩展的 Agent 构建。 |
+| 项目 | Stars | 一句话说明 |
+|------|-------|------------|
+| [ollama/ollama](https://github.com/ollama/ollama) | 175,891 | 本地运行大模型的一站式工具，现已支持 Kimi、GLM、DeepSeek 等最新模型。 |
+| [vllm-project/vllm](https://github.com/vllm-project/vllm) | 85,928 | 高吞吐、低延迟的 LLM 推理引擎，生产级部署首选。 |
+| [wonderwhy-er/DesktopCommanderMCP](https://github.com/wonderwhy-er/DesktopCommanderMCP) | 0 (+349 today) | 为 Claude 提供终端控制、文件搜索和 diff 编辑能力的 MCP 服务器，今日新星。 |
+| [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 0 (+1,114 today) | 生产级工程技能库，为 AI 编码 agent 注入真实开发经验，今日爆火。 |
+| [mattpocock/skills](https://github.com/mattpocock/skills) | 0 (+1,663 today) | 直接从 `.claude` 目录提取的实战技能，社区贡献量极高。 |
+| [obra/superpowers](https://github.com/obra/superpowers) | 0 (+969 today) | 一套 agentic skills 框架+软件开发方法论，强调可复用的 agent 技能。 |
+| [google-labs-code/stitch-skills](https://github.com/google-labs-code/stitch-skills) | 0 (+101 today) | Google 实验室出品，兼容 MCP 服务器的标准化 Agent Skills 库。 |
+| [TencentCloud/TencentDB-Agent-Memory](https://github.com/TencentCloud/TencentDB-Agent-Memory) | 0 (+134 today) | 腾讯云推出的本地长期记忆方案，4 级渐进式管道，零外部 API 依赖。 |
 
-### 🤖 AI 智能体 / 工作流（Agent 框架、自动化、多智能体）
+### 🤖 AI 智能体/工作流（Agent 框架、自动化、多智能体）
 
-| 项目 | Stars（今日新增） | 一句话说明 |
-|------|-------------------|-----------|
-| [langgenius/dify](https://github.com/langgenius/dify) | ⭐148,432 | 生产级 Agent 工作流开发平台，支持可视化编排与多模型接入。 |
-| [OpenHands/OpenHands](https://github.com/OpenHands/OpenHands) | ⭐80,365 | AI 驱动软件开发助手，可自主完成编码、测试、部署任务。 |
-| [browser-use/browser-use](https://github.com/browser-use/browser-use) | ⭐104,129 | 让 AI Agent 像人类一样操控浏览器，实现网页自动化。 |
-| [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) | ⭐212,735 | “与你一起成长的智能体”，强调长期记忆与自适应能力。 |
-| [TauricResearch/TradingAgents](https://github.com/TauricResearch/TradingAgents) | ⭐92,217 | 多 Agent 金融交易框架，集成 LLM 进行市场分析与决策。 |
-| [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | ⭐0 (+1,114 today) | 为 AI 编程代理提供的生产级工程技能集合，今日 Trending 榜首。 |
-| [obra/superpowers](https://github.com/obra/superpowers) | ⭐0 (+969 today) | Agentic Skills 框架与软件开发方法论，与 Claude Code 深度集成。 |
-| [google-labs-code/stitch-skills](https://github.com/google-labs-code/stitch-skills) | ⭐0 (+101 today) | Google 推出的 Agent Skills 库，兼容 Stitch MCP 与多款 coding agent。 |
+| 项目 | Stars | 一句话说明 |
+|------|-------|------------|
+| [Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) | 185,452 | 经典自主 agent 框架，愿景是“人人可用的 AI”。 |
+| [langgenius/dify](https://github.com/langgenius/dify) | 148,434 | 生产级 agentic 工作流开发平台，支持可视化编排。 |
+| [langchain-ai/langchain](https://github.com/langchain-ai/langchain) | 141,483 | Agent 工程的核心框架，生态最成熟。 |
+| [browser-use/browser-use](https://github.com/browser-use/browser-use) | 104,129 | 让 AI agent 像人一样操作浏览器，自动化在线任务。 |
+| [OpenHands/OpenHands](https://github.com/OpenHands/OpenHands) | 80,370 | AI 驱动的软件开发 agent，可自动修复代码、提交 PR。 |
+| [FlowiseAI/Flowise](https://github.com/FlowiseAI/Flowise) | 54,506 | 可视化拖拽构建 AI Agent 和 RAG 流程，零代码友好。 |
+| [CopilotKit/CopilotKit](https://github.com/CopilotKit/CopilotKit) | 35,910 | 前端 Agent 与生成式 UI 栈，支持 React、Angular、移动端等。 |
+| [TauricResearch/TradingAgents](https://github.com/TauricResearch/TradingAgents) | 92,220 | 多智能体 LLM 金融交易框架，近期社区热捧。 |
 
-### 📦 AI 应用（具体应用产品、垂直场景）
+### 📦 AI 应用（具体产品、垂直场景解决方案）
 
-| 项目 | Stars（今日新增） | 一句话说明 |
-|------|-------------------|-----------|
-| [iOfficeAI/OfficeCLI](https://github.com/iOfficeAI/OfficeCLI) | ⭐0 (+1,210 today) | 专为 AI Agent 设计的 Office 套件（Word/Excel/PPT），单二进制、无需安装。 |
-| [firecrawl/firecrawl](https://github.com/firecrawl/firecrawl) | ⭐148,891 | 可扩展的网页抓取与交互 API，为 LLM 提供实时网页数据。 |
-| [santifer/career-ops](https://github.com/santifer/career-ops) | ⭐59,549 | 开源 AI 求职助手：扫描职位、评分、定制简历，本地运行。 |
-| [Panniantong/Agent-Reach](https://github.com/Panniantong/Agent-Reach) | ⭐54,442 | 让 AI Agent 访问全互联网（Twitter、Reddit、B站等），零 API 费用。 |
-| [CherryHQ/cherry-studio](https://github.com/CherryHQ/cherry-studio) | ⭐48,417 | AI 生产力工作室，集成智能聊天、自主代理与 300+ 助手模板。 |
-| [hugohe3/ppt-master](https://github.com/hugohe3/ppt-master) | ⭐38,233 | 从任意文档自动生成可编辑的 PowerPoint，支持原生动画与图表。 |
-| [asgeirtj/system_prompts_leaks](https://github.com/asgeirtj/system_prompts_leaks) | ⭐55,798 | 收集并更新主流模型（Claude、GPT、Gemini 等）的系统提示词，逆向工程最佳实践。 |
+| 项目 | Stars | 一句话说明 |
+|------|-------|------------|
+| [iOfficeAI/OfficeCLI](https://github.com/iOfficeAI/OfficeCLI) | 0 (+1,210 today) | 专为 AI agent 设计的 Office 读写工具，单二进制、无需安装 Office。 |
+| [CherryHQ/cherry-studio](https://github.com/CherryHQ/cherry-studio) | 48,417 | AI 生产力工作室，集成智能对话、自主 agent 和 300+ 预设助手。 |
+| [ScrapeGraphAI/Scrapegraph-ai](https://github.com/ScrapeGraphAI/Scrapegraph-ai) | 28,251 | AI 驱动的网页爬虫，用自然语言指定抓取规则。 |
+| [deepfakes/faceswap](https://github.com/deepfakes/faceswap) | 55,336 | 经典深度学习换脸应用，长期活跃。 |
+| [hugohe3/ppt-master](https://github.com/hugohe3/ppt-master) | 38,235 | AI 从文档自动生成可编辑 PPT，支持原生形状、动画、图表。 |
+| [netdata/netdata](https://github.com/netdata/netdata) | 79,586 | AI 加持的全栈可观测性平台，可自动检测异常。 |
+| [tesseract-ocr/tesseract](https://github.com/tesseract-ocr/tesseract) | 75,234 | 开源 OCR 引擎，被大量 AI 应用集成。 |
 
-### 🧠 大模型 / 训练（模型权重、训练框架、微调工具）
+### 🧠 大模型/训练（模型权重、训练框架、微调工具）
 
-| 项目 | Stars（今日新增） | 一句话说明 |
-|------|-------------------|-----------|
-| [galilai-group/stable-pretraining](https://github.com/galilai-group/stable-pretraining) | ⭐283 | 可靠、简洁、可扩展的基础模型预训练库，支持世界模型。 |
-| [testtimescaling/testtimescaling.github.io](https://github.com/testtimescaling/testtimescaling.github.io) | ⭐107 | 关于大模型测试时扩展（test-time scaling）的综述与资源仓库。 |
-| [chrisliu298/awesome-llm-unlearning](https://github.com/chrisliu298/awesome-llm-unlearning) | ⭐608 | 大模型机器遗忘的研究资源汇总，帮助开发者实现模型“忘记”特定知识。 |
-| [liguge/Awesome-large-language-model-for-PHM](https://github.com/liguge/Awesome-large-language-model-for-Prognostics-and-health-management) | ⭐125 | 将 LLM 应用于预测性维护与故障诊断的论文与工具集合。 |
+| 项目 | Stars | 一句话说明 |
+|------|-------|------------|
+| [huggingface/transformers](https://github.com/huggingface/transformers) | 162,457 | 模型定义与训练的 Hugging Face 生态核心库。 |
+| [pytorch/pytorch](https://github.com/pytorch/pytorch) | 101,719 | 深度学习框架，AI 研究基石。 |
+| [tensorflow/tensorflow](https://github.com/tensorflow/tensorflow) | 196,276 | 谷歌开源机器学习框架，依然广泛使用。 |
+| [ultralytics/ultralytics](https://github.com/ultralytics/ultralytics) | 59,332 | YOLO 系列最新版，目标检测/分割/分类一站式。 |
+| [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) | 212,749 | 能持续学习的 agent（含模型能力），社区星数惊人。 |
+| [open-compass/opencompass](https://github.com/open-compass/opencompass) | 7,184 | 100+ 数据集上评估 LLM，支持主流模型。 |
 
-### 🔍 RAG / 知识库（向量数据库、检索增强、知识管理）
+### 🔍 RAG/知识库（向量数据库、检索增强、知识管理）
 
-| 项目 | Stars（今日新增） | 一句话说明 |
-|------|-------------------|-----------|
-| [infiniflow/ragflow](https://github.com/infiniflow/ragflow) | ⭐84,777 | 领先的开源 RAG 引擎，融合 Agent 能力，为 LLM 提供高质上下文层。 |
-| [run-llama/llama_index](https://github.com/run-llama/llama_index) | ⭐50,773 | 文档解析与 OCR 领域的语义索引框架，支撑多模态 RAG。 |
-| [mem0ai/mem0](https://github.com/mem0ai/mem0) | ⭐60,568 | 面向 AI Agent 的通用记忆层，实现跨会话持久化。 |
-| [milvus-io/milvus](https://github.com/milvus-io/milvus) | ⭐45,176 | 高性能云原生向量数据库，支撑大规模 ANN 搜索。 |
-| [qdrant/qdrant](https://github.com/qdrant/qdrant) | ⭐33,136 | 下一代 AI 的高性能向量搜索引擎，提供云端服务。 |
-| [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify) | ⭐81,913 | 将代码、SQL、文档、图像等转化为可查询的知识图谱，支持多种 coding agent。 |
-| [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) | ⭐86,764 | 跨会话上下文持久化工具，自动压缩并注入相关历史给 Agent。 |
-| [meilisearch/meilisearch](https://github.com/meilisearch/meilisearch) | ⭐58,488 | AI 驱动的混合搜索引擎，为网站和应用提供闪电级搜索。 |
-
----
-
-## 三、趋势信号分析
-
-**1. “Agent Skills” 标准正在成为新基建**  
-今日 Trending 榜单上，三个与 Agent Skills 直接相关的项目（`agent-skills`、`skills`、`superpowers`）合计新增超过 3,700 stars，同时 Google 推出 `stitch-skills`，表明业界正围绕“AI 编程代理可复用的技能文件”形成共识。这类项目提供结构化指令（如 .claude 目录），使 Agent 能快速掌握特定工程实践（测试、日志、安全等）。这类似于早期的“插件生态”，但更轻量、更贴近 Agent 交互范式。
-
-**2. 垂直场景 Agent 工具爆发**  
-`OfficeCLI` 的 1,210 单日 stars 表明，AI 代理不再满足于通用编程，开始冲击商业办公软件。类似地，`career-ops`（求职）、`ppt-master`（演示文稿）、`daily_stock_analysis`（股票分析）等项目均获得数万 stars，显示开发者正在快速填充“Agent + 具体行业”的空白。
-
-**3. 记忆与上下文工程成为关键**  
-`TencentDB-Agent-Memory`、`mem0`、`claude-mem`、`cognee`、`memvid` 等项目密集涌现，说明社区已意识到当前 Agent 的“无状态”短板。长时记忆、知识图谱、上下文压缩等技术正从实验走向实用，并开始出现“记忆即服务”的轻量方案。
-
-**4. 多 Agent 协作从概念走向实践**  
-`TradingAgents`（多 Agent 金融交易）、`DATAGEN`（多 Agent 研究助手）、`hermes-agent`（自适应增长）等项目的 star 数快速攀升，表明单一 Agent 的能力天花板正被多 Agent 协作突破。Agent 通信、任务编排、角色分配等方向将迎来更多创新。
+| 项目 | Stars | 一句话说明 |
+|------|-------|------------|
+| [infiniflow/ragflow](https://github.com/infiniflow/ragflow) | 84,777 | 领先的开源 RAG 引擎，融合 Agent 能力与上下文层。 |
+| [Mintplex-Labs/anything-llm](https://github.com/Mintplex-Labs/anything-llm) | 63,080 | 本地优先的 RAG + Agent 体验，支持多种 LLM。 |
+| [mem0ai/mem0](https://github.com/mem0ai/mem0) | 60,569 | 通用记忆层，让 AI Agent 跨会话记住用户偏好。 |
+| [run-llama/llama_index](https://github.com/run-llama/llama_index) | 50,773 | 文档 agent 和 OCR 平台，RAG 领域的明星。 |
+| [milvus-io/milvus](https://github.com/milvus-io/milvus) | 45,176 | 高性能云原生向量数据库，大规模 ANN 搜索。 |
+| [qdrant/qdrant](https://github.com/qdrant/qdrant) | 33,137 | 极速向量数据库，支持云服务。 |
+| [topoteretes/cognee](https://github.com/topoteretes/cognee) | 27,551 | 开源 AI 记忆平台，用知识图谱实现持久长期记忆。 |
+| [memvid/memvid](https://github.com/memvid/memvid) | 15,739 | 无服务器单文件记忆层，替代复杂 RAG 管道。 |
 
 ---
 
-## 四、社区关注热点
+## 3. 趋势信号分析
 
-- **⭐ Agent Skills 生态**：关注 `addyosmani/agent-skills` 和 `obra/superpowers`，它们可能成为类似 VSCode 扩展市场的 Agent 技能分发平台。建议开发者尝试将自己的最佳实践封装为 .claude 技能文件。
-- **🛠️ 全本地 Office Agent**：`iOfficeAI/OfficeCLI` 是首个完全脱离 OA 系统的 Agent 办公方案，单二进制、零依赖，适合集成到 CI/CD 或 Agent 工作流中。
-- **🧠 持久记忆层选型**：`TencentDB-Agent-Memory`（4 级流水线）与 `mem0`（通用 API）分别代表企业级和轻量级两条路径，值得对比测试。
-- **🔗 知识图谱型 RAG**：`Graphify-Labs/graphify` 将文件夹代码、文档、图像转化为可查询知识图谱，解决了传统 RAG 的碎片化问题，且适配多种 coding agent。
-- **📈 金融多 Agent**：`TauricResearch/TradingAgents` 在 LLM 金融决策领域 star 数极高，其开源的多 Agent 协作模式可复用到其他复杂决策场景（如供应链、医疗诊断）。
+- **“Agent Skills” 品类异军突起**：今日三大技能库项目（`mattpocock/skills`、`addyosmani/agent-skills`、`obra/superpowers`）合计新增超 3,700 stars，表明社区已经从“构建 agent”转向“为 agent 提供高质量技能”。技能标准化（如 `stitch-skills` 遵循 Agent Skills 开放标准）正在成为新的技术栈层。
+- **MCP 协议成为 Agent 工具互联的默认接口**：`DesktopCommanderMCP`（终端控制）、`TencentDB-Agent-Memory`（记忆）、`stitch-skills`（技能库）均基于 MCP，大厂（腾讯、Google）与独立开发者一致拥抱该协议，未来 agent 的“工具生态”将围绕 MCP 组装。
+- **AI 办公自动化赛道涌现新玩家**：`OfficeCLI` 今日新增 1,210 stars，直接挑战传统 Office 自动化方案；`ppt-master` 也已积累 38k stars。这印证了“AI agent 需要原生能力操作办公文档”的刚需，也预示着低代码/无代码平台与 AI agent 的融合趋势。
+- **长期记忆（Memory Layer）成为 Agent 基础设施标配**：从 `mem0`（60k stars）到 `TencentDB-Agent-Memory`，再到 `memvid`、`cognee`，记忆层项目密集出现。社区不再满足于单次对话，而是追求跨会话、跨工具的持久上下文，这一方向可能成为 2026 年 AI 基础设施的关键增长点。
+- **多智能体金融量化框架获得高关注**：`TauricResearch/TradingAgents` 以 92k stars 位居 RAG 主题榜前列，说明 LLM 在垂直金融领域的应用（如量化交易、市场分析）正从概念走向工程化实践。
+
+---
+
+## 4. 社区关注热点
+
+- 🔥 **`mattpocock/skills`** – 今日新增 stars 最多的项目（+1,663），直接公开了作者在 `~/.claude` 中积累的实战技能，是学习如何为 Claude Code 编写高质量技能的极佳参考。
+- ⚡ **`iOfficeAI/OfficeCLI`** – AI agent 读写 Office 文件的利器，免费开源、单二进制、无需安装 Office，非常适合自动化办公场景。
+- 🧩 **`google-labs-code/stitch-skills`** – Google 官方出品的 Agent Skills 库，兼容 MCP 服务器，标准化程度高，预示未来 agent 技能将像 npm 包一样可复用。
+- 💾 **`TencentCloud/TencentDB-Agent-Memory`** – 腾讯云开源，4 级渐进式流水线实现本地长期记忆，零外部 API 依赖，对隐私敏感的应用场景极具吸引力。
+- 🚀 **`TauricResearch/TradingAgents`** – 多智能体 LLM 金融交易框架，社区认可度极高，可关注其架构如何协调多个 agent 进行市场分析、策略执行。
 
 ---
 *本日报由 [Big Model Radar](https://github.com/junlinzhao327-oss/big_model_radar) 自动生成。*
