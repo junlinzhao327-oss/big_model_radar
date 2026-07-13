@@ -6,7 +6,7 @@
     <description>AI 开源生态每日简报 · Daily AI ecosystem digest</description>
     <language>zh-CN</language>
     <atom:link href="https://junlinzhao327-oss.github.io/big_model_radar/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sun, 12 Jul 2026 23:15:39 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2026 04:30:38 +0000</lastBuildDate>
     <item>
       <title>AI CLI 工具社区动态日报 2026-07-13</title>
       <link>https://junlinzhao327-oss.github.io/big_model_radar/#2026-07-13/ai-cli</link>
@@ -41,6 +41,13 @@
       <guid isPermaLink="true">https://junlinzhao327-oss.github.io/big_model_radar/#2026-07-13/ai-hn</guid>
       <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
       <description>Hacker News AI 社区动态日报 2026-07-13</description>
+    </item>
+    <item>
+      <title>AI 工具生态周报 2026-07-13</title>
+      <link>https://junlinzhao327-oss.github.io/big_model_radar/#2026-07-13/ai-weekly</link>
+      <guid isPermaLink="true">https://junlinzhao327-oss.github.io/big_model_radar/#2026-07-13/ai-weekly</guid>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+      <description>AI 工具生态周报 2026-07-13</description>
     </item>
     <item>
       <title>AI CLI 工具社区动态日报 2026-07-12</title>
@@ -209,13 +216,6 @@
       <guid isPermaLink="true">https://junlinzhao327-oss.github.io/big_model_radar/#2026-07-08/ai-trending</guid>
       <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
       <description>AI 开源趋势日报 2026-07-08</description>
-    </item>
-    <item>
-      <title>Hacker News AI 社区动态日报 2026-07-08</title>
-      <link>https://junlinzhao327-oss.github.io/big_model_radar/#2026-07-08/ai-hn</link>
-      <guid isPermaLink="true">https://junlinzhao327-oss.github.io/big_model_radar/#2026-07-08/ai-hn</guid>
-      <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
-      <description>Hacker News AI 社区动态日报 2026-07-08</description>
     </item>
   </channel>
 </rss>
