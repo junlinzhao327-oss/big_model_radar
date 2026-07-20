@@ -1,6 +1,6 @@
 {
   "anthropic": {
-    "lastChecked": "2026-07-20T22:35:41.040Z",
+    "lastChecked": "2026-07-20T23:27:47.133Z",
     "seenUrls": {
       "https://www.anthropic.com/news/responsible-scaling-policy-v3": "2026-02-25T23:57:06.000Z",
       "https://www.anthropic.com/research/deprecation-updates-opus-3": "2026-02-25T20:58:11.000Z",
@@ -427,7 +427,7 @@
     }
   },
   "openai": {
-    "lastChecked": "2026-07-20T22:35:36.159Z",
+    "lastChecked": "2026-07-20T23:27:45.800Z",
     "seenUrls": {
       "https://openai.com/index/arvind-kc-chief-people-officer/": "2026-05-29T00:25:33.242Z",
       "https://openai.com/index/put-ai-to-work-for-your-product-team/": "2026-07-15T18:28:33.111Z",
@@ -1153,7 +1153,7 @@
       "https://openai.com/index/openai-frontier-governance-framework/": "2026-06-04T08:13:48.422Z",
       "https://openai.com/index/introducing-gpt-live/": "2026-07-14T20:43:08.605Z",
       "https://openai.com/index/separating-signal-from-noise-coding-evaluations/": "2026-07-16T15:59:29.772Z",
-      "https://openai.com/index/gpt-5-6/": "2026-07-20T22:25:28.768Z",
+      "https://openai.com/index/gpt-5-6/": "2026-07-20T23:12:47.893Z",
       "https://openai.com/index/chatgpt-for-your-most-ambitious-work/": "2026-07-20T17:10:43.438Z",
       "https://openai.com/index/gpt-5-6-preferred-model-microsoft-365-copilot/": "2026-07-14T15:18:12.827Z",
       "https://openai.com/index/bio-bug-bounty/": "2026-07-09T17:31:54.568Z",
