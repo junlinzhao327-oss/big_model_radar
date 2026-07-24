@@ -1,97 +1,105 @@
 # AI 开源趋势日报 2026-07-25
 
-> 数据来源: GitHub Trending + GitHub Search API | 生成时间: 2026-07-24 22:35 UTC
+> 数据来源: GitHub Trending + GitHub Search API | 生成时间: 2026-07-24 23:28 UTC
 
 ---
 
-# AI 开源趋势日报（2026-07-25）
+## 《AI 开源趋势日报》2026-07-25
 
----
+### 1. 今日速览
 
-## 1. 今日速览
+今日 GitHub 上 AI 相关项目呈现多线爆发态势：**AI 智能体工具链** 持续升温，`ego-lite`（AI 代理专用浏览器）与 `OmniRoute`（统一 AI 网关）单日新增接近 2000 星；**垂直领域模型** 异军突起，金融基础模型 `Kronos` 和 WiFi 感知系统 `RuView` 分别斩获 500+ 和 1000+ 今日星；**Claude 生态** 进一步丰富，`awesome-claude-skills` 和 `dive-into-llms` 教程类项目也获得社区高度关注。同时，RAG/向量数据库赛道继续稳固，头部项目如 `ragflow`、`milvus` 保持高星数积累。
 
-今日 GitHub AI 领域出现多个高增长新项目：**OmniRoute**（+1843⭐）作为免费多模型 AI 网关首次登榜，**worldmonitor**（+2194⭐）将 AI 情报聚合与可视化结合，**Kronos**（+506⭐）推出金融领域专用基础模型。与此同时，**ego-lite**（+884⭐）专为 AI Agent 打造的轻量浏览器引发关注，表明 Agent 工具链正在快速往专业化、轻量化方向演进。传统基础设施如 ollama、transformers 等仍保持高热度，但增量集中在应用层创新。
+### 2. 各维度热门项目
 
----
+#### 🔧 AI 基础工具（框架、SDK、推理引擎、CLI）
 
-## 2. 各维度热门项目
+- **[OmniRoute](https://github.com/diegosouzapw/OmniRoute)** – ⭐0 (+1843 today)  
+  免费 MIT AI 网关：一个端点连接 290+ 供应商（含 90+ 免费），支持 500+ 模型，内置自动回退、Token 压缩、MCP/A2A 协议。今日新星激增，成为开发者统一接入 AI 模型的首选桥梁。
+- **[awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills)** – ⭐0 (+662 today)  
+  Claude 技能、资源与定制工具的精选列表，帮助开发者快速打造自定义 Claude 工作流。社区贡献活跃，是 Claude 生态快速成长的缩影。
+- **[ollama](https://github.com/ollama/ollama)** – ⭐176,804  
+  本地运行大模型的最流行工具，近期集成 Kimi、GLM、DeepSeek 等新模型，保持“即装即用”体验。
+- **[vllm-project/vllm](https://github.com/vllm-project/vllm)** – ⭐87,088  
+  高吞吐、内存高效的 LLM 推理引擎，持续优化 PagedAttention 和动态批处理，是生产部署标配。
+- **[firecrawl/firecrawl](https://github.com/firecrawl/firecrawl)** – ⭐155,573  
+  为 LLM 设计的网页搜索、抓取与交互 API，规模化的 Web 内容摄取工具，被 RAG/Agent 应用广泛依赖。
 
-### 🔧 AI 基础工具（框架、SDK、推理引擎、CLI）
+#### 🤖 AI 智能体/工作流（Agent 框架、自动化、多智能体）
 
-| 项目 | Stars | 一句话说明 |
-|------|-------|------------|
-| [ollama/ollama](https://github.com/ollama/ollama) | ⭐176,803 | 本地运行大模型的标杆工具，支持数十种模型一键部署。 |
-| [huggingface/transformers](https://github.com/huggingface/transformers) | ⭐162,946 | 🤗 模型定义框架，覆盖文字、视觉、多模态的推理与训练。 |
-| [vllm-project/vllm](https://github.com/vllm-project/vllm) | ⭐87,087 | 高吞吐、低内存的 LLM 推理与服务引擎。 |
-| [langchain-ai/langchain](https://github.com/langchain-ai/langchain) | ⭐142,531 | Agent 工程化平台，提供统一的 LLM 调用链与工具集成。 |
-| [diegosouzapw/OmniRoute](https://github.com/diegosouzapw/OmniRoute) | ⭐0 (+1843 today) | 免费 MIT 协议 AI 网关，单端点对接 290+ 提供商（90+ 免费）与 500+ 模型。 |
-| [open-webui/open-webui](https://github.com/open-webui/open-webui) | ⭐146,622 | 用户友好的 AI 交互面板，支持 Ollama / OpenAI API。 |
-| [firecrawl/firecrawl](https://github.com/firecrawl/firecrawl) | ⭐155,564 | 规模化网页搜索与抓取 API，为 LLM 提供实时数据。 |
+- **[citrolabs/ego-lite](https://github.com/citrolabs/ego-lite)** – ⭐0 (+884 today)  
+  专为 AI 代理设计的超快浏览器，允许 Codex、Claude Code 等 Agent 共享登录态并执行 Web 自动化，零配置零成本。今日新增 884 星，反映 Agent 对浏览器环境的刚性需求。
+- **[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)** – ⭐185,679  
+  开源 Agent 先驱，持续迭代任务规划与工具调用能力，仍是社区学习 Agent 架构的首选项目。
+- **[browser-use/browser-use](https://github.com/browser-use/browser-use)** – ⭐106,615  
+  让 AI 代理“看懂”网页并自动完成任务的框架，与 ego-lite 形成互补（浏览器 vs 控制层）。
+- **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** – ⭐220,008  
+  理念为“与你共同成长的 Agent”，注重记忆和自进化能力，成为高阶 Agent 框架的标杆。
+- **[CherryHQ/cherry-studio](https://github.com/CherryHQ/cherry-studio)** – ⭐48,954  
+  集成聊天、自主 Agent 与 300+ 助手的 AI 生产力工具，统一接入前沿 LLM，主打轻量高效。
 
-### 🤖 AI 智能体 / 工作流
+#### 📦 AI 应用（具体产品、垂直场景解决方案）
 
-| 项目 | Stars | 一句话说明 |
-|------|-------|------------|
-| [Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) | ⭐185,678 | 经典 AI 自主 Agent 框架，持续迭代中。 |
-| [browser-use/browser-use](https://github.com/browser-use/browser-use) | ⭐106,612 | 让 AI Agent 像人一样操作浏览器，自动化在线任务。 |
-| [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) | ⭐219,993 | 伴随用户成长的 Agent 框架，支持技能、记忆与安全。 |
-| [CopilotKit/CopilotKit](https://github.com/CopilotKit/CopilotKit) | ⭐36,257 | 前端 Agent 与生成式 UI 栈，支持 React、Angular、移动端等。 |
-| [HKUDS/nanobot](https://github.com/HKUDS/nanobot) | ⭐46,196 | 轻量开源 AI Agent，可整合工具、聊天与工作流。 |
-| [citrolabs/ego-lite](https://github.com/citrolabs/ego-lite) | ⭐0 (+884 today) | 专为 AI Agent 设计的极速浏览器，共享登录状态给 Codex / Claude。 |
-| [ComposioHQ/awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills) | ⭐0 (+662 today) | Claude 技能与资源精选目录，方便自定义 Agent 工作流。 |
+- **[koala73/worldmonitor](https://github.com/koala73/worldmonitor)** – ⭐0 (+2194 today)  
+  实时全球智能仪表盘：AI 驱动的新闻聚合、地缘政治监控与基础设施追踪。今日新增星数最高，显示开发者对“AI+地理情报”融合的高度兴趣。
+- **[shiyu-coder/Kronos](https://github.com/shiyu-coder/Kronos)** – ⭐0 (+506 today)  
+  金融市场的“基础模型” —— 用 AI 建模金融语言，支持多源行情、新闻与决策看板。金融垂直领域的大模型赛道正快速升温。
+- **[ruvnet/RuView](https://github.com/ruvnet/RuView)** – ⭐0 (+1021 today)  
+  利用日常 WiFi 信号实现空间感知、生命体征监测和存在检测，无需任何摄像头。AI+传感器融合方向的新锐代表。
+- **[OtterMind/Chat2DB](https://github.com/OtterMind/Chat2DB)** – ⭐0 (+129 today)  
+  AI 驱动的数据库工具与 SQL 客户端，支持 MySQL、Oracle、ClickHouse 等多种数据库，让自然语言操作数据库成为现实。
+- **[harry0703/MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo)** – ⭐99,126  
+  利用 AI 大模型一键生成高清短视频，从主题到成片全自动化，内容创作领域最热门的开源应用之一。
+- **[TauricResearch/TradingAgents](https://github.com/TauricResearch/TradingAgents)** – ⭐94,422  
+  多智能体 LLM 金融交易框架，将 Agent 博弈引入量化投资，体现 AI+金融的深度结合。
 
-### 📦 AI 应用（垂直场景解决方案）
+#### 🧠 大模型/训练（模型权重、训练框架、微调工具）
 
-| 项目 | Stars | 一句话说明 |
-|------|-------|------------|
-| [koala73/worldmonitor](https://github.com/koala73/worldmonitor) | ⭐0 (+2194 today) | AI 赋能的地缘政治情报仪表板，整合新闻聚合与基础设施追踪。 |
-| [OtterMind/Chat2DB](https://github.com/OtterMind/Chat2DB) | ⭐0 (+129 today) | AI 驱动的数据库客户端与 SQL 工具，支持十余种数据库。 |
-| [harry0703/MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo) | ⭐99,124 | 利用 AI 大模型一键生成高清短视频。 |
-| [PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) | ⭐86,204 | 超强 OCR 工具，可将 PDF/图片转为 LLM 可处理的结构化数据。 |
-| [CherryHQ/cherry-studio](https://github.com/CherryHQ/cherry-studio) | ⭐48,952 | AI 生产力工作室，集成智能聊天、自主 Agent 与 300+ 助手。 |
-| [TauricResearch/TradingAgents](https://github.com/TauricResearch/TradingAgents) | ⭐94,422 | 多智能体 LLM 金融交易框架。 |
+- **[huggingface/transformers](https://github.com/huggingface/transformers)** – ⭐162,946  
+  业界事实标准的模型定义框架，支持文本、视觉、音频多模态，持续跟进最新架构。
+- **[jingyaogong/minimind](https://github.com/jingyaogong/minimind)** – ⭐53,817  
+  从零训练 64M 参数小模型的 2 小时教程，降低大模型入门门槛，教育价值极高。
+- **[Lordog/dive-into-llms](https://github.com/Lordog/dive-into-llms)** – ⭐0 (+654 today)  
+  《动手学大模型》系列编程实践教程，今日新星增速快，体现社区对系统化学习资源的渴求。
+- **[Picovoice/picollm](https://github.com/Picovoice/picollm)** – ⭐315  
+  设备端 LLM 推理引擎，基于 X-Bit 量化，主打低功耗边缘部署，是端侧 AI 的重要尝试。
+- **[open-compass/opencompass](https://github.com/open-compass/opencompass)** – ⭐7,235  
+  全面的 LLM 评估平台，支持 100+ 数据集和主流模型，为模型选型提供标准化基准。
 
-### 🧠 大模型 / 训练
+#### 🔍 RAG/知识库（向量数据库、检索增强、知识管理）
 
-| 项目 | Stars | 一句话说明 |
-|------|-------|------------|
-| [shiyu-coder/Kronos](https://github.com/shiyu-coder/Kronos) | ⭐0 (+506 today) | 金融语言的基础模型，专注于市场数据理解。 |
-| [jingyaogong/minimind](https://github.com/jingyaogong/minimind) | ⭐53,818 | 2 小时从零训练 64M 参数小模型的教学项目。 |
-| [skyzh/tiny-llm](https://github.com/skyzh/tiny-llm) | ⭐4,405 | 在 Apple Silicon 上学习 LLM 推理服务的实战教程。 |
-| [open-compass/opencompass](https://github.com/open-compass/opencompass) | ⭐7,235 | 覆盖 100+ 数据集的 LLM 评测平台。 |
-| [Picovoice/picollm](https://github.com/Picovoice/picollm) | ⭐315 | 设备端 LLM 推理，采用 X-Bit 量化技术。 |
-| [Lordog/dive-into-llms](https://github.com/Lordog/dive-into-llms) | ⭐0 (+654 today) | 《动手学大模型》系列编程实践教程，中文友好。 |
+- **[infiniflow/ragflow](https://github.com/infiniflow/ragflow)** – ⭐85,918  
+  领先的开源 RAG 引擎，融合 Agent 能力构建上层上下文层，成为企业级 RAG 部署的首选。
+- **[run-llama/llama_index](https://github.com/run-llama/llama_index)** – ⭐51,072  
+  文档 Agent 与 OCR 平台，将非结构化文档转换为可检索知识，与 RAG 深度绑定。
+- **[milvus-io/milvus](https://github.com/milvus-io/milvus)** – ⭐45,370  
+  高性能云原生向量数据库，支撑大规模 ANN 搜索，是 RAG 基础设施的核心组件。
+- **[Mintplex-Labs/anything-llm](https://github.com/Mintplex-Labs/anything-llm)** – ⭐63,795  
+  本地优先的 Agent 体验平台，支持私有化部署，让用户“拥有自己的 AI 知识库”。
+- **[HKUDS/LightRAG](https://github.com/HKUDS/LightRAG)** – ⭐38,093  
+  轻量级 RAG 框架（EMNLP2025），强调简单快速，适合快速原型验证。
+- **[mem0ai/mem0](https://github.com/mem0ai/mem0)** – ⭐61,630  
+  为 AI Agent 提供通用记忆层，支持跨会话持久化，弥补 RAG 在上下文管理上的不足。
 
-### 🔍 RAG / 知识库
+### 3. 趋势信号分析
 
-| 项目 | Stars | 一句话说明 |
-|------|-------|------------|
-| [infiniflow/ragflow](https://github.com/infiniflow/ragflow) | ⭐85,917 | 领先的开源 RAG 引擎，融合 Agent 能力。 |
-| [HKUDS/LightRAG](https://github.com/HKUDS/LightRAG) | ⭐38,093 | "简单快速 RAG"（EMNLP2025），支持图结构索引。 |
-| [milvus-io/milvus](https://github.com/milvus-io/milvus) | ⭐45,370 | 云原生高性能向量数据库，用于大规模 ANN 搜索。 |
-| [qdrant/qdrant](https://github.com/qdrant/qdrant) | ⭐33,565 | 高性能大规模向量数据库与搜索引擎。 |
-| [Mintplex-Labs/anything-llm](https://github.com/Mintplex-Labs/anything-llm) | ⭐63,795 | 本地优先的 RAG 应用框架，支持多种文档源。 |
-| [neuml/txtai](https://github.com/neuml/txtai) | ⭐12,750 | 全能 AI 框架：语义搜索、LLM 编排、工作流。 |
-| [mem0ai/mem0](https://github.com/mem0ai/mem0) | ⭐61,628 | 通用 AI Agent 内存层，实现跨会话持久上下文。 |
+今日热榜释放出三个强烈信号：
 
----
+1. **Agent 基础设施进入“浏览器级”竞争**：`ego-lite` 和 `OmniRoute` 的高增长表明，开发者不再满足于仅调用模型的 Agent，开始追求**专用浏览器环境和统一网关**来提升 Agent 的存活率与可控性。浏览器代理（Browser Agent）成为 Agent 落地的关键瓶颈解决方案。
 
-## 3. 趋势信号分析
+2. **垂直领域基础模型快速涌现**：`Kronos`（金融）和 `RuView`（传感）代表 AI 正从通用能力向**行业专用“基础模型”** 演进。金融语言建模、WiFi 感知等非传统 NLP 场景的出现，预示未来“万物皆可 Foundation Model”的泛化趋势。
 
-- **Agent 工具链快速专业化**：ego-lite（+884⭐）专门为 Claude Code / Codex 等 Agent 提供浏览器环境，OmniRoute（+1843⭐）提供廉价多模型聚合网关——社区正在从通用 Agent 框架转向可插拔的专业基础设施，降低 Agent 部署与运行成本。
-- **垂直领域大模型崛起**：Kronos（+506⭐）聚焦金融市场语言，TradingAgents（⭐94K）专注多 Agent 量化交易，说明开发者更看重领域专家模型而非万能模型。这可能与近期金融行业对 AI 合规性与精度要求提升有关。
-- **RAG 生态持续成熟**：LightRAG 被 EMNLP 收录，LEANN 宣称 97% 存储节省，cognee 推出知识图谱记忆——向量数据库不再是唯一方案，图结构、混合搜索、边缘部署等新技术路线百花齐放。
-- **免费/低门槛成为关键字**：OmniRoute、ego-lite、anything-llm 等项目均强调零成本或本地优先，反映开发者对降低 AI 应用使用门槛的强烈需求。
+3. **Claude 生态与中文教程双轮驱动**：`awesome-claude-skills` 和 `dive-into-llms` 的上榜，说明社区对 **生态工具化** 和 **系统性学习资源** 的需求依然旺盛。结合近期 Anthropic 发布的 Claude 新能力，相关技能库和教程将维持热度。
 
----
+此外，RAG 赛道虽无今日新星爆款，但头部项目（ragflow、anything-llm、mem0）持续高星数，说明该技术栈已进入成熟期，企业级部署需求稳定。
 
-## 4. 社区关注热点
+### 4. 社区关注热点
 
-- 🚀 **ego-lite**：专为 AI Agent 打造的浏览器，零配置共享登录状态，可直接集成 Codex 和 Claude Code，是 Agent 自动化从“脚本级”迈向“浏览器级”的关键桥梁。
-- 🌐 **OmniRoute**：免费 AI 网关，支持 290+ 提供商与 500+ 模型，内置 Token 压缩（RTK+Caveman）和自动故障切换，有望成为中小团队接入多模型的标准层。
-- 📈 **Kronos**：金融领域专用基础模型，首次登榜即获 500+ 今日 Stars，验证了垂直行业大模型的高需求，值得关注其后续开源数据集与训练细节。
-- 📘 **dive-into-llms（动手学大模型）**：中文高质量教程项目，今日新增 654⭐，适合 LLM 初学者从零上手，社区学习热情高涨。
-- 🔍 **LightRAG**：被 EMNLP2025 收录，以“简单快速”为设计目标，在传统 RAG 中引入图结构，是检索增强生成领域的重要进展。
+- **🍃 AI 代理浏览器（ego-lite）**：Agent 能否像人类一样使用浏览器是自动化最大瓶颈，此项目直接解决“登录态共享”和“无打扰运行”问题，值得所有 Agent 开发者深入研究。
+- **🌐 统一 AI 网关（OmniRoute）**：多模型、多供应商切换的复杂性在增长，OmniRoute 的自动回退和 Token 压缩能力可大幅简化系统架构，适合想构建稳健 AI 应用的后端团队。
+- **📍 地理情报 AI（worldmonitor）**：将大模型与实时新闻、地理空间数据融合，开辟了“AI+地缘”新用例，对安全分析、市场情报等场景有直接价值。
+- **📈 金融基础模型（Kronos）**：金融数据具有强时序和领域特性，独立的基础模型能更好捕捉规律；该项目提供完整的分析-决策-推送闭环，值得量化爱好者关注。
+- **📚 动手学大模型（dive-into-llms）**：中文社区的最佳入门实践之一，从零到一覆盖训练、推理、应用，配合今日热度，建议初学者立刻上手。
 
 ---
 *本日报由 [Big Model Radar](https://github.com/junlinzhao327-oss/big_model_radar) 自动生成。*

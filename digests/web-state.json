@@ -1,6 +1,6 @@
 {
   "anthropic": {
-    "lastChecked": "2026-07-24T22:35:53.427Z",
+    "lastChecked": "2026-07-24T23:28:57.237Z",
     "seenUrls": {
       "https://www.anthropic.com/news/responsible-scaling-policy-v3": "2026-02-25T23:57:06.000Z",
       "https://www.anthropic.com/research/deprecation-updates-opus-3": "2026-02-25T20:58:11.000Z",
@@ -434,7 +434,7 @@
     }
   },
   "openai": {
-    "lastChecked": "2026-07-24T22:35:54.467Z",
+    "lastChecked": "2026-07-24T23:29:00.389Z",
     "seenUrls": {
       "https://openai.com/index/arvind-kc-chief-people-officer/": "2026-05-29T00:25:33.242Z",
       "https://openai.com/index/put-ai-to-work-for-your-product-team/": "2026-07-15T18:28:33.111Z",
@@ -1171,7 +1171,7 @@
       "https://openai.com/index/david-velez-robin-vince-join-openai-boards/": "2026-07-23T23:22:00.503Z",
       "https://openai.com/index/introducing-openai-presence/": "2026-07-24T17:55:45.860Z",
       "https://openai.com/index/how-news-organizations-are-using-ai/": "2026-07-24T20:59:31.260Z",
-      "https://openai.com/index/health-in-chatgpt/": "2026-07-24T21:18:11.309Z"
+      "https://openai.com/index/health-in-chatgpt/": "2026-07-24T23:14:10.164Z"
     }
   }
 }
