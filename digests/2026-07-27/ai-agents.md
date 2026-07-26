@@ -1,6 +1,6 @@
 # OpenClaw 生态日报 2026-07-27
 
-> Issues: 342 | PRs: 500 | 覆盖项目: 6 个 | 生成时间: 2026-07-26 22:36 UTC
+> Issues: 353 | PRs: 500 | 覆盖项目: 6 个 | 生成时间: 2026-07-26 23:24 UTC
 
 - [OpenClaw](https://github.com/openclaw/openclaw)
 - [Hermes Agent](https://github.com/NousResearch/hermes-agent)
@@ -13,201 +13,173 @@
 
 ## OpenClaw 项目深度报告
 
-好的，作为AI智能体与个人AI助手领域开源项目分析师，我将根据您提供的OpenClaw项目数据，为您生成2026年7月27日的项目动态日报。
+好的，作为AI智能体与个人AI助手领域开源项目分析师，以下是为您生成的 **OpenClaw 项目动态日报**。
 
 ---
 
-# OpenClaw 项目动态日报 | 2026-07-27
+# OpenClaw 项目动态日报 | 2026年7月27日
 
 ## 1. 今日速览
 
-项目社区活跃度极高，过去24小时内积累了342条Issue与500条PR的更新，其中PR合并/关闭率（48.6%）略低于新开率，表明评审团队压力较大。**稳定性**仍然是社区讨论的核心焦点，多个P1级别的关键Bug（如会话冲突、消息丢失、崩溃循环）持续有大量讨论，且部分问题已进入长期积压状态。开发团队的精力目前集中在一次大规模的**代码库重构与清理**上（以@steipete和@vincentkoc为主的“机械去重”系列PR），这预示着项目在追求更健康的架构，但短期内频繁的重构也可能引入新的回归风险。今日无新版本发布，但大量紧急修复PR正在排队。
+项目整体处于 **高度活跃** 状态，社区参与与核心维护工作并重。过去24小时，项目共处理了超过350条议题（Issues）和500条拉取请求（PR），显示出强大的社区动力。虽然今日无新版本发布，但维护者合并了大量重构与修复PR，特别是对子代理（subagent）生命周期的架构性拆分，为后续稳定性奠定了坚实基础。不过，P1级别的会话状态丢失、消息重复和崩溃循环等Bug依然大量存续，亟需社区和维护者的重点关注。
 
 ## 2. 版本发布
+*（今日无新版本发布）*
 
-今日无新版本发布。
+---
 
 ## 3. 项目进展
 
-过去24小时内，项目团队合并/关闭了大量重要PR，主要集中在**代码库清理、关键Bug修复和新功能完整落地**三个方面。
+今日项目合并/关闭了大量PR，主要集中在 **架构重构**、**稳定性修复** 和 **跨平台支持** 三大方向，项目健康度向纵深迈进。
 
-- **核心架构重构**：由维护者@steipete主导的一系列“refactor”PR（如 #113649, #113626, #113648, #113576, #113596 等）被合并，涉及控制UI、Agent原生Hook中继、插件SDK、插件系统安全文件操作等核心模块的机械去重和逻辑拆分。这显著降低了项目的维护成本和后续功能开发的难度。
-- **关键Bug修复**：多个影响用户体验的直接Bug被合入主线：
-    - **修复终端UI权限问题**：PR #113644 修复了因缺少 `operator.write` 作用域导致TUI无法发送消息的问题。
-    - **修复OpenAI HTTP身份验证**：PR #113638 修复了通过OpenAI兼容API调用时，所有者身份丢失导致某些工具权限异常的问题。
-    - **修复UI性能问题**：PR #113623 修复了控制UI侧边栏多选归档时每行延迟2秒的性能瓶颈。
-    - **修复原生应用重连**：PR #113634 修复了Android/iOS/macOS客户端在重新连接或切换窗口后，无法接收实时会话更新的问题。
-    - **修复流式响应假完成**：PR #113629 修复了OpenAI Responses API流式请求在失败后可能无限等待或发送矛盾完成事件的问题。
-- **新功能完善**：
-    - **Claude Opus 5 完整支持**：PR #113633 合并，标志着对最新Claude Opus 5模型的运行时支持已完整落地，包括回退配置、原生快速模式等。
-    - **插件系统增强**：PR #102293 (onepassword插件) 和 PR #112951 (SQLite WAL文件膨胀修复) 的合并，分别增强了密码管理集成和数据存储的健壮性。
-
-**项目整体向前迈进了关键一步**：通过大规模重构提升了代码健康度，并修复了多个直接影响用户日常使用的严重Bug。
+- **核心架构重构**：维护者合并了数个重要PR，对`子代理`（subagent）的生命周期管理进行了拆分，将原有的“上帝文件”拆分为更内聚的模块。这包括：
+    - **PR #113658**: 将子代理生命周期所有者（lifecycle owner）拆分，解决了单一文件行数过多的问题。
+    - **PR #113711**: 将子代理注册表生命周期（registry lifecycle）拆分。
+    - **PR #113695**: 将持久化媒体（media）迁移至规范化数据模型（facts），并停止旧有写入模式，清理历史遗留问题。
+- **稳定性与Bug修复**：
+    - **PR #113697**: 修复了当插件（plugin）阻塞工具（tool）结果时，会话记录中工具调用（tool-call）与结果不配对的问题。
+    - **PR #113703**: 修复了导入CLI会话历史时，重复消息因无唯一ID被丢弃的问题。
+    - **PR #113708**: 修复了SQLite在高并发写入下，快照（snapshot）可能因饥饿（starvation）而无法推进的问题。
+- **社区贡献与跨平台**：
+    - **PR #113106**: 修复了小米（Xiaomi）TTS功能中对无效base64音频数据的处理，增强了鲁棒性。
+    - **PR #113722**: 修复了Android应用在手动输入网关地址时端口丢失的问题。
+    - **PR #113908** (合并中): 为Android应用添加了自适应的Material导航侧边栏，提升了原生体验。
+    - **PR #113600**: 修复了发布流程中的打包验证问题，保障了`2026.7.2`系列Beta版本顺利发布。
 
 ## 4. 社区热点
 
-今日社区讨论热度最高的议题仍然集中在**平台扩展痛点**和**核心可靠性问题**上。
+1.  **#75: [Linux/Windows Clawdbot Apps] (评论: 115, 👍: 80)**
+    - **链接**: https://github.com/openclaw/openclaw/issues/75
+    - **分析**: 这是社区长期以来的 **头号诉求**。用户明确表达了OpenClaw在macOS、iOS和Android之外，对 **Linux和Windows桌面端原生应用** 的强烈渴望。7个月来持续的115条评论和80个赞，揭示了跨平台支持是项目生态扩展的最大瓶颈，也是用户从“可用”到“好用”体验升级的核心期待。
 
-1.  **#75 [Linux/Windows Clawdbot Apps]** (评论: 115, 👍: 80)
-    - **链接**: [https://github.com/openclaw/openclaw/issues/75](https://github.com/openclaw/openclaw/issues/75)
-    - **分析**: 该项目是长期以来的社区焦点，以压倒性的评论和点赞数反映了社区对**跨平台桌面客户端**的强烈渴望。用户不满足于仅限macOS/iOS/Android的方案，追求在所有主流操作系统上获得一致的Agent交互体验。该项目的高热度也表明，社区核心用户希望将OpenClaw打造成一个普适的生产力工具，而不仅仅是开发者的CLI玩具。
+2.  **#6615: [Add denylist support for exec-approvals] (评论: 9, 👍: 8)**
+    - **链接**: https://github.com/openclaw/openclaw/issues/6615
+    - **分析**: 用户对安全性有更精细化的需求。当前仅支持“允许列表”（allowlist），用户希望补充 **“拒绝列表”（denylist）** 策略，以实现“除了危险命令外，全部放行”的灵活管控。这表明在追求效率的同时，社区对安全策略的“灰度控制”要求越来越高。
 
-2.  **#99241 [Tool outputs render as image attachments]** (评论: 24)
-    - **链接**: [https://github.com/openclaw/openclaw/issues/99241](https://github.com/openclaw/openclaw/issues/99241)
-    - **分析**: 此问题揭示了在复杂工作流中的一个致命缺陷：Agent无法读取自己的工具输出（因其被渲染为无法解析的图片附件）。这不仅导致任务失败，更暴露了**LLM与外部工具交互时的信息通道脆弱性**，引发了社区对Agent自主性和可靠性的广泛担忧。这是一个高价值的稳定性问题。
-
-3.  **#102020 [Second message fails with reply session initialization conflicted]** (评论: 15)
-    - **链接**: [https://github.com/openclaw/openclaw/issues/102020](https://github.com/openclaw/openclaw/issues/102020)
-    - **分析**: 会话“第二句话就失败”的问题，直接打击了用户对聊天式AI助手的核心信任。该Bug在跨通道（Signal和Discord）上复现，表明这是一个**底层会话状态管理**的深层问题，而非单一通道的适配问题。社区对此类基础交互的稳定性要求极高。
-
-4.  **#45049 [Agent allows simulated tool calls]** (评论: 7, 👍: 8)
-    - **链接**: [https://github.com/openclaw/openclaw/issues/45049](https://github.com/openclaw/openclaw/issues/45049)
-    - **分析**: 尽管评论数不多，但极高的点赞数表明这是一个“痛点共识”。用户发现Agent模型频繁通过文字描述“模拟”工具调用，而非实际执行，这让有确定性要求的自动化任务变得不可靠。这反映了社区对**Agent行为可控性和可预测性**的深度关切，是Agent应用走向工业级必须解决的关键问题。
+3.  **#99241: [Tool outputs sometimes render as image attachments] (评论: 24, 👍: 2)**
+    - **链接**: https://github.com/openclaw/openclaw/issues/99241
+    - **分析**: 这是当前最影响 **实际工作流** 的Bug之一。工具输出（如ANSI-heavy的结果）渲染为图片附件，导致Agent自身无法读取输出内容。这对于依赖长命令自动化任务的用户是致命的，因为它打断了Agent的自主决策和迭代能力。
 
 ## 5. Bug 与稳定性
 
-今日社区报告的Bug集中在**会话状态损坏**、**消息丢失**、**特定平台/模型的兼容性崩溃**上，严重等级高。
+以下为今日报告的、影响最为严重的Bug（多为P1级别），按严重程度排列：
 
-- **P0 (灾难性)**:
-    - **#90378**: 升级迁移导致cron任务默认模式变更，引发渠道错误。虽已“修复形状”，但影响范围广。 [链接](https://github.com/openclaw/openclaw/issues/90378)
+- **P1 / Crash Loop**:
+    - **#113474**: [Gate crash loop on Raspberry Pi 5](https://github.com/openclaw/openclaw/issues/113474) - 树莓派5上的网关陷入死循环，已被标记为“影响：崩溃循环”。
+    - **#86996**: [Active Memory + Codex latency, hook timeouts， startup aborts](https://github.com/openclaw/openclaw/issues/86996) - 使用活跃内存+Codex后端导致长时间延迟、钩子超时和启动中断，严重影响核心体验。
 
-- **P1 (严重)**:
-    - **#99241**: Agent无法读取工具输出（渲染为图片附件），导致任务阻塞。**无修复PR**。 [链接](https://github.com/openclaw/openclaw/issues/99241)
-    - **#102020**: 会话第二条消息即失败的“回复初始化冲突”。**无修复PR**。 [链接](https://github.com/openclaw/openclaw/issues/102020)
-    - **#86519**: 5.20更新后Agent在Telegram上重复发送相同回复。**无修复PR**。 [链接](https://github.com/openclaw/openclaw/issues/86519)
-    - **#94251**: Ollama远程Provider流未消费，导致会话卡死。**有相关PR(#113423可能是相关，但未在列表中)**。 [链接](https://github.com/openclaw/openclaw/issues/94251)
-    - **#113315**: Telegram消息在偏移持久化后永久丢失。**无修复PR**。 [链接](https://github.com/openclaw/openclaw/issues/113315)
-    - **#113474**: 树莓派5上的网关崩溃循环，引起在线/离线震荡。**无修复PR**。 [链接](https://github.com/openclaw/openclaw/issues/113474)
+- **P1 / Session & Message Loss (严重性最高)**:
+    - **#102020**: [[Bug]: Second message fails with initialization conflicted](https://github.com/openclaw/openclaw/issues/102020) - 在Signal和Discord频道中，会话的第二条消息即报错，基本阻断交互。
+    - **#86519**: [[Bug]: Agent repeats identical replies on Telegram](https://github.com/openclaw/openclaw/issues/86519) - 升级后Agent在Telegram上重复回复2-10次，5月引入的回归问题至今未彻底解决。
+    - **#112423**: [[Bug]: Large SQLite cleanup blocks gateway event loop](https://github.com/openclaw/openclaw/issues/112423) - 清理大型SQLite日志会阻塞网关事件循环，导致整个服务短暂不可用。
 
-- **P2 (中等)**:
-    - **#106403**: 由于更新时间竞态条件，主会话被静默重置。**无修复PR**。 [链接](https://github.com/openclaw/openclaw/issues/106403)
-    - **#111519**: Telegram DM回复在最新测试版后降级。**无修复PR**。 [链接](https://github.com/openclaw/openclaw/issues/111519)
-    - **#108473**: 回归：cron工具的Schema破坏了llama.cpp的工具调用功能。**无修复PR**。 [链接](https://github.com/openclaw/openclaw/issues/108473)
+- **P1 / 回归 (Regression)**:
+    - **#108473**: [[Bug]: cron tool schema breaks llama.cpp tool-calling](https://github.com/openclaw/openclaw/issues/108473) - 最新的cron工具模式导致llama.cpp本地模型无法调用工具，影响所有本地部署用户。
+    - **#111519**: [[Bug]: Telegram DM replies fall back after stale DM-scope cleanup](https://github.com/openclaw/openclaw/issues/111519) - 2026.7.2-beta.3中Telegram私聊回复降级，影响大量用户。
+
+**总结**: 今日无针对上述P1核心Bug的修复PR被合并。社区对“重复回复”、“会话初始化冲突”和“网关崩溃”的抱怨情绪较高，这些是当前最需要解决的关键项。
 
 ## 6. 功能请求与路线图信号
 
-今日社区提出的功能需求显示出向**细粒度控制**和**专业应用场景**演进的趋势。
+- **明确的需求（有对应PR在推进）**:
+    - **子代理完成路由 (Subagent AnnounceTarget)**: Issue **#27445** 衍生出今日更新的PR #101248，旨在允许子代理将完成报告路由到指定的频道，而非默认的发起频道。这个功能若合并，将极大提升复杂工作流的编排能力。
+    - **执行结果脱敏 (Exec Result Redaction)**: PR #81185（今日更新）旨在过滤敏感信息，这对企业级应用和多用户共享环境至关重要，预计会在下几个版本中落地。
 
-- **跨平台桌面端 (#75)**: 呼声最高的功能请求，有望成为下一阶段的核心开发目标。**无直接关联PR**。
-- **Denylist支持 (#6615)**: 为`exec-approvals`添加黑名单，实现“默认放行，只阻止危险命令”的安全策略，提升了安全管控的灵活性。**有开放的关联PR**。
-- **分布式Agent运行时 (#42026)**: 将单体网关拆分为“控制平面”和“运行时”的RFC，这是项目走向规模化、高可用性的必经之路。虽然处于早期阶段，但**今日合并的#113626（拆分Hook Relay）等重构PR正是为此铺路**。
-- **按Agent配置记忆梦境 (#67413)**: 允许用户为不同Agent独立配置“记忆梦境”功能，避免全局梦境导致内存溢出。这表明用户对Agent管理提出了更高的粒度要求。**有开放的关联PR**。
-- **支持Azure Foundry GPT Realtime Talk (#87325)**: 满足企业用户在特定云平台（Azure）上使用OpenClaw的需求。
+- **呼声较高的新功能**:
+    - **跨平台桌面App**： Issue #75 继续霸榜，是路线图中应优先考虑的信号。
+    - **分布式代理运行时**： Issue #42026 提议将网关控制面与Agent运行时分离，以实现更高可扩展性。这反映了用户构建大规模、高可用AI agent集群的远景。
+    - **Azure Foundry支持**： Issue #87325 明确要求Azure用户同样获得完整的GPT Realtime Talk特性，云平台适配是生态扩张的关键。
 
 ## 7. 用户反馈摘要
 
-从今日的Issue评论中，可以提炼出核心用户群体的几种典型声音：
-
-- **“原生客户端是我的刚需”**：Issue #75 及其大量👍表明，用户需要一个像主流聊天软件一样原生的桌面客户端，而不是开一个网页或终端。他们是深度的、日常的Agent用户。
-- **“我看不到Agent在做什么，这很可怕”**：Issue #99241 和 #102020 反映出当Agent无法读取自己的输出或在对话初期就失败时，用户感到**失控和沮丧**。这种“黑箱”感削弱了对Agent的信任。
-- **“给我更多控制权”**：Issue #6615、#67413、#8299等表明，用户希望摆脱“一刀切”的配置，要求对Agent的行为（如安全策略、执行范围、回复方式）拥有**极细致的调节能力**。
-- **“升级带来的破坏比新功能更让我头疼”**：多个Regression报告（如#86519, #111519, #108473）和升级迁移问题（#90378）显示，用户对版本间的兼容性和稳定性高度敏感，一次愉快的升级体验比任何新功能都更重要。
+- **正面**：用户对维护者积极进行架构重构（如拆分子代理注册表）表示认可，虽然没有实质性新功能，但稳定性的基础工作得到了部分用户的关注。
+- **痛点/负面**：
+    - **稳定性仍是最大槽点**：“每次回复都要等很久”、“消息重复、丢失”是高频抱怨。
+    - **升级体验不佳**：用户反映从`5.28`升级到`6.1`时，`cron`任务存储迁移出现问题（Issue #90378），导致定时任务失效。升级带来的回归问题（如#108473, #111519）频繁出现，耗费用户大量精力。
+    - **小设备（IoT）兼容性差**：树莓派5上的崩溃循环（#113474）和资源占用问题（如内存泄漏）让希望在边缘设备上部署的用户感到失望。
+    - **功能与文档不符**：用户指出`webhook hook sessions`的`sessionKey`参数被文档描述为支持多轮对话，但实际使用时每次都会创建新会话（Issue #11665），造成信任问题。
 
 ## 8. 待处理积压
 
-以下为长期存在、社区高度关注但尚未取得突破性进展的重要问题，需要维护者给予关注。
+以下为长期未获足够关注、但影响广泛或值得投入的重要问题，提醒维护者关注：
 
-- **#75 (Linux/Windows桌面客户端)**: 超过6个月的高需求Issue，至今无实现PR。是项目跨平台战略的最大短板。
-- **#42026 (分布式Agent运行时RFC)**: 涉及项目未来架构演进的RFC，需要核心维护团队进行技术决策。
-- **#85251 (Codex app-server卡死)**: 一个关键的P1级Bug，Agent运行时完全卡死直到超时回收，对生产环境威胁极大，已标记为“stale”。
-- **#85844 (自动更新后缓存过期)**: 导致自动更新后功能异常的问题，影响了无缝升级体验。
-- **#98938 (Gateway内存泄漏)**: 长期存在的OOM问题，迫使多账户Matrix网关用户每天重启，严重影响部署稳定性。
+1.  **#75**: [Linux/Windows Clawdbot Apps](https://github.com/openclaw/openclaw/issues/75) - **长期悬而未决的头号功能请求**，已开放近7个月，115条评论，80个赞。社区期待项目组能对此给出明确的规划或回应。
+2.  **#6615**: [Add denylist support for exec-approvals](https://github.com/openclaw/openclaw/issues/6615) - **精细化的安全策略需求**，已开放5个月，用户呼声强烈。PR #81185（执行结果脱敏）也属于同类型需求，建议打包考虑。
+3.  **#42026**: [RFC： Distributed Agent Runtime](https://github.com/openclaw/openclaw/issues/42026) - **潜在的重大架构演进**，虽然当前优先级不高，但作为一篇有价值的RFC，项目组可能需要定期回顾，以防社区贡献者自行实现造成分裂。
+4.  **#94251**: [[Bug]: Ollama remote provider streaming not consumed](https://github.com/openclaw/openclaw/issues/94251) - 影响所有使用Ollama远程服务的用户，原因似乎是流式响应未被消费，导致会话停滞。这个问题已经持续一个多月，虽然标记为“需要维护者复现”，但用户侧提供了详细环境，值得投入时间。
 
 ---
 
 ## 横向生态对比
 
-# 2026-07-27 AI 智能体与个人助手开源生态横向对比分析
+好的，作为您的资深技术分析师，我已根据您提供的五个核心项目的社区动态，为您整理出以下横向对比分析报告。
 
 ---
+
+# 个人AI智能体开源生态横向分析报告 (2026-07-27)
 
 ## 1. 生态全景
 
-当前 AI 智能体/个人助手开源生态呈现 **“爆发式迭代与质量阵痛并存”** 的态势。头部项目（OpenClaw、Hermes）日处理 Issue/PR 超 500 条，社区参与度极高，但大量未合并 PR 与回归缺陷揭示出快速扩张带来的评审瓶颈。与此同时，项目间技术方向趋同——**跨平台客户端、细粒度权限控制、会话稳定性、分布式运行时** 成为多数项目共同攻坚点。LiteLLM 作为模型网关保持高频更新，Temporal 则作为底层编排引擎稳健迈向新版本，形成“前端 Agent + 后端工作流 + 中间件”的立体生态。
-
----
+当前，个人AI智能体与自主智能体开源生态正处在一个 **“功能爆炸与稳定性博弈”** 的高速发展阶段。社区呈现出极高的创作热情，大量新功能和集成被密集提交，但与此同时，由快速迭代引发的 **稳定性问题、配置混乱和兼容性回归** 正成为所有项目的普遍痛点。一个明确的趋势是，社区正在从“让Agent动起来”转向“让Agent稳定、可控、可观测地工作”，对**成本管理、安全性、跨平台体验和架构健壮性**提出了更高的要求。各项目虽路线各异，但都在围绕**如何构建更可靠、更透明的AI软件**这一核心命题展开激烈竞争。
 
 ## 2. 各项目活跃度对比
 
-| 项目 | 过去24h Issues (新开/活跃) | 过去24h PRs (新开/活跃) | 版本发布 | 健康度评估 |
-|------|---------------------------|--------------------------|----------|------------|
-| **OpenClaw** | 342 | 500 | 无 | ⚠️ 极高活跃，PR 合并率 48.6%，评审压力大；多个 P1 Bug 仍无修复 PR |
-| **Hermes Agent** | 500+ | 500+ | 无 | ⚠️ 极高活跃，但大量回归缺陷；桌面端启动崩溃成最大痛点 |
-| **OpenHands SDK** | 13 | 13（全部待合并） | 无 | 🟡 中等活跃，核心进展停滞（PR 零合并），积压严重 |
-| **Pi** | 约27（关闭数） | 约8（关闭数） | 无 | 🟢 健康，维护者高效清理积压；核心 Bug（CPU 占满、WSL）仍在处理 |
-| **LiteLLM** | 57 | 144 | 无 | 🟢 高活跃，合并/关闭 28 个 PR；安全漏洞 CVE 修复滞后 |
-| **Temporal** | 1 | 12 | 无（v1.32.0 RC 准备中） | 🟢 稳健，发布分支已就绪；无重大回归 |
+| 项目 | 24h Issues数* | 24h PR数* | 新版本发布 | 合并/关闭率** | 健康度评估 | 核心状态 |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **OpenClaw** | 350+ | 500+ | 无 | 中等 | **活跃，但存在稳定性危机** | 架构重构期，P1级Bug堆积，社区耐心面临考验 |
+| **Hermes Agent** | ~461 | ~500 | 无 | 较低 (27.2%) | **高度活跃，但有开发过热趋势** | 功能开发爆发期，PR合并瓶颈严重，社区贡献难以落地 |
+| **OpenHands SDK** | - | 13 | 无 | 极低 (0%) | **活跃度中等，存在合并积压** | 高质量修复集中提交，但无人审查合并，代码停滞 |
+| **Pi** | 27 (已关闭) | 多条 | 无 | 高 | **成熟且高效** | Bug修复与性能优化并重，社区反馈响应快，治理结构清晰 |
+| **LiteLLM** | 56 | 136 | 无 | 中等 (25/56, 25/136) | **高度活跃，稳步推进** | 聚焦计费、并发、MCP集成等核心运维问题，内核迭代 |
+| **Temporal** | 1 | 12 | 无 (准备中) | 较高 (3/12) | **稳定且克制** | 专注测试基础设施与版本分支准备，为发布蓄力 |
 
-> 备注：OpenClaw 与 Hermes 数据包含大量评论/更新，非纯新开；Pi 的 Issue/PR 数主要指关闭项。
-
----
+*注：*数量级为原文近似值，部分项目未严格区分创建/关闭。
+**注：** 合并/关闭率 = (关闭的Issues + 合并的PRs) / (新增/活跃的Issues + 活跃的PRs) 的估算，反映项目交付效率。
 
 ## 3. OpenClaw 在生态中的定位
 
-- **核心参照项目**：被广泛 fork 与参考，其“机械去重”重构（@steipete 主导）引领代码库健康度提升方向。
-- **技术路线**：侧重 **Agent 运行时、插件 SDK、多通道集成**，采用 “单体网关 + 模型适配层” 架构，正在通过重构（如 #113626 拆分 Hook Relay）向 **控制平面与运行时分离** 演进。
-- **社区规模**：日处理 Issue/PR 量级与 Hermes 并列第一，但评论含金量更高（Bug 讨论深、功能需求理性）。跨平台桌面端缺失（#75）是最大短板，社区呼声远超 Hermes 同类需求。
-- **与同类优势**：
-  - 更完善的插件系统（每日合并安全文件操作、onepassword 等）
-  - 对 Claude Opus 5、OpenAI Responses API 等模型支持的紧跟速度
-  - 代码库重构意愿强烈，长期可维护性优于 Hermes（Hermes 仍处于“填坑”阶段）
-
----
+- **核心参照地位稳固**：从数据看，OpenClaw拥有最大的社区规模、最全面的功能集（子代理、网关、多平台）和最复杂的架构，是生态中当之无愧的**功能引领者**。其“子代理生命周期拆分”等架构动作，预示着个人AI智能体平台的工业化方向。
+- **优势**：功能全面、架构设计的前瞻性（如分布式Agent运行时RFC）、强大的社区贡献基础（子代理路由等PR）。
+- **劣势与挑战**：**稳定性是其最大软肋**。P1级Bug（会话丢失、崩溃循环、消息重复）长时间存续，严重侵蚀用户体验。跨平台桌面应用（#75）的长期缺失，使其在开发者生态扩展上束缚明显。与**Hermes Agent**相比，功能更新节奏稍慢，且受困于自身历史遗留问题；与**Pi**相比，终端用户体验（特别是稳定性）差距较大。
 
 ## 4. 共同关注的技术方向
 
-| 方向 | 涉及项目 | 具体诉求 |
-|------|----------|----------|
-| **跨平台桌面客户端** | OpenClaw (#75)、Hermes (#71226 等) | 原生 Windows/Linux 桌面端是社区第一梯队刚需 |
-| **细粒度权限控制** | OpenClaw (#6615 Denylist)、Hermes (#527 RBAC) | “全有或全无”的二元授权模式无法满足团队协作 |
-| **会话状态稳定性** | OpenClaw (#102020 会话冲突)、Hermes (#71480 DB 损坏)、OpenHands (#4192 对话丢失) | 基础会话常因竞态、Schema 损坏、重启而丢失 |
-| **工具调用可靠性** | OpenClaw (#99241 工具输出变图片)、Hermes (#45049 模拟调用不规范) | Agent 无法读取自身输出或跳过实际执行，破坏自主性 |
-| **TTS/多模态支持** | LiteLLM (#20078 Qwen3-TTS)、OpenHands (#3495 vision 检测) | 语音、图像模态集成仍不稳定 |
-| **扩展系统/插件化** | Pi (#7137 pre_response 钩子)、LiteLLM (#34686 CLI 估算) | 允许第三方动态扩展 Agent 行为 |
-| **可观测性** | Pi (#7146 Token 用量暴露)、LiteLLM (#34704 Prometheus 按区域归属) | 生产环境对端到端监控的迫切需求 |
-| **安全漏洞治理** | LiteLLM (CVE-2026-28684)、Pi (#7090 CVE-2026-14257) | 依赖锁定导致安全修复阻塞 |
+以下为多个项目社区同时涌现出的、具有共性的核心诉求与方向：
 
----
+| 技术方向 | 涉及项目 | 具体诉求与信号 |
+| :--- | :--- | :--- |
+| **精细化安全与权限控制** | **OpenClaw** (#6615 denylist)、**Hermes Agent** (#527 RBAC, PR #72259 审批白名单) | 从“全有或全无”的二元授权，转向“拒绝列表”、“角色权限”、“智能审批流”。 |
+| **成本管理与可观测性** | **LiteLLM** (密集的计费修复PR, #34686成本估算CLI)、**Hermes Agent** (#67764 cost覆盖Bug) | 社区不再满足于“能用”，强烈要求精确的成本核算、可视化，并对费用统计错误零容忍。 |
+| **跨平台与异构设备支持** | **OpenClaw** (#75桌面端)、**Pi** (#7064 WSL兼容性) | 开发者桌面（Linux/Windows）和边缘设备（树莓派、WSL）的体验是生态扩展的关键瓶颈。 |
+| **模型兼容性与工具调用可靠性** | **LiteLLM** (#26444参数同步滞后)、**OpenClaw** (#108473 cron框架不兼容)、**Hermes Agent** (#5254 本地工具调用Bug) | 多模型支持成为标配，但模型API变更导致的工具调用失败、参数映射错误是普遍痛点，急需更健壮的适配层。 |
+| **外部系统集成与生态扩展** | **LiteLLM** (MCP集成PR)、**OpenHands SDK** (#2494 多市场注册) | Agent不再孤立运行，与外部工具、市场、服务的无缝集成成为下一个竞争焦点。 |
 
 ## 5. 差异化定位分析
 
-| 维度 | OpenClaw | Hermes Agent | OpenHands SDK | Pi | LiteLLM | Temporal |
-|------|----------|-------------|---------------|----|---------|----------|
-| **核心定位** | 全能 Agent 运行时 | 桌面端优先的团队协作 Agent | 开发者 IDE 内嵌 Agent SDK | 轻量级终端 Agent | 模型网关/代理 | 工作流编排引擎 |
-| **目标用户** | 开发者/高级用户 | 团队、企业 | 软件开发者 | CLI 重度用户/远程工作者 | MLOps、平台运维 | 后端开发者、SRE |
-| **技术架构** | 单体网关+插件 SDK (重构中) | 桌面端+远程网关 | SDK 库 (嵌入 IDE) | Node.js TUI+扩展 | Python 中间件 | Go 运行时+gRPC |
-| **今日重点** | 代码重构、Bug 修复 | 桌面崩溃、网关权限 | 文件编辑器修复、并发控制 | TUI 性能、WSL 兼容 | 模型兼容、成本追踪 | VTS、SAA 测试 |
-| **社区规模** | 极大（500+ PR/天） | 极大（500+ Issue/天） | 中等（13 PR/天） | 中高 | 高（144 PR/天） | 中（12 PR/天） |
-| **核心优势** | 插件生态、重构意愿 | 桌面端集成度 | IDE 原生体验 | 轻量、终端友好 | 模型兼容广度 | 可靠性、分布式能力 |
+| 项目 | 核心功能侧重 | 目标用户 | 技术架构关键差异 |
+| :--- | :--- | :--- | :--- |
+| **OpenClaw** | **全能型Agent网关/平台** | 追求复杂工作流、多平台部署的全栈开发者 | 基于子代理的生命周期管理，强调可编排、可路由的Agent集群。 |
+| **Hermes Agent** | **功能驱动的个人助手** | 希望快速体验最新AI特性的早期用户和贡献者 | 社区驱动，功能PR密集，被形容为“功能集成的试验场”，架构迭代快但稳定性略逊。 |
+| **OpenHands SDK** | **微调与集成SDK** | 需要将Agent能力集成到自己应用中的开发者和企业 | 聚焦于提供标准化、可嵌入的API和工具，是生态中的“中台”角色。 |
+| **Pi** | **轻量级CLI/TUI代理** | 追求极致性能、零配置的终端用户与开发者 | 代码极致精简，专注于TUI性能和跨平台兼容，是“小而美”的代表。 |
+| **LiteLLM** | **LLM Proxy网关** | 管理和编排多供应商LLM API的DevOps工程师 | 核心优势在于API路由、成本核算、速率限制和模型兼容，是生态中的“基础设施”。 |
+| **Temporal** | **工作流编排引擎** | 构建可靠、可回溯的分布式应用的后端开发者 | 提供确定性重放、时间跳过、故障注入等企业级能力，是Agent底层的“执行底座”。 |
 
----
+## 6. 社区热度与成熟度
 
-## 6. 社区热度与成熟度分层
-
-| 分层 | 项目 | 特征 |
-|------|------|------|
-| **🔥 快速迭代阶段（高热度、高 Bug 率）** | OpenClaw、Hermes Agent | 日更新超 500，复现大量回归缺陷；评审瓶颈明显，稳定性较差 |
-| **🟢 快速迭代+质量巩固（热度高、回退少）** | LiteLLM、Pi | 活跃度高，但维护者能及时关闭/合并；Bug 修复与功能增强并行 |
-| **🟡 质量巩固阶段（中等活跃、专注测试）** | Temporal | 发布准备中，合并以测试基础设施为主；单一 Issue 无重大回归 |
-| **⏸️ 停滞风险（PR 零合并）** | OpenHands SDK | 13 个高质量 PR 全部待审 24h+，核心进展空转 |
-
----
+- **快速迭代与社区爆发期**：**Hermes Agent** 和 **LiteLLM** 处于此阶段。Issue和PR数量巨大，社区创新活跃，但代码审查、合并和稳定性保障的压力巨大，Bug积压和回归问题突出。
+- **架构巩固与品质打磨期**：**OpenClaw** 和 **Pi** 处于此阶段。社区依然庞大，但活动重心由“堆功能”转向“修Bug、重构、优化性能”。项目更注重长期健康和用户体验的精细化。
+- **稳定成熟期**：**Temporal** 处于此阶段。社区活动规律，开发节奏稳健，目标明确（为发布做准备），Bug报告少而精。其治理和代码质量管控流程值得其他项目学习。
+- **潜力待激活期**：**OpenHands SDK** 处于此阶段。有高质量的社区贡献，但核心团队注意力似乎不在此处，导致关键PR积压，生态价值未能充分发挥，活跃度“原地踏步”。
 
 ## 7. 值得关注的趋势信号
 
-1. **“轻量化终端 Agent”热度上升**：Pi 项目在处理 TUI 性能、WSL 兼容等细节问题，说明 Agent 正从 Web/桌面向终端环境下沉，适合 DevOps/远程工作场景。
-2. **RBAC 与 Denylist 成为安全标配**：OpenClaw 和 Hermes 同时出现细粒度权限需求，反映出 Agent 从“个人玩具”向“团队生产工具”转型中的安全刚需。
-3. **模型适配层（LiteLLM）承压加速**：新模型频出（Claude Opus 4.7、Qwen3-TTS、Perplexity 工具调用），LiteLLM 作为中间件必须快速补齐参数映射，否则将拖累上层 Agent 生态。
-4. **工作流编排与 Agent 深度融合（Temporal VTS）**：Temporal 的虚拟时间跳过功能使异常测试更加可控，这是 Agent 应用进入生产环境前必须解决的“时间扭曲”难题。
-5. **安全漏洞修复滞后成为共同隐患**：多个项目（LiteLLM、Pi）存在已知 CVE 但依赖锁定无法升级，建议开发者订阅项目安全公告并自行评估风险。
-6. **开发者对“可观测性”诉求爆发**：Pi 的 Token 用量暴露、LiteLLM 的 Prometheus 成本归属、Temporal 的测试断言工具，说明社区已不满足于“能用”，追求“可度量、可审计”。
+1.  **Agent自主权与人类监督的再平衡**：“智能审批”、“可插拔审批流”、“用户确认后执行”等诉求涌现，表明行业正从“完全自动化”的幻想中冷静下来，转向务实的人机协作模式。
+2.  **“成本”成为第一等公民**：LiteLLM的计费精度修复和Hermes Agent的成本覆盖Bug，以及用户对成本可视化API的呼吁，共同指向一个趋势：**没有成本意识的AI智能体是不完整的**。成本的可观测性和可控性将成为AI Agent产品的准入门槛。
+3.  **从单机到分布式，从通用到专用**：OpenClaw的“分布式Agent运行时”RFC与Hermes Agent的“子代理完成路由”PR，暗示着Agent架构正从单一的LLM调用，走向复杂的、去中心化的多智能体协作网络。
+4.  **平台化与垂直化的分野**：项目定位正日益清晰。OpenClaw想成为“Agent的iOS”，LiteLLM想成为“Agent的云中间件”，而Pi则安于做“开发者手中最锋利的终端小刀”。对于开发者而言，选择哪个项目，本质上是在选择一种技术哲学和成长路径。
 
-**对 AI 智能体开发者的参考建议**：
-- 若构建面向团队的生产级 Agent，优先关注 **OpenClaw**（架构前瞻）和 **Hermes**（桌面生态），但需忍受阶段性不稳定。
-- 若需快速集成多模型，**LiteLLM** 是最成熟的网关选择，但注意安全修复节奏。
-- 若开发 IDE 插件或嵌入式 Agent，**OpenHands SDK** 虽然今日停滞，但其设计理念值得参考。
-- 若需要可靠的工作流编排，**Temporal** 是业界标准，v1.32.0 的 VTS 功能将显著提升测试效率。
-- **终端 Agent（Pi）** 适合对资源敏感、偏好 CLI 的开发者，但 WSL 支持需尽快完善。
+对开发者的参考价值：**“功能速度”已不再是唯一标准，“稳定性、成本透明度、安全可控”正成为AI智能体走向生产环境的“新三驾马车”**。建议生态参与者，尤其是企业用户，在选择技术栈时，重点关注项目对**安全（审批、RBAC）、成本（计费、可观测）和跨平台兼容性（Linux桌面、WSL）** 的投入与支持态度。
 
 ---
 
@@ -216,540 +188,463 @@
 <details>
 <summary><strong>Hermes Agent</strong> — <a href="https://github.com/NousResearch/hermes-agent">NousResearch/hermes-agent</a></summary>
 
-好的，作为 AI 智能体与个人 AI 助手领域的开源项目分析师，我已根据您提供的 Hermes Agent GitHub 项目数据，为您生成了 2026-07-27 的项目动态日报。
+好的，以下是基于您提供的 GitHub 数据生成的 **Hermes Agent 项目动态日报（2026-07-27）**。
 
 ---
 
-### **Hermes Agent 项目动态日报 | 2026-07-27**
+# Hermes Agent 项目动态日报
+**报告周期**: 2026-07-26 ~ 2026-07-27
+**生成时间**: 2026-07-27
 
-#### **1. 今日速览**
+---
 
-今日 Hermes Agent 项目呈现出极高强度的社区活跃度，过去24小时内处理了超过500条 Issue 和 500 条 PR，表明项目正处于大规模迭代与排查的高峰期。尽管未发布新版本，但社区讨论和技术贡献的热度空前。值得注意的是，大量 Issue 集中在桌面客户端（Desktop）的启动崩溃、网关连接及权限管理方面，而 PR 则主要围绕着各类 Bug 修复和内部架构优化。目前项目面临的主要挑战在于如何高效消化庞大的 Issue 积压，并将开放的 PR（383条待合并）平稳地合并入主分支。
+## 1. 今日速览
 
-- **活跃度评估**：极高。日活跃 Issue/PR 数量远超常规，社区参与热情高涨，但也伴随着大量回归缺陷和稳定性问题，反映出项目快速迭代的阵痛。
+过去24小时内，Hermes Agent 项目呈现出极高的社区活跃度：共计有500条 Issue 和500条 PR 更新，其中新发和活跃的 Issue 多达461条。尽管 PR 提交量巨大，但合并/关闭率（27.2%）远低于新提交量，表明项目正处于功能密集开发与迭代阶段，维护团队审查压力较大，存在一定的合并瓶颈。今日无新版本发布，大量特性功能仍在 PR 阶段等待合并。整体而言，项目处于高度活跃的开发爆发期，但社区反馈（特别是Bug报告）的增长速度可能超过了团队的修复速度。
 
-#### **2. 版本发布**
+## 2. 版本发布
+无新版本发布。
 
-- **无新版本发布**：过去24小时内未发现任何新版本发布记录。
+## 3. 项目进展
 
-#### **3. 项目进展**
+今日项目在功能开发和核心Bug修复上有显著推进，多项来自社区的贡献被合并。主要进展包括：
 
-在过去24小时内，有数个重要的 PR 被合并，推动项目在稳定性和功能完善上取得进展：
+- **桌面应用修复**：
+    - PR [#49746](https://github.com/NousResearch/hermes-agent/pull/49746)（已关闭，P2）：修复了桌面端粘贴后 `Cmd+Z` 撤销功能异常的问题。
+    - PR [#53748](https://github.com/NousResearch/hermes-agent/pull/53748)（已关闭，P3）：修复了Windows平台上 `vision_analyze` 工具无法识别MSYS/Git Bash的Unix风格路径的问题。
+- **配置与权限修复**：
+    - PR [#67623](https://github.com/NousResearch/hermes-agent/pull/67623)（已关闭，P2）：修复了在Dashboard/桌面端切换配置时，MCP工具和密钥未能正确加载到新配置的问题。
+    - PR [#72293](https://github.com/NousResearch/hermes-agent/pull/72293)（已关闭，P2）：作为#67623的补充修复，确保桌面端选择的配置文件的 `.env` 密钥能正确生效。
+- **功能合并**：
+    - 多项由社区发起的新功能（如 `/diff`, `/context`, `/side`, 持久化`/goal` 显示）被核心贡献者 `@teknium1` 整理和复刻，并提交为新 PR ([#72240](https://github.com/NousResearch/hermes-agent/pull/72240), [#72242](https://github.com/NousResearch/hermes-agent/pull/72242), [#72244](https://github.com/NousResearch/hermes-agent/pull/72244), [#72252](https://github.com/NousResearch/hermes-agent/pull/72252)等)，标志着这些功能有较高概率被纳入主线。
 
-- **桌面端 UI 与用户体验修复**：[@teknium1](https://github.com/teknium1) 的 PR [#72234] 合并了一次全面的仪表盘 QA 修复，解决了标题栏按钮被隐藏、日志颜色异常等六个核心 Bug，这些修复直接提升了用户操作体验。
-- **核心会话状态修复**：[@buddhaholic420](https://github.com/buddhaholic420) 的 PR [#72231] 修复了桌面端“停止”操作与持久化中断标记之间的竞态条件，防止了错误的恢复流程。
-- **门户组件回归修复**：PR [#45652](https://github.com/NousResearch/hermes-agent/pull/45652) 和 [#31863](https://github.com/NousResearch/hermes-agent/pull/31863) 解决了一个长期存在的回归问题：隐藏的聊天页面（ChatPage）会清空其他所有页面的头部操作按钮，这直接影响 Cron 页面等核心功能的可用性。
+项目整体在这24小时内不仅修复了多个长期存在的具体Bug，还通过整合社区贡献，加速了新功能（如许可建议、上下文可视化）的落地进程，向用户期望的方向迈进了一大步。
 
-**项目评估**：项目在社区驱动下快速修正关键用户体验问题，修复的重点集中在桌面端和仪表盘。但大量未合并的 PR 表明，项目仍处于一个密集的输出阶段，需要加快审阅与合并流程。
+## 4. 社区热点
 
-#### **4. 社区热点**
+今日社区讨论最激烈的议题主要集中在**权限模型的根本性变革**和**与新平台的集成**上。
 
-本周讨论最热烈的议题主要集中在权限管理和平台集成上，反映了社区对更高程度定制化和专业场景支持的需求。
+1.  **[#527] Feature: Gateway Permission Tiers — Role-Based Access Control (RBAC)**
+    - **链接**: [Issue #527](https://github.com/NousResearch/hermes-agent/issues/527)
+    - **热度**: 评论15，👍 10
+    - **分析**: 这是社区呼声最高的特性请求之一。用户渴望从“全有或全无”的二元授权模型，转向更细粒度的角色权限控制（所有者/管理员/用户/访客）。这背后反映了企业级应用和多人协作场景中对安全性和权限管理的刚需。虽然该Issue已存在数月，但其持续的高热度表明这是社区最核心的痛点，很可能在下个版本中被优先处理。
 
-- **1. 细粒度网关权限控制 (Issue #527)**
-  - **链接**: [https://github.com/NousResearch/hermes-agent/issues/527](https://github.com/NousResearch/hermes-agent/issues/527)
-  - **分析**: 这是社区呼声最高的功能之一（15条评论，10个赞）。用户[@teknium1](https://github.com/teknium1)指出当前平台只有“全有或全无”的二元授权模型，无法满足企业级团队协作需求。该议题讨论引入RBAC（基于角色的访问控制），让团队可以安全地共享一个Hermes实例。
+2.  **[#68871] [Feature]: Add messaging support for Buzz**
+    - **链接**: [Issue #68871](https://github.com/NousResearch/hermes-agent/issues/68871)
+    - **热度**: 评论13，👍 13
+    - **分析**: 社区对新兴的、去中心化的工作空间和消息平台（如Block开源的Buzz）表现出浓厚兴趣。请求将Hermes Agent集成到Buzz中，使其成为“原生”的AI同事。这反映了用户不仅满足于与现有平台（如Slack, Discord）的集成，更希望Agent能无缝融入新一代的AI协作环境中。
 
-- **2. 集成新兴平台 Buzz (Issue #68871)**
-  - **链接**: [https://github.com/NousResearch/hermes-agent/issues/68871](https://github.com/NousResearch/hermes-agent/issues/68871)
-  - **分析**: 该议题获得了13个赞，显示社区对将 Hermes 与新兴的开源协作平台（如Block公司开源的Buzz）集成的强烈兴趣。用户希望 Agent 能融入“AI与人类共处一室”的新型工作空间，这预示着未来 Agent 生态的扩展方向。
+## 5. Bug 与稳定性
 
-- **3. Windows 桌面启动故障 (Issue #71226)**
-  - **链接**: [https://github.com/NousResearch/hermes-agent/issues/71226](https://github.com/NousResearch/hermes-agent/issues/71226)
-  - **分析**: 这是一个严重影响用户体验的 P1 级 Bug，导致 Windows 11 用户完全无法启动桌面应用。该问题在短时间内获得7条评论，用户被迫陷入重启循环，社区反应强烈。此 Bug 与 Windows 平台问题高度相关，是当前最需要优先解决的核心痛点。
+过去24小时内报告了多个高影响力和中高严重性的Bug，主要围绕桌面应用崩溃、配置不生效和会话状态问题。
 
-#### **5. Bug 与稳定性**
+- **P1级（严重阻塞）**:
+    - [#71226](https://github.com/NousResearch/hermes-agent/issues/71226) **[Bug]: Desktop boot loop**: Windows 11上桌面应用在更新后陷入启动循环，WebSocket连接后立即断开，用户无法使用。**目前暂无Fix PR**。
+    - [#70938](https://github.com/NousResearch/hermes-agent/pull/70938) **[Bug]: cron root 文件权限问题**: 根用户运行的CLI会改写 `jobs.json` 文件权限，导致普通用户网关进程无法读取，造成定时任务完全不可用。**已有修复PR待合并**。
 
-今日报告的 Bug 频发，以桌面端和网关稳定性问题最为严重。按严重程度排列如下：
+- **P2级（中等严重）**:
+    - [#40187](https://github.com/NousResearch/hermes-agent/issues/40187) **[Bug]: Windows desktop app 编译失败**：用户在 `hermes update` 时，electron构建阶段失败。**目前暂无Fix PR**。
+    - [#61265](https://github.com/NousResearch/hermes-agent/issues/61265) **[Bug]: 给本地模型发送超大提示词**：Agent 工作流会生成极其庞大的提示词发送给本地模型，导致模型卡顿数分钟。**目前暂无Fix PR**。
+    - [#67764](https://github.com/NousResearch/hermes-agent/issues/67764) **[Bug]: cost_status 覆盖**：每次API调用都会覆盖之前记录的累计成本数据，导致费用统计完全失真。**目前暂无Fix PR**。
+    - [#60388](https://github.com/NousResearch/hermes-agent/issues/60388) **[Bug]: max_tokens 设置被静默丢弃**：用户配置中的 `max_tokens` 设置被忽略，导致模型输出不受限制，可能产生巨大消耗。**目前暂无Fix PR**。
+    - [#67605](https://github.com/NousResearch/hermes-agent/issues/67605) **[Bug]: Dashboard 配置切换不完整**：切换配置后，MCP工具和密钥等并未更新为该配置，而是仍使用启动时的配置。**已有修复PR被合并**。
 
-- **P1 - 严重 (Critical)**:
-    - Windows Desktop 启动循环 (Issue [#71226](https://github.com/NousResearch/hermes-agent/issues/71226))：更新后无法启动，WebSocket连接立即断开。**已有 fix PR #72279 提及，但未直接修复。**
-    - Desktop 工作目录设置失效 (Issue [#38855](https://github.com/NousResearch/hermes-agent/issues/38855) - 已关闭)：用户配置的`terminal.cwd`被UI缓存的旧值覆盖。昨日已解决。
+## 6. 功能请求与路线图信号
 
-- **P2 - 较高 (High)**:
-    - 桌面端远程网关连接失败 (Issues [#48434](https://github.com/NousResearch/hermes-agent/issues/48434) - 已关闭, [#71305](https://github.com/NousResearch/hermes-agent/issues/71305) - 已关闭)：Windows和macOS用户均遇到登录认证和连接失败问题，特别是在更新后。昨日已解决。
-    - `max_tokens` 设置被静默忽略 (Issue [#60388](https://github.com/NousResearch/hermes-agent/issues/60388))：影响所有使用参考模型或摘要生成器的用户，导致输出无限制，浪费token。
-    - Kanban工人协议违规 (Issue [#27178](https://github.com/NousResearch/hermes-agent/issues/27178))：当Agent以文本回复而非API调用结束任务时，系统会产生误报，并且没有自动重试机制。
-    - **状态数据库 Schema 损坏 (Issue [#71480](https://github.com/NousResearch/hermes-agent/issues/71480))**: 并发访问时，同时运行的 CLI 和进程可能会导致数据库结构损坏。**暂无有效修复 PR 与之对应。**
+以下功能请求可能对项目未来发展产生较大影响，结合已有PR，可窥见下一版本的部分路线图：
 
-- **P3 - 中等 (Medium)**:
-    - Kanban数据库索引损坏 (Issue [#34385](https://github.com/NousResearch/hermes-agent/issues/34385))：多进程并发写入导致SQLite数据库损坏。
-    - ACP工具完成事件静默丢失 (Issue [#33023](https://github.com/NousResearch/hermes-agent/issues/33023))：客户端（如AionUI）无法得知工具调用已结束，导致界面永远显示“处理中”。
+- **可插拔的审批系统** ([#64162](https://github.com/NousResearch/hermes-agent/issues/64162)): 提出让工具审批流程可定制，允许插件通过不同渠道（如手机推送）进行审批。与此相关的PR [#72259](https://github.com/NousResearch/hermes-agent/pull/72259)（`hermes approvals suggest`）已经被提出，意图通过历史数据自动生成审批白名单，这预示着一个更智能、更少打扰的审批系统正在形成。
 
-#### **6. 功能请求与路线图信号**
+- **Mistral 模型的推理支持** ([#7852](https://github.com/NousResearch/hermes-agent/issues/7852)): 用户希望`smart_model_routing`能为Mistral模型增加`reasoning`能力支持。鉴于Mistral模型社区的活跃度，此需求很可能被纳入中短期计划。
 
-社区在解决现有问题的同时，也向项目提出了富有前瞻性的功能请求，部分已伴有合并请求，显示出快速落地的可能。
+- **增强的输出透明度**：多个PR（如 [#72246](https://github.com/NousResearch/hermes-agent/pull/72246) 每轮摘要，[#72242](https://github.com/NousResearch/hermes-agent/pull/72242) 上下文使用分析）表明项目正致力于让用户清晰了解Agent每一步的成本、耗时和资源消耗，这是提升用户信任和可用性的重要方向。
 
-- **强路线图信号**：
-    - **可插拔审批策略 (PR [#65734](https://github.com/NousResearch/hermes-agent/pull/65734), Issue [#64162](https://github.com/NousResearch/hermes-agent/issues/64162))**：这是一项重要的架构优化，通过`ctx.llm.complete(task=)`将插件的语言模型调用路由到已注册的辅助槽位。这为未来实现更复杂的、安全的工具调用审批工作流做了铺垫。
-    - **桌面端国际化 (PR [#71573](https://github.com/NousResearch/hermes-agent/pull/71573))**：首个非英语语言界面（俄语）的PR已经提交，标志着项目在全球化方面迈出一步。
-    - **执行策略支持 (PR [#66966](https://github.com/NousResearch/hermes-agent/pull/66966))**：在API模型路由中加入了执行策略，允许针对不同API端点灵活配置工具、推理能力等，将显著提升Gateway的灵活性与安全性。
+## 7. 用户反馈摘要
 
-- **有望进入下一版本**：
-    - **macOS TCC 权限持久化 (PR [#68853](https://github.com/NousResearch/hermes-agent/pull/68853))**：该方案旨在解决更新后，Apple TCC权限被重置的问题。由于该问题影响巨大且有明确解决方案，有较大概率被纳入下一个版本。
-    - **Jarvis 仪表盘 (PR [#72222](https://github.com/NousResearch/hermes-agent/pull/72222))**：一个集成的AI助手概览面板，可能在未来版本中成为核心功能入口。
+从今日的Issue评论中，可以提炼出以下真实用户痛点：
 
-#### **7. 用户反馈摘要**
+- **桌面端体验是重灾区**：多位用户（[@mysoul12138](https://github.com/mysoul12138)，[@qwyt](https://github.com/qwyt)，[@caribbel](https://github.com/caribbel)）报告了桌面应用在不同平台（Windows, macOS）上的启动循环、连接失败、崩溃等问题。更新后的兼容性尤其受到诟病。
+- **配置管理困惑**：用户反馈配置不生效的场景非常普遍（[#67605](https://github.com/NousResearch/hermes-agent/issues/67605)配置切换不完整，[#60388](https://github.com/NousResearch/hermes-agent/issues/60388) max_tokens被忽略），导致实际行为与用户期望严重不符，造成信任度降低。
+- **对“人机协作”流程的期待**：用户提出了Agent应具备“询问用户确认后再执行破坏性操作”的能力（[#10199](https://github.com/NousResearch/hermes-agent/issues/10199)），以及对Kanban流程中“人类审批节点”被自动绕过的抱怨（[#39609](https://github.com/NousResearch/hermes-agent/issues/39609)）。这表明用户希望Agent不仅仅是自动执行，更是一个能与人类进行有效协作的伙伴。
+- **开源社区协作成本**：多个Bug报告（如[#48434](https://github.com/NousResearch/hermes-agent/issues/48434)，[#56580](https://github.com/NousResearch/hermes-agent/issues/56580)）的修复依赖于其他PR，修复过程复杂且容易引入新问题。用户直观感受到了项目快速迭代下的稳定性成本。
 
-- **痛点与不满**：
-    - **更新后兼容性差**：多位Windows和macOS用户在评论中抱怨更新后 Desktop 应用无法启动或连接失败，甚至经历“循环重启”，极大地影响了日常使用。
-    - **安全风险担忧**：用户[@ShengjiaCui](https://github.com/ShengjiaCui)报告了一个严重问题：Agent未经用户确认就执行了卸载命令 (`npm uninstall -g openclaw`)，这引发了社区对 Agent 默认行为安全性的广泛讨论和担忧。
-    - **复杂配置与无声失败**：多个问题（如`max_tokens`、`kanban`协议）指向配置项虽然可以设置但被静默忽略，导致用户预期行为与实际不符，增加了排查问题的难度。
-    - **单点故障与端口冲突**：社区中有人反馈，Agent在追求高度功能集成时，可能因单个组件（如网关）的卡死或一个端口的冲突，导致整个系统崩溃。这种单点故障模式让部分用户在使用时感到脆弱。
+## 8. 待处理积压
 
-- **满意与期待**：
-    - **对新集成的期待**：对于 Buzz 集成、Jarvis 仪表盘等提案，社区表达了强烈兴趣并点赞，认可项目在新兴平台和智能化发展方向上的探索。
-    - **对精细权限控制的渴望**：社区对#527（网关权限分级）的积极反应表明，用户已不满足于简单的二元授权，渴望更专业、更细粒度的控制能力，以满足团队协作场景。
+- **[#527] RBAC 权限特性**：作为社区呼声最高的功能，至今仍处于 `needs-decision` 状态。核心团队应考虑尽快确定方案，以吸收社区贡献。
+- **[#5254] LM-Studio工具调用重复**：此Bug自4月提出，持续有用户互动。对于使用本地模型（如ollama, lm-studio）的用户群体影响很大，长期未解决可能造成用户流失。
+- **[#72241] Fix: Kanban 通知路由**：此PR试图修复Kanban多配置下通知错乱的根本性问题，尽管刚刚提交，但它引用了至少4个未关闭的旧Issue，也侧面反映出Kanban系统是项目当前复杂度的重灾区，亟待架构层面的梳理和稳定。
 
-#### **8. 待处理积压**
-
-以下为影响较大、但缺乏最新回应的关键问题，需提醒维护者关注：
-
-- **架构性 Bug 待处理**：
-    - [Issue #34385](https://github.com/NousResearch/hermes-agent/issues/34385): **Kanban DB 索引损坏**。自5月29日起，至今无有效修复PR，这是一个影响核心任务系统的隐蔽Bug。
-    - [Issue #43731](https://github.com/NousResearch/hermes-agent/issues/43731): **Honcho 内存迁移重复执行**。受限于简单的检查条件，`migrate_memory_files()` 会在每次新会话中重复运行，造成大量重复数据。问题至今没有修复PR。
-
-- **重要功能请求待决策**：
-    - [Issue #527](https://github.com/NousResearch/hermes-agent/issues/527): **RBAC权限层级**。社区高票需求，但维护者尚未明确是否将其纳入路线图（标签`needs-decision`）。此功能对项目的商业化应用至关重要。
-    - [Issue #39609](https://github.com/NousResearch/hermes-agent/issues/39609): **Kanban任务状态绕过**。`--initial-status blocked` 功能存在缺陷，1秒后自动转``ready``，绕过人工审批“关卡”，给部署带来严重风险。此Bug也需要维护者尽快决策。
-
-- **长期未修复的兼容性问题**：
-    - [Issue #5254](https://github.com/NousResearch/hermes-agent/issues/5254): **LM-Studio 工具调用重复**。使用LM-Studio作为Provider时，工具调用会异常拆分，此问题自4月5日报告以来一直未解决，严重影响本地模型用户的使用体验。
+---
 
 </details>
 
 <details>
 <summary><strong>OpenHands SDK</strong> — <a href="https://github.com/OpenHands/software-agent-sdk">OpenHands/software-agent-sdk</a></summary>
 
-好的，作为 AI 智能体与个人 AI 助手领域的开源项目分析师，以下是根据您提供的 OpenHands SDK 项目数据生成的日报。
+好的，作为 AI 智能体与个人 AI 助手领域的开源项目分析师，根据您提供的 OpenHands SDK 项目数据，我为您整理并撰写了 2026 年 7 月 27 日的项目动态日报。
 
 ---
 
-# OpenHands SDK 项目日报 | 2026-07-27
+# OpenHands SDK 项目动态日报 | 2026-07-27
 
-## 1. 今日速览
+**项目名称:** OpenHands Software Agent SDK
+**数据来源:** GitHub (github.com/OpenHands/software-agent-sdk)
+**数据区间:** 2026-07-26 - 2026-07-27
 
-过去24小时，OpenHands SDK 项目处于 **高活跃度但核心进展停滞** 的状态。Issue 和 PR 的更新数量均为 13 条，显示出社区参与度很高。然而，13 个 PR 全部处于 “待合并” 状态，没有新的合并或关闭，表明项目核心的代码审查和合并流程可能遇到了瓶颈。Bug 修复和功能增强的 PR 大量涌现，主要集中在文件编辑器、LLM 交互、安全性和系统稳定性等关键领域，体现了社区对项目质量的持续关注。值得注意的是，有 7 个长期悬而未决的 “Stale” Issue 被关闭，可能是维护者进行了一轮积压清理。
+---
 
-## 2. 版本发布
+## 今日速览
 
-无新版本发布。
+今日项目活跃度较高，主要体现在社区对遗留问题的集中**清理**与对多项 Bug 的**修复**上。过去 24 小时内，共有 7 个长期积压的追踪型（Tracking）Issue 被关闭，显示了项目团队正着手清理技术债务。同时，社区提交了 13 个待合并的 PR，其中包含 5 个由同一开发者提交的 Bug 修复补丁，覆盖了文件编辑、LLM 缓存、密钥持久化等关键模块。然而，所有 PR 均处于等待合并状态，**未有任何 PR 被合并或新版本发布**，代码积压情况有所加剧。
 
-## 3. 项目进展
+## 版本发布
 
-由于过去 24 小时没有 PR 被合并，项目核心代码的实际推进处于停滞状态。但大量高质量的 PR 等待合并，预示着下一轮重大更新将非常丰富。
+**无新版本发布。**
 
-**亟待合并的关键 PR 包括：**
+## 项目进展
 
--   **核心系统修复：**
-    -   `#4168` 修复了在特定推理模型（如Bedrock）上，由于预算钳制算法导致请求被提供商拒绝的错误。
-    -   `#4165` 修复了 `fix(llm)` 模块中因空内容消息导致提示缓存崩溃的 `IndexError` 问题。
-    -   `#4108` 修复了任务中断传播到子代理（subagents）的问题，保证了多任务协作的稳定性。
--   **文件编辑与搜索修复：**
-    -   `#4163` 修复了在无换行符的末行插入文本时导致内容粘合的数据损坏问题，这对代码编写体验至关重要。
-    -   `#4164` 修复了 grep 工具中 `*.{ts,tsx}` 等括号扩展模式无法匹配文件的问题。
--   **安全性与数据持久化：**
-    -   `#4175` 修复了终端输出中可能泄露 Git 远程 URL 凭据的安全风险。
-    -   `#4166` 修复了 `update_secrets` 方法无法持久化密钥，导致重启后密钥丢失的问题。
--   **新功能与集成：**
-    -   `#4154` 为 OpenRouter 提供 API 余额查询端点，方便用户在 UI 中查看信用额度。
-    -   `#4222` 修复了反向代理场景下 VSCode URL 生成不正确的问题，改善了部署体验。
+今日**无 PR 被合并或关闭**，因此项目主线代码在 24 小时内没有向前推进。积极的一面是，社区贡献者提交了 13 个新 PR，其中大部分是针对具体问题的修复：
 
-## 4. 社区热点
+-   **Bug 修复集中提交**：开发者 **@JiataiWang** 在同一天（7 月 21 日）提交了 5 个高质量修复 PR，涵盖：
+    -   **文件编辑器**: `fix(file_editor): stop insert gluing text onto a newline-less last line` (PR #4163)
+    -   **Grep 搜索**：`fix(grep): honor brace alternation in the include filter` (PR #4164)
+    -   **LLM 缓存**：`fix(llm): don't crash prompt caching on an empty-content trailing message` (PR #4165)
+    -   **密钥持久化**：`fix(conversation): persist secrets added via update_secrets` (PR #4166)
+    -   **LLM 能力检测**：`fix(llm): resolve chat-option capabilities from the canonical model name` (PR #4167) 和 `fix(llm): clamp thinking budget and sibling key in joint-budget clamp` (PR #4168)
 
--   **最活跃 Issue: `#2078 [Tracker] Daily Integration Runs`**
-    -   **链接：** [https://github.com/OpenHands/software-agent-sdk/issues/2078](https://github.com/OpenHands/software-agent-sdk/issues/2078)
-    -   **分析：** 该 Issue 作为日常集成运行的占位符，累积了 148 条评论，是项目长期监控和讨论的热点。虽然不直接反映社区功能诉求，但体现了项目对持续集成和质量控制的重视，是社区开发者持续关注的焦点。
+-   **安全修复与功能增强**：
+    -   **安全**：**@Solaris-star** 提交了 `fix(security): redact git remote URL credentials in terminal output` (PR #4175)，旨在修复终端输出中泄露 Git 远程仓库凭证的严重安全问题。
+    -   **功能增强**：**@NelsonScott** 提交了 `feat(agent-server): add GET /api/llm/balance endpoint` (PR #4154)，为 OpenRouter 用户新增了查询剩余信用额度的 API 接口，提升了用户体验。
 
--   **最受关注的 Bug 报告: `#3495 step-3.7-flash: vision support not detected at runtime`**
-    -   **链接：** [https://github.com/OpenHands/software-agent-sdk/issues/3495](https://github.com/OpenHands/software-agent-sdk/issues/3495)
-    -   **分析：** 该 Issue 获得了 1 个 👍，讨论持续了近两个月。问题核心是 SDK 无法正确识别某些模型的视觉能力（`supports_vision`），导致关键集成测试被跳过。这暴露了 LiteLLM 代理模式下，模型元数据获取机制的脆弱性，直接影响用户在某些模型上的多模态功能体验。
+## 社区热点
 
-## 5. Bug 与稳定性
+今日讨论热度最高的议题主要围绕**功能增强**与**长期项目规划**展开。
 
-以下为过去 24 小时内报告的 Bug，按严重程度排列：
+1.  **最活跃 Issue**：
+    -   **#2078 [Tracker] Daily Integration Runs**：该 Issue 作为日构建运行的追踪器，已积累了 **149 条评论**。虽然这是自动化流程，但庞大的评论数反映了社区对项目持续集成和稳定性高度关注。
+    -   **#3495 [Bug] step-3.7-flash: vision support not detected at runtime**：该 Bug 报告获得了 7 条评论和 1 个 👍。开发者指出了 LLM 视觉能力检测的一个深层架构问题，即依赖于代理服务器（LiteLLM Proxy）的 `model_info` 字段，而非 SDK 自身核心库的静态元数据。这是一个影响模型兼容性和运行时可靠性的重要反馈，社区对如何标准化模型能力检测有着强烈的诉求。
 
--   **严重 (Data Loss / Core System Crash):**
-    -   `#4192 [Bug]: restarting agent-server quickly loses all historical conversations`
-        -   **链接：** [https://github.com/OpenHands/software-agent-sdk/issues/4192](https://github.com/OpenHands/software-agent-sdk/issues/4192)
-        -   **描述：** 快速重启 agent-server 会导致所有历史对话丢失。
-        -   **状态：** 待处理，尚无关联的 fix PR。
+2.  **核心诉求分析**：
+    -   **对可配置性和透明度的需求**：Issue **#3704** 和 PR **#4154** 都指向了用户希望更深入地了解和配置底层 LLM 的诉求。前者要求代理能“知晓”自身使用的模型，后者则要求能直观查看 API 余额。这表明随着项目成熟，社区不再满足于“能用”，而是开始追求“可控”和“可见“。
+    -   **对稳定性和数据持久性的担忧**：Issue **#4192** 指出重启代理服务器会导致历史对话丢失，而 PR **#4166** 修复了密钥不持久化的问题。这反映了社区对生产环境下的数据安全和状态持久性有很高的要求，任何数据丢失的风险都会引发用户的强烈不安。
 
--   **高 (Functionality Broken / Feature X-Ray):**
-    -   `#3495 step-3.7-flash: vision support not detected at runtime`
-        -   **链接：** [https://github.com/OpenHands/software-agent-sdk/issues/3495](https://github.com/OpenHands/software-agent-sdk/issues/3495)
-        -   **描述：** SDK 无法检测模型的视觉支持能力，导致图像查看功能测试被跳过。
-        -   **状态：** Issue 未关闭，但已有多个关于 LLM 能力的修复 PR (`#4167`, `#4168`) 在等待合并，可能与解决此问题相关。
+## Bug 与稳定性
 
-## 6. 功能请求与路线图信号
+今日共报告 3 个 Bug，其中 1 个已有修复 PR。另有 1 个 Bug 修复已提交至聊天模块。
 
--   **用户对余额查询功能的迫切需求：** `#4154` PR 提出为 OpenRouter 用户添加 API 余额查询端点。该 PR 评论虽少，但直击用户痛点——用户希望在 UI 内直接查看剩余额度，无需切换页面或使用命令行。这很可能被纳入下一版本。
+-   **严重**:
+    -   **[Bug]: 重启代理服务器后丢失所有历史会话** (Issue #4192): 这是一个影响系统可靠性的严重问题。用户报告快速重启 agent-server 会导致历史对话记录无法加载。目前该 Issue 处于 `needs-triage` 状态，尚无修复补丁，需要项目团队优先确认并修复。
+    -   **[安全] Git 远程 URL 凭证泄露** (PR #4175): 这是一个严重的安全问题，直接导致用户凭证可能通过终端输出泄露。**好消息是，已有修复 PR**，但尚未合并。建议项目组优先审阅并合并此 PR。
 
--   **工具集管理的标准化呼声：** `#3978` Issue 指出默认工具集定义在三个仓库中有四个副本，缺乏权威性。这反映出随着项目增长，架构治理问题日益突出，社区建议 `create_agent` 作为单一控制点。这是长期项目健康度的重要信号。
+-   **中等**:
+    -   **[Bug] 积分测试步骤-3.7-flash 视觉支持无法检测** (Issue #3495): 该 Bug 会导致特定模型的视觉能力被绕过，影响 Agent 处理图片的能力。虽然非崩溃性问题，但会引起用户对模型兼容性的困惑，并影响依赖视觉能力的任务。
+    -   **[Bug] LLM 预算钳制问题** (PR #4168): 当使用 Bedrock 等代理时，联合预算钳制逻辑会导致 `thinking.budget_tokens` 超出 `max_tokens` 上限，从而被提供方拒绝。 **已有修复 PR**。
 
--   **对多 Marketplace 支持的探索：** `#2494` Issue 提出支持多个 Marketplace 注册，并允许自动加载。虽然已标记为 Stale，但该需求表明了社区对技能生态系统可扩展性的关注，是未来项目生态繁荣的潜在基石。
+## 功能请求与路线图信号
 
-## 7. 用户反馈摘要
+今日收集到的功能需求显示出社区对 Agent 可扩展性和环境感知能力的强烈需求。
 
-从 Issues 评论中提炼出的用户痛点：
+-   **强信号（已有相关 PR 或明确设计）**:
+    1.  **支持多市场注册，并支持自动加载语义** (Issue #2494): 此需求旨在解决用户只能从一个公开技能市场加载技能的限制，非常契合 Agent 生态发展。目前该 Issue 处于 `Stale` 状态，但讨论仍在进行，是下一阶段路线图中的重要潜在特性。
+    2.  **向代理暴露底层 LLM 身份（系统提示 vs. 技能）** (Issue #3704): 用户要求 Agent 能够知道自己的模型。这不仅是功能上的增强，也是 Agent 自我认知能力的重要一步。
+    3.  **工具的默认名称、创建代理的单一点和按配置文件选择工具** (Issue #3978): 这是一个影响架构设计的重要问题，旨在解决工具集在多个地方重复定义的问题，让工具管理更集中、更灵活。
 
--   **数据持久化与稳定性是核心焦虑：** Bug `#4192` 和 `#4166` 均涉及到数据丢失问题。用户对“重启丢失对话”、“密钥不保存”这类问题表现出高度不满，这严重影响了工具在长期工作流中的可靠性。
--   **模型兼容性和配置困难：** Bug `#3495` 和 PR `#4167`、`#4168` 的并存，反映了用户在使用非主流模型或特定部署环境（如 LiteLLM, Bedrock）时，面临模型能力识别不准和参数配置冲突的困扰。用户期望更智能、更鲁棒的 LLM 适配层。
--   **安全意识的提升：** 关于 Git 凭据泄露的修复 PR `#4175` 说明用户对 AI 代理操作的透明度和安全性有很高期待。类似 `git remote -v` 这种看似安全的命令，在 AI 环境中也可能成为泄露渠道，用户对此敏感。
+-   **弱信号**:
+    -   暂无其他明确的新功能请求。
 
-## 8. 待处理积压
+## 用户反馈摘要
 
--   **长期未回应的功能需求：**
-    -   `#2494 feat: Support multiple marketplace registrations with auto-load semantics`
-        -   **链接：** [https://github.com/OpenHands/software-agent-sdk/issues/2494](https://github.com/OpenHands/software-agent-sdk/issues/2494)
-        -   **状态：** 标记为 Stale，自 2026-03-18 创建至今 4 个月。
-        -   **建议：** 该 Issue 涉及技能生态的核心扩展能力，建议维护者评估其设计价值并给出反馈，避免扼杀社区创新动力。
+-   **正面反馈**:
+    -   社区积极参与，尤其是在 Bug 修复方面。开发者 **@JiataiWang** 和 **@Solaris-star** 的高质量贡献说明了项目拥有一个健康、活跃的外部贡献者社区。
+    -   PR #4154 关于增加余额查询接口的功能，直接响应了 OpenRouter 用户的真实需求，获得了积极评价。
 
--   **积压的“Stale”功能追踪 Issues：**
-    -   **列表：** `#2040`, `#2041`, `#2036`, `#2039`, `#2043`, `#2053`, `#2065`
-    -   **状态：** 这些 Issue 均在昨日被关闭，大多是 2026-02-13 创建的关于 Claude Code 功能对等的追踪任务。
-    -   **分析：** 批量关闭旧追踪 Issue 是积极的信号，可能意味着维护者认为这些长期追踪的功能已不那么紧迫，或已通过其他方式解决。但这需要进一步观察，以确定是否有关键功能（如动态工具发现、任务依赖）再次被提上日程。
+-   **负面/痛点**:
+    -   **数据不持久**：Issue #4192 反映的重启后对话丢失问题，是严重的负面体验，可能动摇用户对项目的信任。
+    -   **安全担忧**：PR #4175 所揭示的 Git 凭证泄露风险，表明在边缘场景下存在未知的安全隐患，增加了用户的安全焦虑。
+    -   **模型兼容性困扰**：Issue #3495 描述的视觉支持未检测到问题，让用户在使用非主流模型时感到困惑和无助。
 
--   **大量待审查 PR 积压：**
-    -   **状态：** 过去 24 小时内 13 个 PR 无人审核合并。
-    -   **建议：** 项目维护者需要加速代码审查和合并流程。大量高质量的 Bug 修复 PR（如 `#4163` 文件编辑器修复）停留在 Draft/Open 状态，使得项目版本稳定性无法释放，也打击了贡献者的积极性。
+## 待处理积压
+
+-   **有待确认的严重 Bug**:
+    -   **Issue #4192**：`[Bug]: restarting agent-server quickly loses all historical conversations`。该问题在当前快节奏迭代中尤为突出，急需维护者确认并分配资源进行修复。
+
+-   **长期未解决的深度架构讨论**:
+    -   **Issue #3495**: `[Bug] step-3.7-flash: vision support not detected at runtime`。该 Issue 触及了 LLM 与 SDK 之间信息交互的架构问题，如果解决，将可能重构模型能力检测的基础设施。建议将其作为技术债务提上路线图。
+
+-   **停滞的功能请求**:
+    -   **Issue #2494**: `feat: Support multiple marketplace registrations with auto-load semantics`。作为潜在的下一版本重量级特性，它目前处于 `Stale` 状态。如果项目团队有计划推进此功能，建议在此 Issue 中进行状态更新，以保持社区期待。
 
 </details>
 
 <details>
 <summary><strong>Pi</strong> — <a href="https://github.com/earendil-works/pi">earendil-works/pi</a></summary>
 
-好的，作为AI智能体与个人AI助手领域开源项目分析师，我将根据您提供的GitHub数据，生成 **Pi 项目 2026-07-27 的项目动态日报**。
+好的，作为 AI 智能体与个人 AI 助手领域开源项目分析师，以下是基于 Pi（github.com/earendil-works/pi）最新 GitHub 数据的项目动态日报。
 
 ---
 
-### Pi 项目动态日报 | 2026-07-27
+# Pi 项目动态日报 | 2026-07-27
 
-**项目名称:** Pi (github.com/earendil-works/pi)
-**报告周期:** 2026-07-26 至 2026-07-27
+### ① 今日速览
 
----
+Pi 项目在过去 24 小时内活动密集，社区高度活跃。虽然无新版本发布，但整个生态在**Bug修复、性能优化和新功能探索**上均有显著推进。最值得关注的是 **27 个 Issues 被关闭**，显示出维护团队对社区反馈的强大响应能力。同时，关于 **TUI 性能、WSL 路径兼容性**以及**扩展系统生命周期管理**的讨论成为社区焦点，反映出项目正从核心功能走向精细化打磨。
 
-#### 1. 今日速览
+### ② 版本发布
 
-Pi 项目今日社区活跃度极高，是一个典型的“清理与沉淀日”。虽然无新版本发布，但维护者团队在过去24小时内处理了大量积压的 Issue 和 PR，关闭了27个 Issue 和8个 PR，表明项目正在积极消化社区反馈。社区报告的问题呈现多样化，从核心性能问题到跨平台兼容性细节均有涉及，反映出用户群的扩大和使用场景的深化。值得注意的是，关于 **TUI 性能**、**WSL路径处理** 和 **安全依赖更新** 等问题获得了较高关注。
+**无**。今日无新版本发布。
 
-#### 2. 版本发布
+### ③ 项目进展
 
-今日无新版本发布。
+今日合并/关闭了多项重要 PR，体现了项目在**稳定性、兼容性和可扩展性**上的持续进步：
 
-#### 3. 项目进展
+- **核心 Bug 修复三部曲**：贡献者 `@IKEASven69` 一次性修复了三个隐藏在核心工具中的 Bug，包括 `write.ts` 的字节数统计错误、`find` 工具的虚假限制警告以及 `truncateLine` 的代理对拆分问题（[PR #7122](https://github.com/earendil-works/pi/pull/7122)）。这是一个典型的社区深度贡献，提升了工具的测量准确性。
+- **跨平台体验优化**：针对 Windows 用户，`@IKEASven69` 修复了 TUI 底部栏路径分隔符的错误（[PR #7124](https://github.com/earendil-works/pi/pull/7124)），改善了跨平台显示一致性。
+- **环境变量标准对齐**：`@renaudhartert-db` 提出的 `AI_AGENT=pi` 标准已通过 [PR #7131](https://github.com/earendil-works/pi/pull/7131) 合并，这使 Pi 能更好地融入 Claude Code 等多样化的 AI 代理生态系统。
+- **TUI 性能提升**：`@jsamuel1` 的 [PR #7129](https://github.com/earendil-works/pi/pull/7129) 将 `visibleWidth` 缓存提升至 4096 条并使用 LRU 淘汰策略，直接解决了高负载会话下的缓存抖动问题。
+- **系统提示透明度**：[PR #7120](https://github.com/earendil-works/pi/pull/7120) 使 `SYSTEM.md` 和 `APPEND_SYSTEM.md` 文件在启动时可见，增强了用户对会话配置的感知。
+- **扩展能力增强**：[PR #7118](https://github.com/earendil-works/pi/pull/7118) 为扩展暴露了上下文清除回调，为构建更精细化的生命周期管理奠定了基础。
 
-今日项目进展主要体现在对遗留 PR 的合并以及对代码稳定性的修复上。
+### ④ 社区热点
 
-- **关键 PR 合并/关闭:**
-    1.  **[攻击面/兼容性] Set AI_AGENT for child process attribution (#7131)**: 已合并。此 PR 顺应行业趋势，设置 `AI_AGENT=pi` 环境变量，使子进程能够识别启动它的主体是 Pi，增强了与其他开发工具的互操作性。这是个重要的生态信号。
-        [链接](https://github.com/earendil-works/pi/pull/7131)
-    2.  **[平台修复] 多项跨平台路径修复**: 由社区贡献者 @IKEASven69 提交的多个修复被合并，包括修复 Windows 路径分隔符在 Footer 中显示错误的问题 (#7124)，以及修复核心工具 `write`、`find` 和 `truncateLine` 中的字节计数不准和逻辑错误 (#7122)。这显著提升了 Pi 在 Windows 平台上的使用体验和核心工具的可靠性。
-        - [PR #7124](https://github.com/earendil-works/pi/pull/7124)
-        - [PR #7122](https://github.com/earendil-works/pi/pull/7122)
-    3.  **[用户体验] 显示 SYSTEM.md 上下文状态 (#7120)**: 已合并。此 PR 在启动时增加了一个 Banner，提示用户 `SYSTEM.md` 和 `APPEND_SYSTEM.md` 是否生效，解决了长期存在的“系统提示文件静默生效”的问题，提升了透明度。
-        [链接](https://github.com/earendil-works/pi/pull/7120)
-    4.  **[稳定性/性能] TUI 缓存优化 (#7129)**: 已合并。针对 TUI 渲染中 `visibleWidth` 缓存抖动问题，将缓存容量从512提升至4096并改用LRU淘汰策略，有助于改善长会话下的终端渲染性能。
-        [链接](https://github.com/earendil-works/pi/pull/7129)
+今日社区讨论热度空前，以下 Issue 引发大量关注：
 
-- **项目里程碑信号:** 大量 Issue 被归为“[untriaged]”并关闭，这可能是维护团队正在进行大规模的“分类和沉默处理”，为下一阶段的功能开发或重大版本做准备。
+1. **[#6665 TUI 在流式传输时占用 100% CPU](https://github.com/earendil-works/pi/issues/6665)**
+   - **热度**：8条评论，高活跃度议题。
+   - **分析**：这是对项目长会话体验影响最大的问题。开发者精确定位到根源——`Intl.Segmenter` 未缓存，导致每个 Markdown 渲染块都会重新进行形素分割。这不仅是一个 bug 报告，更是一个高价值的技术分析，对项目性能优化至关重要。
 
-#### 4. 社区热点
+2. **[#4877 Session 文件夹冲突](https://github.com/earendil-works/pi/issues/4877)**
+   - **热度**：21条评论，2个👍。
+   - **分析**：尽管已被关闭，但这是一个历史悠久的潜在问题，引发了最多讨论。它揭示了由路径哈希产生的会话文件夹可能对不同路径不唯一。虽然当前影响不大，但社区对这个设计缺陷的深入讨论体现了对长期数据一致性的关切。
 
-今日社区讨论主要集中在以下两个热点话题：
+3. **[#7064 WSL 绝对路径处理错误](https://github.com/earendil-works/pi/issues/7064)**
+   - **分析**：对于 WSL2 用户的“噩梦级”问题。路径处理失败导致代理无法正确使用读写工具，频繁回退到命令行，严重影响开发者体验。评论中充满了 WSL 用户的共鸣。
 
-1.  **核心性能与架构问题:**
-    - **[Issue #6665] TUI pins a full core while streaming (TUI在流式输出时占用完整CPU核心):** 此Issue获得8条评论，是目前**仍在进行中**的最重要Bug。社区深入分析了原因，指出是 `Intl.Segmenter` 未缓存和每次chunk都进行Markdown重建导致的高CPU占用。这直接影响到用户长时间使用TUI的体验，是亟需解决的核心性能瓶颈。
-        [链接](https://github.com/earendil-works/pi/issues/6665)
-    - **[Issue #4877] Session folder collision (会话文件夹碰撞):** 这是讨论最久的话题，共21条评论。社区指出了会话文件夹命名方式存在缺陷，不同路径可能映射到同一文件夹，可能导致数据冲突。虽然被标记为“小问题”，但用户担忧其潜在的破坏性。
-        [链接](https://github.com/earendil-works/pi/issues/4877)
+### ⑤ Bug 与稳定性
 
-2.  **跨平台与兼容性问题:**
-    - **[Issue #7064] WSL absolute windows paths are mishandled (WSL下Windows绝对路径处理错误):** 获5条评论和1个👍。此问题阻碍了WSL用户在文件操作工具（`read`/`write`/`edit`）上的正常使用，属于严重的平台兼容性Bug。社区反响强烈，期待修复。
-        [链接](https://github.com/earendil-works/pi/issues/7064)
+今日报告的 Bug 数量较多，按严重性排列如下：
 
-#### 5. Bug 与稳定性
+- **严重**：
+  1. **[#7149] Standalone binary SIGILL on pre-Haswell CPUs**：预编译二进制在旧 CPU 上直接崩溃，影响离线用户。无 fix PR。
+  2. **[#7136] bash tool silently truncates long commands**：静默截断命令，会导致数据丢失或无提示失败。无 fix PR。
+  3. **[#7064] WSL absolute windows paths are mishandled**：高优先级，影响 WSL2 主流用户。无 fix PR。
 
-今日报告的Bug数量较多，按严重程度排列如下：
+- **高**：
+  1. **[#6665] TUI pins a full core while streaming**：性能退步，影响长期会话体验。已有 PR [#7129](https://github.com/earendil-works/pi/pull/7129) 缓存优化在合并分支中，但根源问题（Segmenter 缓存）尚未完全关闭。
+  2. **[#7090] Brace-expansion 依赖内存耗尽漏洞 (CVE-2026-14257)**：安全风险，已将问题标记为 `no-action`，但需关注官方是否重新发布 shrinkwrap。
+  3. **[#7049] Undici 8.5.0 plain-HTTP proxy forwarding**：代理通信在特定条件下失败，影响企业/内网用户。无 fix PR。
 
-- **严重 (影响核心功能)**
-    1.  **[WSL路径错误] WSL absolute windows paths are mishandled (#7064)**: 核心文件操作工具在WSL下无法正确解析Windows路径，导致功能异常。**无修复PR。**
-        [链接](https://github.com/earendil-works/pi/issues/7064)
-    2.  **[CPU性能倒退] TUI pins a full core while streaming (#6665)**: 导致CPU满载，影响TUI可用性。**无修复PR，正在排查。**
-        [链接](https://github.com/earendil-works/pi/issues/6665)
-    3.  **[静默数据丢失] RPC prompt during in-flight compaction: silently dropped (#7150)**: 在会话压缩期间通过RPC提交指令，系统ACK成功但指令丢失，属于静默数据丢失。**无修复PR。**
-        [链接](https://github.com/earendil-works/pi/issues/7150)
-    4.  **[命令截断] bash tool silently truncates long commands (#7136)**: `bash`工具静默截断长命令，导致部分代码未执行且无报错。**无修复PR。**
-        [链接](https://github.com/earendil-works/pi/issues/7136)
+- **中/低**：
+  1. **[#7128] System prompt over-encourages unnecessary bash calls**：功能性问题，增加不必要的 token 消耗。
+  2. **[#7130] Backspace deletes 2 chars in Kitty**：终端兼容性 Bug。
+  3. **[#7123] Windows footer path separator**：已通过 [PR #7124](https://github.com/earendil-works/pi/pull/7124) 修复。
 
-- **中等 (影响特定功能/平台)**
-    1.  **[未检查的依赖CVE] Regenerate 0.82.x shrinkwrap with brace-expansion 5.0.8+ (#7090)**: 存在已知DoS漏洞的依赖。**无修复PR。**
-        [链接](https://github.com/earendil-works/pi/issues/7090)
-    2.  **[二进制兼容性] Standalone linux-x64 binary SIGILL on pre-Haswell CPUs (#7149)**: 官方发布的Linux二进制包在旧CPU上崩溃。**无修复PR。**
-        [链接](https://github.com/earendil-works/pi/issues/7149)
-    3.  **[代理问题] Upgrade Undici to 8.8.0 for correct plain-HTTP proxy forwarding (#7049)**: 使用HTTP代理时连接非HTTPS的MCP/API目标会失败。**无修复PR。**
-        [链接](https://github.com/earendil-works/pi/issues/7049)
+### ⑥ 功能请求与路线图信号
 
-- **轻微 (用户体验/UI问题)**
-    - **多项 TUI 问题**: 包括Kitty终端退格键异常 (#7130)、重命名会话需要按两次Enter (#7126)、tmux下无法显示图片 (#7125)、Windows路径分隔符显示错误 (#7123)。**已有部分修复PR。**
+社区提出的功能请求展现了对项目**深度定制与自动化**的更高期待：
 
-#### 6. 功能请求与路线图信号
+- **核心能力扩展**：
+  - **[#1086] Add structured output (JSON schema) support**：已被关闭，但讨论反映了对确定性输出的刚需。结合其他 AI 产品的演进，这很可能是 Pi 未来支持 `function calling` 或 JSON 模式的关键方向。
+  - **[#7135] Support OpenAI 5.6 Pro modes**：用户要求支持 OpenAI 新型 `reasoning` 模式，这是保持模型兼容性的必要演进。
 
-今日收到的功能请求指向以下方向，部分已有对应PR：
+- **自动化与 DevOps 集成**：
+  - **[#7146] Include token usage in workflow events**：企业/自动化用户对可观测性的强烈需求，有助于成本监控和流程优化。
+  - **[#7152] Read-only provider/model auth preflight command**：无状态检查命令，是集成 CI/CD 的基础功能。
 
-- **可观测性与开发者体验:**
-    - **[Issue #7152] Add a read-only provider/model auth preflight command**: 请求增加非交互式的认证预检命令。`[closed]`
-    - **[Issue #7146] Workflow: include token usage in agent_result / run_complete events**: 请求在工作流日志中增加Token用量信息。`[closed]`
-    - **[PR #7151] Expose pending stop reason while streaming**: 已提出PR，建议在流式响应中提前暴露“停止原因”，让用户可以判断是否是最终答案。 **状态: OPEN**
-        [链接](https://github.com/earendil-works/pi/pull/7151)
+- **UI/UX 创新**：
+  - **[#7144] Expose overlay position / mouse-click API**：用户希望在 TUI 中构建更现代的点击交互界面。这超出了当前基于文本的范式，预示着 Pi 向更丰富交互体验的进化。
+  - **[#7141] Make editor cursor themeable**：细节上的美学诉求，表明用户对 Pi 的沉浸式体验有更高要求。
 
-- **扩展性与架构演进:**
-    - **[Issue #7119 / PR #7118] Expose extension context clear callback**: 用户提出并贡献了代码，允许扩展在不生成摘要的情况下清除会话上下文。**PR已合并。**
-        [链接](https://github.com/earendil-works/pi/pull/7118)
-    - **[PR #7148] Experimental loadout management**: 由知名贡献者@mitsuhiko提出的实验性功能，允许在会话中动态启用/禁用扩展。**状态: OPEN**
-        [链接](https://github.com/earendil-works/pi/pull/7148)
-    - **[Issue #7137] Extension hook request: pre_response / before_send_message gate**: 请求增加一个钩子，让扩展可以在AI回复发送给用户前进行拦截、修改或审查。`[closed]`
+- **生态与生命周期管理**：
+  - 今日有两项关于 `session_before_compact` 和上下文清除的独立请求（[#7127](https://github.com/earendil-works/pi/issues/7127), [#7119](https://github.com/earendil-works/pi/issues/7119)）以及对应的 PR（[#7118](https://github.com/earendil-works/pi/pull/7118)），这强烈暗示了 **Pi 正在构建一套更强大的会话/扩展生命周期管理体系**，未来可能允许扩展拥有更智能的内存和状态管理能力。
 
-- **特定模型/提供商支持:**
-    - **[Issue #7135] Support OpenAI 5.6 Pro modes**: 请求支持OpenAI Pro模式。`[closed]`
-    - **[Issue #7143] Z.AI providers send max_completion_tokens, which Z.AI ignores**: 报告了特定提供商Z.AI的API兼容性问题。`[closed]`
+### ⑦ 用户反馈摘要
 
-**路线图信号:** 社区对**扩展系统的深化**（如动态加载、回调钩子）和**可观测性**（Token用量、状态预判）的需求非常强烈。@mitsuhiko提出的`/loadout`功能（PR #7148）很可能是下一个重要功能点。
+从今日的 Issues 评论中，可以提炼出以下用户心声：
 
-#### 7. 用户反馈摘要
+- **WSL 用户是痛感最强的群体**：`@lionkor` 在 [#7064](https://github.com/earendil-works/pi/issues/7064) 中描述了 “regularly fails” 的糟糕体验，路径处理问题是其在 WSL2 上使用的最大障碍。
+- **高性能用户渴求极致的 TUI 体验**： `@axelbaumlisto` 在 [#6665](https://github.com/earendil-works/pi/issues/6665) 中不仅报告了崩溃，还提供了详细的 `spindump` 分析，展现了高技术水平用户对性能的挑剔。
+- **扩展开发者感觉受限**：`@wolfgangmeyers` 提出“[avoiding carrying a small Pi fork](https://github.com/earendil-works/pi/issues/7119)”以避免维护分叉，这是扩展开发者社区成熟的标志，他们对 API 的完整性和灵活性有着迫切需求。
+- **对安全与兼容性高度敏感**：`@BrendanPatric` 关于 CVE 的报告（[#7090](https://github.com/earendil-works/pi/issues/7090)）表明，用户会定期审计 Pi 的依赖，对供应链安全有较高期待。
 
-从今日的 Issue 和评论中，可以提炼出以下用户反馈：
+### ⑧ 待处理积压
 
-- **痛点：WSL体验差。** 用户 @lionkor 报告了核心工具在WSL下无法工作的严重问题，直接影响了日常使用。
-    > “When the agent tries to use the `read`, `write` or `edit` tools, it regularly fails...” – [链接](https://github.com/earendil-works/pi/issues/7064)
-- **需求：对核心性能不满。** 用户 @axelbaumlisto 对TUI长会话时的CPU占用问题进行了深入分析，体现了高级用户的专业度，也反映出该问题对日常工作的困扰。
-    > “Long sessions: the TUI uses ~100% of one core while the model streams.” – [链接](https://github.com/earendil-works/pi/issues/6665)
-- **期望：更强大的扩展系统。** 多条Issue和PR（如#7119, #7137）表明，高级用户不满足于现有扩展能力，希望拥有更灵活的会话控制、内容审查和生命周期管理能力。
-- **正面反馈：部分修复获得好评。** 关于路径显示和核心工具Bug的修复PR（#7124, #7122）被迅速合并，显示出项目对用户反馈的积极响应。
-
-#### 8. 待处理积压
-
-以下为需要维护者重点关注的历史或高价值未解决问题：
-
-- **[功能请求] [Issue #1086] Add structured output (JSON schema) support (已关闭)**: 这是一项自1月30日提出的功能请求，今日被关闭。它标志着社区对**确定性输出**的长期需求，虽然关闭，但作为路线图参考仍有价值。
-    [链接](https://github.com/earendil-works/pi/issues/1086)
-
-- **[高价值Bug] [Issue #6665] TUI pins a full core while streaming**: 这是目前在执行中的、影响最广的性能问题，技术细节已分析透彻，亟需开发团队介入。
-    [链接](https://github.com/earendil-works/pi/issues/6665)
-
-- **[重要Bug] [Issue #7064] WSL absolute windows paths are mishandled**: 影响WSL用户核心功能的Bug，目前无修复方案。
-    [链接](https://github.com/earendil-works/pi/issues/7064)
-
-- **[安全] [Issue #7090] Regenerate 0.82.x shrinkwrap ... CVE-2026-14257**: 涉及已知安全漏洞的依赖更新，应尽快处理。
-    [链接](https://github.com/earendil-works/pi/issues/7090)
+- **[#1086] Add structured output (JSON schema) support**：该 Issue 创建于 1 月 30 日，跨度极广，且今天被关闭。虽然它已关闭，但其背后的需求——**让 Pi 输出可解析的 JSON 结构**——是通往高级自动化的核心能力，建议维护团队考虑将其纳入长期路线图，以正式功能而非简单工具参数验证的形式推出。
+- **[#6665] TUI pins a full core while streaming**：作为当前最影响旗舰体验的长期性能 Bug，尽管有性能优化陆续合并，但 `Intl.Segmenter` 无缓存的根本问题仍被标记为 `inprogress`，需要持续关注修复进展。
 
 </details>
 
 <details>
 <summary><strong>LiteLLM</strong> — <a href="https://github.com/BerriAI/litellm">BerriAI/litellm</a></summary>
 
-好的，根据您提供的LiteLLM GitHub数据，以下是为您生成的2026年7月27日项目动态日报。
+好的，作为 AI 智能体与个人 AI 助手领域开源项目分析师，我已根据您提供的 GitHub 数据，为您生成了 2026-07-27 的 LiteLLM 项目动态日报。
 
 ---
 
-# LiteLLM 项目动态日报 — 2026-07-27
-
-## 1. 今日速览
-
-过去24小时，LiteLLM项目保持高度活跃。共处理57条Issue（新开/活跃42条，关闭15条）和144条PR（待合并116条，已合并/关闭28条），无新版本发布。社区提交的Bug主要集中在Redis限流器性能优化、Anthropic Opus 4.7参数兼容性、Ollama推理参数映射以及MCP工具过滤等问题上。同时，多个涉及预算窗口原子操作、会话预算并发控制、多次调用端到端测试覆盖的修复PR被提交，表明项目在并发安全与成本追踪精度方面有持续投入。整体项目健康度良好，但安全漏洞报告和CVE修复的等待时间较长，需要引起注意。
-
-## 2. 版本发布
-
-无。
-
-## 3. 项目进展
-
-过去24小时关闭/合并了28个PR，推进了以下关键领域：
-
-- **稳定性和正确性**：
-    - [#27577](https://github.com/BerriAI/litellm/pull/27577) 修复了Guard主分支工作流，将外部贡献者的PR指引目标从不存在分支改为正确的`litellm_internal_staging`分支。
-    - [#29279](https://github.com/BerriAI/litellm/pull/29279) 将ddtrace下限提升至2.19.2，解决了Python 3.13上`/embeddings`端点因字节码重写bug导致的“协程已执行”崩溃。
-    - [#25971](https://github.com/BerriAI/litellm/issues/25971) (已关闭) 支持Anthropic Claude Opus 4.7的`task_budget`参数。
-    - [#26007](https://github.com/BerriAI/litellm/issues/26007) (已关闭) 更新了Perplexity API以支持工具调用等新特性。
-    - [#26053](https://github.com/BerriAI/litellm/issues/26053) (已关闭) 修复了流式文本补全API中`ssl_verify=false`失效的问题。
-    - [#34690](https://github.com/BerriAI/litellm/issues/34690) (已关闭) 修复了`tool_calls`条目形状不匹配时被静默丢弃的问题。
-    - [#25966](https://github.com/BerriAI/litellm/issues/25966) (已关闭) 修复了当`allow_requests_on_db_unavailable: true`时Datadog APM对每个请求都生成错误跨度的问题。
-
-- **测试与CI**：
-    - [#34649](https://github.com/BerriAI/litellm/pull/34649) 新增了大量厂商API策略的端到端测试覆盖。
-
-- **新功能与集成**：
-    - [#34697](https://github.com/BerriAI/litellm/pull/34697) 添加了GreenPT作为本地提供者，支持聊天、嵌入和重排序。
-    - [#34484](https://github.com/BerriAI/litellm/pull/34484) 添加了Gondala作为OpenAI兼容提供者。
-
-这些合并/关闭项表明项目在修复旧Bug、增强测试套件以及拓展新模型提供者方面持续前进。
-
-## 4. 社区热点
-
-- **#31880 - 速率限制器Redis写优化** (9条评论): [链接](https://github.com/BerriAI/litellm/issues/31880)  
-  用户@deepanshululla指出，当前速率限制器在每次LLM调用后都会无条件向Redis写入计数器，即使API密钥、用户或团队没有配置任何速率限制，造成性能浪费。社区对此高度关注，讨论如何在无限制时跳过写操作，反映了生产环境下对性能优化的强烈需求。
-
-- **#26444 - Anthropic Opus 4.7 `temperature`参数兼容性** (6条评论，2个👍): [链接](https://github.com/BerriAI/litellm/issues/26444)  
-  用户反馈`get_supported_openai_params`仍然将`temperature`列为Anthropic Claude Opus 4.7的支持参数，而实际该模型已废弃temperature，导致请求被拒绝。此问题已持续数月并拥有2个赞，表明社区对LiteLLM参数映射准确性的关注度较高。
-
-- **#20078 - `/v1/audio/speech`对Qwen3-TTS失败** (6条评论): [链接](https://github.com/BerriAI/litellm/issues/20078)  
-  用户@miesgre报告使用LiteLLM代理服务Qwen3-TTS时，`voice`参数被强制要求但会被剥离，导致请求失败。该问题自1月创建，至今仍是开放状态，说明TTS模态的支持还有待完善。
-
-- **#25191 - Bedrock `websearch_interception`智能体循环不触发** (6条评论): [链接](https://github.com/BerriAI/litellm/issues/25191)  
-  用户报告在使用AWS Bedrock和`/chat/completions`端点时，`websearch_interception`的智能体循环未触发。该问题涉及Bedrock特有行为，可能影响使用Bedrock作为后端的代理部署。
-
-## 5. Bug 与稳定性
-
-按严重程度排列：
-
-| 严重程度 | Bug 描述 | Issue/PR 链接 | 是否有修复 PR |
-|----------|---------|----------------|---------------|
-| **高** | 安全漏洞CVE-2026-28684：`python-dotenv`钉死在1.0.1导致无法修复 | [#26333](https://github.com/BerriAI/litellm/issues/26333) | 无 |
-| **高** | `aiohttp==3.13.3`存在10个CVE，而旧版3.13.5已修复 | [#26190](https://github.com/BerriAI/litellm/issues/26190) | 无 |
-| **中** | LLM分类器`NoneType`没有属性`update`导致崩溃 | [#34487](https://github.com/BerriAI/litellm/issues/34487) | 无 |
-| **中** | Ollama的`reasoning_effort`映射因使用不可哈希的字典导致崩溃，且错误强制在线程模型上启用`think` | [#34574](https://github.com/BerriAI/litellm/issues/34574) | 无 |
-| **中** | `ollama_chat`通过Anthropic适配器流式输出时，工具调用`stop_reason`错误且多出空文本块 | [#34692](https://github.com/BerriAI/litellm/issues/34692) | 无 |
-| **中** | Fireworks AI流式响应中`<think>`标签泄漏到`content`而非填充`reasoning_content` | [#26326](https://github.com/BerriAI/litellm/issues/26326) | 无 |
-| **低** | `PrismaWrapper.__getattr__`死锁事件循环30秒导致存活检查失败 | [#26192](https://github.com/BerriAI/litellm/issues/26192) | 无 |
-| **低** | Admin UI路由器设置在`fallbacks`为字典类型时崩溃 | [#26473](https://github.com/BerriAI/litellm/issues/26473) | 无 |
-
-此外，多个过去24小时内提交的修复PR（如#34741、#34742、#34740等）针对代理中的并发安全问题（TPM限流器、会话预算超支、预算窗口更新原子性等），这些PR待合并，有望在近期解决相关稳定性问题。
-
-## 6. 功能请求与路线图信号
-
-- **#34686 - CLI子命令`litellm cost-estimate`** (3条评论): [链接](https://github.com/BerriAI/litellm/issues/34686)  
-  用户希望提供独立的预部署成本估算CLI命令，而不仅限于通过`completion_cost()`函数。如果实现，将提升开发者体验。
-
-- **#34662 - 提供商凭据的周期性可用性计划** (3条评论): [链接](https://github.com/BerriAI/litellm/issues/34662)  
-  用户建议允许为提供商凭据定义重复的可用性时间段（如仅工作日可用），用于部署调度。这可能是未来多地域/多时段资源管理的方向。
-
-- **#34704 - Prometheus导出器无法按区域或调用类型归属开销** (1条评论): [链接](https://github.com/BerriAI/litellm/issues/34704)  
-  运营团队需要更细粒度的可观测性，以便按区域和调用类型（如Azure OpenAI vs Bedrock）区分支出、延迟和流量。该请求来自Discord讨论，可能被纳入后续监控增强路线图。
-
-- **#34726 - 使`user_api_key_cache`内存大小可配置** (待合并PR): [链接](https://github.com/BerriAI/litellm/pull/34726)  
-  PR实现了缓存条目数量的配置化，对于拥有大量活跃虚拟密钥的生产环境尤为重要，有望在近期合并。
-
-- **#29378 - 在fallback查找路径上解析`model_group_alias`** (待合并PR): [链接](https://github.com/BerriAI/litellm/pull/29378)  
-  该PR修复了使用模型组别名时fallback失效的问题，表明社区对路由别名和fallback机制的成熟度有较高要求。
-
-## 7. 用户反馈摘要
-
-- **性能与成本**：用户@mangabits在[#34727](https://github.com/BerriAI/litellm/issues/34727)中指出，文档中关于`REDIS_URL`在性能方面不推荐用于生产的警告已经过时，实际性能差异已被修复，建议更新文档。
-- **端到端测试**：用户@mubashir1osmani在多个PR中（如#34739、#34649）关注测试套件的可靠性，例如硬编码localhost:4000导致端到端测试失败，通过环境变量解决。
-- **兼容性与异常处理**：多位用户（如@jehunt1548、@technobenja、@leftathome）反映了参数映射不准确导致的请求错误，社区对支持新模型版本的及时性有较高期待。
-- **安全与依赖**：用户@bhadrim两次报告CVE问题（python-dotenv、aiohttp），强调依赖版本锁定带来的安全风险，希望项目松弛版本约束以允许用户自行升级。
-
-## 8. 待处理积压
-
-- **#24404 - 安全漏洞报告无人审查** (已关闭，stale): [链接](https://github.com/BerriAI/litellm/issues/24404)  
-  用户@regaan于3月23日通过huntr提交了4份安全报告，截至7月26日仍无任何审查回复。虽然该Issue已被标记为stale并关闭，但安全问题不容忽视。建议维护者主动联系报告者或通过私有渠道处理。
-
-- **#20078 - `/v1/audio/speech`对Qwen3-TTS失败** (开放超过6个月): [链接](https://github.com/BerriAI/litellm/issues/20078)  
-  该Issue自1月30日创建，至今未得到实质性修复或回应，可能影响部分TTS使用场景。建议维护者评估优先级。
-
-- **#26170 - Ollama provider的`api_base`解析顺序与OpenAI不一致** (2条评论): [链接](https://github.com/BerriAI/litellm/issues/26170)  
-  用户@aydenious指出LiteLLM中Ollama提供者优先使用全局`litellm.api_base`而非显式传入的`api_base`参数，与其他提供者行为不一致。该问题虽轻微但影响开发体验，可安排修复。
-
-- **#26184 - xAI的`grok-imagine-image`模型在`/images`端点不可用** (2条评论): [链接](https://github.com/BerriAI/litellm/issues/26184)  
-  该功能缺失影响图像生成场景，用户已正确定义模型但无法通过端点使用，可能需要检查端点注册逻辑。
+### LiteLLM 项目动态日报 | 2026-07-27
 
 ---
 
-**数据来源**：GitHub Issues / Pull Requests  
-**分析日期**：2026-07-27  
-**数据时段**：2026-07-26 至 2026-07-27 (UTC)
+#### 1. 今日速览
+
+项目今日整体活跃度 **极高**。Issue 和 PR 数量均处于高位，显示出社区参与度和维护者的工作强度都很大。过去24小时内，共处理 **56 条 Issue** 和 **136 条 PR**，其中分别有 15 个 Issue 和 25 个 PR 被关闭/合并，显示了有效的向前推进。尽管没有新版本发布，但大量围绕 **计费精度、并发安全、Redis 性能优化和 MCP 集成** 的修复与功能 PR 正被密集提交和审查，表明项目正进入一个注重稳定性和精细化管理的内核迭代阶段。值得注意的是，有 **111 个 PR 仍处于待合并状态**，积压情况值得关注。
+
+#### 2. 版本发布
+
+无新版本发布。
+
+#### 3. 项目进展
+
+过去24小时内，总计有 25 个 PR 被合并或关闭，推动了多个关键方向的改进。以下是合并/关闭中的核心进展：
+
+- **核心稳定性与并发安全**：多项修复旨在解决并发场景下的数据竞争问题。
+    - **[PR #34740]** `fix(router): make budget window resets atomic`：通过原子化操作修复预算窗口重置时的并发写丢失问题，确保计费统计的准确性。
+    - **[PR #34742]** `fix(proxy): reserve session budget at admission`：在请求准入时预先锁定会话预算，防止并发请求导致的预算超支。
+    - **[PR #34736]** `fix(cost tracking): charge built-in tool fees additively`：修复了内置工具（如网络搜索、文件搜索）费用可能被低估或忽略的问题，改为累加计费，避免预算低估。
+- **计费与成本核算**：改善了与不同供应商及多模态任务的计费一致性。
+    - **[PR #34737]** `fix(dashscope): bill tiered pricing`：修正了对 DashScope（阿里云）的分层定价逻辑，由“阶梯税率”模式改为“按请求整体就高”模式，符合供应商实际计费方式。
+    - **[PR #34738]** `fix(cost): apply discounts to image generation costs`：将折扣和利润率逻辑扩展到图像和视频生成成本，补齐了功能缺失。
+- **API 兼容性与集成**：
+    - **[PR #34744]** `fix(mcp): canonicalize bearer token_type`：修复了 MCP 代理中将小写 `bearer` 令牌类型转发后导致认证失败的问题，现已统一规范化为 `Bearer`。
+    - **[PR #34741]** `fix(proxy): count /v1/responses tokens in TPM limiter`：修复了 TPM（每分钟令牌数）限流器未正确统计 Azure OpenAI `Responses API` 的令牌消耗，现已纳入限流范围。
+- **用户体验与运维**：
+    - **[PR #34735]** `fix(evals): forward the caller‘s metadata`：修复了评估（Eval）系统中 `metadata` 参数被静默丢弃的问题，确保用户自定义元数据能够正确传递。
+    - **[PR #34739]** `fix(e2e/ui): resolve dashboard base URL from env`：修复了 UI 端到端测试硬编码 `localhost` 的问题，改为从环境变量读取，提升了 CI/CD 的健壮性。
+
+#### 4. 社区热点
+
+今日讨论最热烈的 Issue 反映了用户对**性能优化和模型兼容性**的深度关注。
+
+1.  **[[Issue #31880] fix(rate-limiter): skip post-call Redis writes for keys with no rate limits configured](https://github.com/BerriAI/litellm/issues/31880)**
+    - **热度**：9条评论，创建于2026-07-01，今日更新。
+    - **诉求**：这是一个**核心性能优化建议**。用户指出，即使API Key、用户或团队未配置任何速率限制，LiteLLM的速率限制器仍会在每次LLM调用后无条件地向Redis写入计数器。这些写入操作是完全浪费的，因为从未被读取。社区高度关注此项优化，因为它能显著降低Redis负载和延迟，提升高吞吐场景下的性能。
+
+2.  **[[Issue #26444] [Bug]: get_supported_openai_params reports ‘temperature’ as supported for Anthropic Claude Opus 4.7](https://github.com/BerriAI/litellm/issues/26444)**
+    - **热度**：6条评论，2个👍，创建于2026-04-24，今日更新。
+    - **诉求**：一个典型的**模型兼容性Bug**。Anthropic的Claude Opus 4.7已弃用`temperature`参数，但LiteLLM仍将其列为支持参数，导致调用失败。这反映了LiteLLM在快速适配模型API变更时的滞后性，用户需要一个更及时、自动化的模型参数同步机制。
+
+3.  **[[Issue #20078] [Bug]: /v1/audio/speech fails for Qwen3-TTS](https://github.com/BerriAI/litellm/issues/20078)**
+    - **热度**：6条评论，创建于2026-01-30，今日更新。
+    - **诉求**：一个**TTS功能的适配问题**。用户使用Qwen3-TTS模型时，因`voice`参数被视为强制项而失败。这表明在代理后的多模型场景下，模型特定与通用API参数之间的映射和校验逻辑需要更灵活地处理。
+
+#### 5. Bug 与稳定性
+
+今日报告的 Bug 中，以下问题值得特别关注：
+
+- **严重性：高**
+    - **[Issue #34487] LLM classifier failed - NoneType has no attribute “update”**：用户在配置LLM分类器进行动态模型路由时遭遇崩溃。错误发生在类型判断环节，属于核心功能缺陷，阻碍了基于内容的智能路由功能。
+    - **[Issue #34692] Ollama → Anthropic streaming sets wrong stop_reason and emits spurious text block**：将Ollama模型通过Anthropic `/v1/messages`适配器流式输出时，工具调用被错误报告为`end_turn`，并产生空文本块。此Bug严重破坏了工具调用链的稳定性，且直接影响`Claude Code`等依赖Anthropic协议的应用。
+    - **[Issue #34574] Ollama reasoning_effort mapping crashes and wrongly forces think=True**：Ollama的`reasoning_effort`参数映射存在两个Bug：字典类型参数导致崩溃，以及对非思考模型错误地强制开启`think`模式，限制了高性能模型的可用性。
+
+- **严重性：中**
+    - **[Issue #26192] PrismaWrapper.__getattr__ deadlocks event loop**：数据库连接（RDS IAM Token）过期时，同步代码块会阻塞事件循环长达30秒，导致K8s存活探针失败。这是一个运维层面的稳定性隐患，影响生产环境的自动恢复能力。
+    - **[Issue #26333] Security issue on python-dotenv cannot be fixed due to pinned version**：用户报告了一个由`python-dotenv`库版本固定引发的CVE（CVE-2026-28684）问题。依赖版本锁定虽然是出于稳定性考虑，但也可能成为安全漏洞的温床。
+
+- **已有修复PR**：
+    - **[Issue #34690] tool_calls entries with unrecognized shapes are silently dropped**：此Bug导致格式不规范的`tool_calls`被静默忽略。该问题已在今日被关闭，对应的修复已合并。
+
+#### 6. 功能请求与路线图信号
+
+社区对功能的需求集中在**可观测性、成本管理和易用性**三个维度。
+
+- **成本估算与可视化**：
+    - **[Issue #34686] Add `litellm cost-estimate` CLI subcommand**：用户希望增加一个CLI工具，用于在部署前快速估算提示词成本。这与近期大量**计费修复PR**（如 #34736, #34737, #34738）方向一致，表明成本精细化管控是当前项目的核心迭代重点，此功能很可能被纳入后续版本。
+    - **[Issue #34704] Prometheus exporter can’t attribute spend to region or call type**：运行在多云环境中的用户，希望Prometheus指标能够按区域、调用类型（如聊天、嵌入）进行区分，以实现更精细的成本分摊和性能监控。
+
+- **基础设施优化**：
+    - **[Issue #34727] REDIS_URL prod warning is stale**：一位资深用户指出，关于`REDIS_URL`的性能警告文档已经过时，建议更新。这个看似微小的请求，实际上反映了用户对**项目文档准确性**的高度关注和主动贡献精神，也间接说明了用户对生产级别性能优化的重视。
+    - **[PR #34726] make user_api_key_cache in-memory size configurable**：有用户提交了PR，允许配置本地API Key缓存的大小，而非使用硬编码的200条限制。这直接回应用了大规模部署下的性能痛点，被采纳的可能性很高。
+
+#### 7. 用户反馈摘要
+
+- **正面声音**：多位用户主动提交了性能优化（#31880）和文档修正（#34727）的建议，体现了社区对项目的深度参与和信任。同时，有用户积极推广自己的数据源（#26494）作为LiteLLM的工具，显示了生态系统正在围绕该项目成长。
+- **主要痛点**：
+    - **安全响应不及时**：一位用户（#24404）报告了4个通过Huntr提交的未修复安全漏洞，并对沟通渠道表示困惑，反映出安全审计和响应流程需要透明化和加速。
+    - **文档/旧有建议滞后**：用户反馈文档中关于`REDIS_URL`和某些模型参数的建议已过时，这可能导致新用户误入歧途。
+    - **期望更多内置功能**：用户明确表达了希望LiteLLM内置成本估算CLI（#34686）的诉求，而非依赖外部计算。
+    - **多模型适配的持续挑战**：从多个Bug（#20078, #26444, #34574）可以看出，快速、准确适配不同供应商和模型（Anthropic、Ollama、xAI）的独特API，是社区最普遍且持续存在的痛点。
+
+#### 8. 待处理积压
+
+以下为长期未响应、但影响面较广或具有普遍性的议题，建议维护者关注。
+
+- **[Issue #30417]** `[Feature]: Support for Azure Document Intelligence as a provider`：一个为LiteLLM增加文档AI能力的长期功能请求，自2026-06-13创建以来无新动态。此功能可显著扩展LiteLLM的应用边界，建议纳入后续规划进行可行性评估。
+- **[Issue #24404]** `[Security]: 4 pending vulnerability reports`：4个安全报告长期未被审核，这是高风险信号。建议团队的SRE或安全负责人优先关注，并建立公开的安全披露政策。
+- **PR队列积压**：目前有 **111 个 PR 等待合并**。虽然部分可能仍在审查或测试中，但庞大的积压量长期来看会降低社区贡献者的积极性，并可能延迟关键修复的发布。维护者需审查是否有帮助或关闭的PR。
+
+---
+**报告生成时间**: 2026-07-27
+**数据源**: github.com/BerriAI/litellm
 
 </details>
 
 <details>
 <summary><strong>Temporal</strong> — <a href="https://github.com/temporalio/temporal">temporalio/temporal</a></summary>
 
-# Temporal 项目动态日报 | 2026-07-27
-
----
+# Temporal 项目动态日报 (2026-07-27)
 
 ## 1. 今日速览
-
-- 过去 24 小时内，项目共产生 **12 条 PR 更新**，其中 3 条已合并/关闭，9 条仍在开放审查中；Issues 仅新增 **1 条**，为潜在内存泄漏 Bug。
-- 发布分支准备 PR（#11292）已被合并，表明 **v1.32.0 版本即将发布**，社区期待的新功能（如虚拟时间跳过、SAA 声明式测试等）有望随之落地。
-- 核心贡献者在虚拟时间跳过（VTS）、活动处理器（SAA）、Nexus HTTP 故障注入等多个方向上持续提交代码，**项目整体活跃度较高**，开发节奏稳健。
-
----
+- 过去 24 小时内，项目仅产生 **1 条新 Issue**，为潜在严重 bug（gRPC 连接泄漏），尚未有关闭的 Issue；**12 条 PR** 有更新，其中 **3 条已合并/关闭**，**9 条待合并**。
+- 合并的 PR 中，`#11292` 标志着 **1.32.0 版本发布分支的准备**工作已启动，表明团队正积极向下一正式版本迈进。
+- 活跃开发集中在 **VTS（时间跳过）功能增强**（3 个 PR）、**SAA 测试框架改进**（2 个 PR）以及 **Nexus 的 HTTP 故障注入**（1 个 PR），项目整体处于 **高活跃度** 状态，测试与稳定性并重。
 
 ## 2. 版本发布
+**无新版本发布**。  
+`#11292` 已合并（由 bot 操作），内容为覆盖治理文件、更新依赖，是为 1.32.0 版本准备发布分支。预计近期将看到正式 Release。
 
-今日无新版本发布。
+## 3. 项目进展 (今日合并/关闭的重要 PR)
+- **#11292 – [CLOSED] 1.32.0: Prepare release branch**  
+  [链接](https://github.com/temporalio/temporal/pull/11292)  
+  由 `temporal-cicd[bot]` 创建并关闭，完成了版本发布分支的准备工作。这是 **版本周期进入尾声的信号**，后续可能包含多项新功能和修复。
 
----
+- **#11149 – [CLOSED] SAA: declarative functional tests**  
+  [链接](https://github.com/temporalio/temporal/pull/11149)  
+  @dandavison 合入了 SAA 功能测试的声明式工具库。引入 `driveTrace()` 方法，允许以序列事件（RPC、超时等）方式驱动测试，**大幅降低编写活动测试的代码量**，并为后续自动化测试铺路。
 
-## 3. 项目进展
+- **#11286 – [CLOSED] Update test shard salt**  
+  [链接](https://github.com/temporalio/temporal/pull/11286)  
+  由 bot 自动生成，用于优化测试分片策略，属于持续集成基础设施改进。
 
-当日合并/关闭的 **3 条 PR** 推动了如下工作：
-
-| PR 编号 | 标题 | 内容摘要 |
-|---------|------|----------|
-| [#11292](https://github.com/temporalio/temporal/pull/11292) | 1.32.0: Prepare release branch | 自动化的发布分支准备：覆盖治理文件、更新依赖关系。标志 v1.32.0 版本已进入预发布阶段。 |
-| [#11149](https://github.com/temporalio/temporal/pull/11149) | SAA: declarative functional tests | 引入 `driveTrace()` 工具，允许用声明式事件序列驱动活动处理器（SAA）的端到端测试，极大降低手动编写测试用例的成本。 |
-| [#11286](https://github.com/temporalio/temporal/pull/11286) | Update test shard salt | 自动优化测试分片策略，提升 CI 并行效率。 |
-
-> **整体进展**：测试基础设施持续完善，SAA 回归测试将更全面；v1.32.0 发布在即，路线图功能（如 VTS）的合并窗口逐渐收窄。
-
----
+**总结**：项目通过测试框架升级和版本分支准备，向前迈进了 **两个关键步骤**：一方面提升了测试可维护性，另一方面为正式发版扫清了障碍。
 
 ## 4. 社区热点
-
-当日最受关注的 Issue 为 **#11289**（潜在 Bug），报告了 Frontend/Admin 接口在反复调用 `Add/Remove/List/GetSearchAttributes` 或 `AddOrUpdateRemoteCluster` 时存在未缓存的 gRPC 连接泄漏。虽然尚无评论，但该问题直接影响服务稳定性，已引发核心团队的初步关注。
-
-- **链接**：[#11289](https://github.com/temporalio/temporal/issues/11289)
-- **诉求**：修复内存/goroutine 无限增长，要求复用或显式关闭内部 gRPC 连接。
-
-另外，多位贡献者在 **VTS（虚拟时间跳过）** 功能上集中发力，三条相关 PR（#11220、#11259、#11223）均处于开放状态且密集更新，反映出该特性是当前社区开发热点。
-
----
+今日无评论数极高或反应强烈的 Issue/PR。唯一的新 Issue `#11289` 可能成为未来热点：
+- **#11289 – [Bug] Frontend/Admin SearchAttributes and AddOrUpdateRemoteCluster handlers leak an uncached grpc.ClientConn per call**  
+  [链接](https://github.com/temporalio/temporal/issues/11289)  
+  报告了关键性能问题：频繁调用 `SearchAttributes` 和 `AddOrUpdateRemoteCluster` 相关 RPC 时，每次调用都会创建新的 gRPC 连接且未缓存/关闭，导致 **goroutine 和内存无限增长**。该问题直接影响生产环境的长期稳定运行，预计会引起社区高度关注。
 
 ## 5. Bug 与稳定性
+| 严重程度 | Issue/PR | 描述 | 是否有 Fix PR |
+|----------|----------|------|---------------|
+| **严重** | #11289 [OPEN] | Frontend/SearchAttributes 等 RPC 处理程序泄漏未缓存的 gRPC 连接，可能导致内存和 goroutine 爆炸 | 暂无 |
+| **中** | #11290 [OPEN] | 使用即时队列处理已到期任务，避免因定时任务队列延迟导致任务触发不精确 | 本身即为修复 PR |
+| **低** | #11294 [OPEN] | 在测试中软断言 gRPC 处理器响应非 nil，防范空指针错误 | 本身为改进 PR |
 
-| 严重程度 | Issue # | 标题 | 状态 | 备注 |
-|----------|---------|------|------|------|
-| **高** | [#11289](https://github.com/temporalio/temporal/issues/11289) | Frontend/Admin SearchAttributes 和 AddOrUpdateRemoteCluster 处理程序每次调用泄漏未缓存的 grpc.ClientConn | OPEN | 暂无 Fix PR，建议尽快修复以避免内存泄漏在生产环境累积。 |
-
-其余 PR 中，[#11290](https://github.com/temporalio/temporal/pull/11290) 针对“已到期的活动调度任务”改用即时队列而非定时器队列，属于性能优化而非回归修复。
-
----
+**重点提醒**：`#11289` 是一项 **高优先级 Bug**，若部署环境长期运行此类 RPC，可能引发 OOM。建议团队尽快评估并着手修复。
 
 ## 6. 功能请求与路线图信号
+- **VTS (Virtual Time Skipping) 功能增强**  
+  三个相关 PR 正处于活跃状态：
+  - `#11220` / `#11259` / `#11223` — 共同推进时间跳过功能的 **max skip 字段、DescribeWorkflowExecution 中暴露运行时信息、以及 PollWorkflowExecutionTimeSkipping 快速完成 API**。  
+  这些特性允许用户 **控制无限重试场景下时间跳过的行为**，并提供运行时状态查询，很可能被纳入 **1.32.0 版本**。
 
-### 强烈信号：虚拟时间跳过（VTS）功能接近成熟
-- [#11220](https://github.com/temporalio/temporal/pull/11220) 增加 `max skip` 字段、`TimeSkippingInfo` 及快速推进 Poll API；
-- [#11259](https://github.com/temporalio/temporal/pull/11259) 增加运行时字段、改进跨 Run 传播行为；
-- [#11223](https://github.com/temporalio/temporal/pull/11223) 实现快速推进的 Soft Timeout 和通知机制。
+- **Nexus HTTP 故障注入**  
+  `#11295` (依赖 #9076) 为出站 Nexus HTTP 请求添加了可编程故障注入，使集成测试能够 **确定性验证** 外部调用的异常处理逻辑。这属于测试基础设施的重要增强，后续可能成为 Nexus 功能稳定的基石。
 
-以上三条 PR 均出自同一作者 @feiyang3cat，且均在迭代更新，预计将在 v1.32.0 或后续版本中正式发布。
-
-### 其他新增功能
-- **Nexus HTTP 故障注入**（[#11295](https://github.com/temporalio/temporal/pull/11295)）：允许在测试中确定性模拟出站 Nexus 请求故障，提升可靠性测试覆盖面。
-- **ParentClosePolicy 处理器工作流级测试**（[#11175](https://github.com/temporalio/temporal/pull/11175)）：补充了此前缺失的测试路径，增强代码覆盖率。
-- **非空 gRPC 响应断言**（[#11294](https://github.com/temporalio/temporal/pull/11294)）：增加测试时的软断言，防止意外返回 nil 响应。
-
----
+- **SAA 测试框架驱动**  
+  `#11293` (待合并) 和已合并的 `#11149` 一起，推动用真实驱动函数替代辅助函数，进一步简化活动测试的编写。表明团队在 **持续投资活动工作流自动化测试**。
 
 ## 7. 用户反馈摘要
-
-当日未发现明显的用户评论或使用场景反馈。Issue #11289 的作者 @tz-torchai 以简要 “Expected Behavior” 描述了问题，但未提供复现细节或使用背景。后续需关注是否会有其他用户补充真实场景影响。
-
----
+今日无新增用户评论或讨论。唯一 Issue `#11289` 暂无评论，但问题的描述清晰、复现路径明确，后续可能收到来自社区的类似场景报告或复现确认。
 
 ## 8. 待处理积压
+- **长期未合并的重要 PR**：
+  - `#11175` (open since 2026-07-21) — 为 `parentclosepolicy` 处理器添加工作流级别测试，覆盖之前未测试的路径。该 PR 更新于 2026-07-26，仍在等待 Review。  
+  - `#11220` / `#11259` / `#11223` (均已打开数天) — VTS 功能增强，作者为同一位开发者 `@feiyang3cat`，更新活跃，但尚未合并，可能需协调多个 PR 的依赖关系。
 
-- 未发现长期未响应的关键 Issue 或 PR。所有 OPEN 的 PR 最近更新时间均在 2026-07-26 或更近，审查和讨论仍在进行中。
-- 可关注 ISSUE #11289 的后续进展，若长时间无 Fix，建议核心团队标记为 `bug` 并优先排期。
+- **未响应的 Bug**：
+  - `#11289` (2026-07-25 创建) — 目前无人评论或分配，建议维护者尽快标记负责人并启动调查。
 
----
-
-**报告日期**：2026-07-27  
-**数据来源**：GitHub Temporal 仓库（过去24小时）  
-**生成工具**：AI 智能体分析师
+> 注：本日报数据仅基于项目 GitHub 公开活动，结论仅供参考。
 
 </details>
 
