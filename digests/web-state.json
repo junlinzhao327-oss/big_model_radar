@@ -1,6 +1,6 @@
 {
   "anthropic": {
-    "lastChecked": "2026-07-29T22:35:45.550Z",
+    "lastChecked": "2026-07-29T23:26:46.194Z",
     "seenUrls": {
       "https://www.anthropic.com/news/responsible-scaling-policy-v3": "2026-02-25T23:57:06.000Z",
       "https://www.anthropic.com/research/deprecation-updates-opus-3": "2026-02-25T20:58:11.000Z",
@@ -437,7 +437,7 @@
     }
   },
   "openai": {
-    "lastChecked": "2026-07-29T22:35:48.255Z",
+    "lastChecked": "2026-07-29T23:26:48.928Z",
     "seenUrls": {
       "https://openai.com/index/arvind-kc-chief-people-officer/": "2026-07-25T07:19:31.944Z",
       "https://openai.com/index/put-ai-to-work-for-your-product-team/": "2026-07-29T03:13:44.572Z",
@@ -921,7 +921,7 @@
       "https://openai.com/index/gartner-2025-emerging-leader/": "2026-07-09T09:33:14.046Z",
       "https://openai.com/index/gpt-5-1-for-developers/": "2026-07-25T07:05:41.698Z",
       "https://openai.com/index/dall-e-3/": "2026-07-25T07:08:32.618Z",
-      "https://openai.com/devday/": "2026-07-29T22:21:56.151Z",
+      "https://openai.com/devday/": "2026-07-29T23:07:54.956Z",
       "https://openai.com/index/introducing-gpt-realtime/": "2026-07-25T07:15:25.296Z",
       "https://openai.com/index/introducing-gpt-oss-safeguard/": "2026-06-14T07:22:19.093Z",
       "https://openai.com/index/introducing-agentkit/": "2026-06-05T12:39:25.601Z",
@@ -1183,7 +1183,8 @@
       "https://openai.com/business/guides-and-resources/a-practical-guide-to-building-with-ai/": "2026-07-28T02:04:56.101Z",
       "https://openai.com/business/guides-and-resources/how-openai-uses-codex/": "2026-07-28T02:04:55.166Z",
       "https://openai.com/index/gpt-5-6-frontier-intelligence-efficiency/": "2026-07-29T22:20:12.722Z",
-      "https://openai.com/index/chatgpt-for-academic-researchers/": "2026-07-29T19:51:02.218Z"
+      "https://openai.com/index/chatgpt-for-academic-researchers/": "2026-07-29T22:38:13.679Z",
+      "https://openai.com/index/how-two-settings-tripled-our-arc-agi-3-scores/": "2026-07-29T23:26:33.128Z"
     }
   }
 }
