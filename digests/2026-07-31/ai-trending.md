@@ -1,87 +1,168 @@
 # AI 开源趋势日报 2026-07-31
 
-> 数据来源: GitHub Trending + GitHub Search API | 生成时间: 2026-07-30 22:35 UTC
+> 数据来源: GitHub Trending + GitHub Search API | 生成时间: 2026-07-30 23:28 UTC
 
 ---
 
-好的，作为专注于 AI 开源生态的技术分析师，这是为您定制的 2026-07-31 日《AI 开源趋势日报》。
+# AI 开源趋势日报（2026-07-31）
 
 ---
 
-### AI 开源趋势日报 | 2026-07-31
+## 今日速览
 
-#### 1. 今日速览
+1. **开源“代理工坊”竞赛白热化**：`different-ai/openwork`（+916 stars）和 `affaan-m/ECC`（+810 stars）分别以开源替代 Claude Cowork 和 agent 性能优化系统引爆今日热榜，开发者对自主可控的代理开发环境需求激增。
+2. **语音代理进入实用阶段**：Hugging Face 的 `speech-to-speech` 项目单日斩获 627 stars，标志着基于开源模型的本地语音代理从实验走向可部署。
+3. **短期记忆与上下文压缩成为新焦点**：`mvanhorn/last30days-skill`（+377 stars）和 `headroomlabs-ai/headroom`（63k stars）分别解决代理的实时信息检索与 token 压缩问题，体现社区对“更高效、更持久”代理体验的追求。
+4. **RAG 生态持续分层但共识明确**：`Graphify-Labs/graphify`（99k stars）以代码知识图为代表的“无向量 RAG”思路受到关注，与 `milvus`、`qdrant` 等传统向量数据库形成差异化竞争。
 
-- **Agent 生态持续爆发**：AI 智能体（Agent）和“代理控制器”（Agent Harness）成为今日绝对主角，`ECC`、`mem0`、`claude-mem` 等高星项目聚焦于为 AI 编码助手提供记忆、上下文管理和性能优化，标志着从“能用”到“好用”的进化。
-- **语音交互赛道升温**：Hugging Face 推出的 `speech-to-speech` 项目日获 627 星，推动开源语音代理落地，与文本驱动的 Agent 形成互补，预示多模态交互成为新战场。
-- **RAG 技术趋于成熟**：向量数据库和 RAG 引擎类项目持续领跑，如 `RAGFlow`、`milvus`，但新趋势是向“记忆层”和“上下文压缩”演进，如 `headroom` 和 `mem0`，旨在解决 Agent 的长上下文与成本问题。
-- **低代码与 AI 结合深化**：`Flowise`、`Cherry Studio` 等可视化构建 Agent 的平台和 AI 生产力工具，正在降低 Agent 开发门槛，推动 AI 应用民主化。
+---
 
-#### 2. 各维度热门项目
+## 各维度热门项目
 
-##### 🔧 AI 基础工具（框架、SDK、推理引擎、开发工具、CLI）
+### 🔧 AI 基础工具（框架、SDK、推理引擎、开发工具、CLI）
 
-- **[ollama/ollama](https://github.com/ollama/ollama)** ⭐177,324 — 一键运行本地大模型的利器，已支持 Kimi、DeepSeek、Qwen 等最新模型，是 AI 本地化部署的基石。
-- **[huggingface/transformers](https://github.com/huggingface/transformers)** ⭐163,179 — 业界标准模型定义与训练框架，持续支持最前沿的文本、视觉、多模态模型。
-- **[pytorch/pytorch](https://github.com/pytorch/pytorch)** ⭐102,079 — 深度学习领域最核心的框架之一，提供强大的 GPU 加速计算能力。
-- **[ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp)** （今日新增 +73）— 将 Chrome DevTools 能力通过 MCP (Model Context Protocol) 暴露给 AI Agent，使编码 Agent 可以直接操控浏览器进行调试，是工具链整合的重要突破。
-- **[The-Pocket/PocketFlow](https://github.com/The-Pocket/PocketFlow)** ⭐11,072 — 仅 100 行代码的 LLM 框架，让 Agent 能够构建 Agent，体现了极致极简主义和元编程趋势。
+- **[ollama/ollama](https://github.com/ollama/ollama)** ⭐177,328  
+  一键运行本地大模型的 CLI 工具，当前已支持 Kimi-K2.6、GLM-5.2 等新模型，是本地 AI 开发的事实标准。
 
-##### 🤖 AI 智能体/工作流（Agent 框架、自动化、多智能体）
+- **[huggingface/transformers](https://github.com/huggingface/transformers)** ⭐163,179  
+  通用模型定义与推理框架，几乎覆盖所有主流模型，多模态支持日趋完善。
 
-- **[langchain-ai/langchain](https://github.com/langchain-ai/langchain)** ⭐143,024 — 智能体工程平台，提供构建、部署 Agent 的全套工具链。
-- **[langchain-ai/langgraph](https://github.com/langchain-ai/langgraph)** ⭐38,520 — 专注于构建高弹性、有状态的多步 Agent 工作流。
-- **[affaan-m/ECC](https://github.com/affaan-m/ECC)** （今日新增 +810）/ ⭐236,179 — 一个为 Claude Code、Codex 等编码 Agent 提供性能优化、记忆、安全等能力的“代理控制器”（Harness）。今日增速极快，反映社区对增强编码 Agent 能力的高度需求。
-- **[thedotmack/claude-mem](https://github.com/thedotmack/claude-mem)** ⭐89,073 — 为所有 AI Agent 提供跨会话的持久上下文，它自动捕获、压缩并注入相关上下文，解决 Agent 的“失忆”问题，是 Agent 记忆层的代表性项目。
-- **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** ⭐222,854 — 一个与用户共同成长的通用 Agent 框架，社区关注度极高。
-- **[FlowiseAI/Flowise](https://github.com/FlowiseAI/Flowise)** ⭐55,047 — 低代码 Agent 构建平台，通过拖拽即可组合 LLM、工具和知识库，可视化构建复杂工作流。
-- **[ZhuLinsen/daily_stock_analysis](https://github.com/ZhuLinsen/daily_stock_analysis)** ⭐59,613 — LLM 驱动的多市场股票智能分析系统，是 Agent 在金融场景的成熟落地案例。
+- **[pytorch/pytorch](https://github.com/pytorch/pytorch)** ⭐102,079  
+  AI 训练与推理的核心框架，最新版本优化了 GPU 利用率与编译性能。
 
-##### 📦 AI 应用（具体应用产品、垂直场景解决方案）
+- **[firecrawl/firecrawl](https://github.com/firecrawl/firecrawl)** ⭐158,348  
+  面向 AI 代理的 Web 数据获取 API，支持搜索、抓取、交互，今日热度依旧。
 
-- **[huggingface/speech-to-speech](https://github.com/huggingface/speech-to-speech)** （今日新增 +627）— **今日最值得关注的新项目之一**。用开源模型构建本地语音代理，实现了语音输入-处理-语音输出的完整闭环，降低语音交互开发门槛。
-- **[open-webui/open-webui](https://github.com/open-webui/open-webui)** ⭐147,377 — 功能强大的用户端 AI 交互界面，支持 Ollama 和 OpenAI 等后端，是个人 AI 助手的首选应用。
-- **[CherryHQ/cherry-studio](https://github.com/CherryHQ/cherry-studio)** ⭐49,168 — 全能型 AI 生产力工作室，集成智能聊天、自主 Agent 和数百个助手，提供了统一的多模型访问入口。
-- **[browser-use/browser-use](https://github.com/browser-use/browser-use)** ⭐107,330 — 让 AI Agent 能像人一样操作浏览器，自动化线上任务，是 Web Agent 方向的核心基础设施。
-- **[ShareAI-Lab/learn-claude-code](https://github.com/shareAI-lab/learn-claude-code)** ⭐72,752 — 从零构建一个 Claude Code 风格的 Agent 学习教程，对开发者理解和复现 Agent 架构有极高价值。
-- **[harry0703/MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo)** ⭐100,652 — 利用 AI 一键生成短视频，代表了 AIGC 在内容创作领域的自动化应用。
-- **[different-ai/openwork](https://github.com/different-ai/openwork)** （今日新增 +916）— **今日 stars 增速最快**。作为 Claude Cowork 的开源替代，它利用多模态能力构建了强大的编码 Agent 工作环境。
+- **[ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp)** ⭐0 (+73 today)  
+  基于 MCP 协议的 Chrome 调试接口，让编码代理能直接操作浏览器，属于新兴的 AI 开发工具。
 
-##### 🧠 大模型/训练（模型权重、训练框架、微调工具）
+- **[microsoft/AI-For-Beginners](https://github.com/microsoft/AI-For-Beginners)** ⭐0 (+115 today)  
+  12 周 AI 入门教程（Jupyter Notebook），适合新手系统学习 AI 概念与实战。
 
-- **[rasbt/LLMs-from-scratch](https://github.com/rasbt/LLMs-from-scratch)** ⭐100,180 — 广受欢迎的从零实现 ChatGPT 的教程，对深入理解 LLM 原理至关重要。
-- **[ultralytics/ultralytics](https://github.com/ultralytics/ultralytics)** ⭐60,058 — 领先的视觉 AI 模型库，最新版 YOLO 系列在目标检测、分割等任务上持续进化。
+- **[genieincodebottle/generative-ai](https://github.com/genieincodebottle/generative-ai)** ⭐2,576  
+  涵盖生成式 AI 路线图、项目案例与面试准备的综合性学习资源。
 
-##### 🔍 RAG/知识库（向量数据库、检索增强、知识管理）
+---
 
-- **[langgenius/dify](https://github.com/langgenius/dify)** ⭐150,837 — 集成了 RAG 管道、Agent 工作流的 LLMOps 平台，是企业级 AI 应用开发的重要选项。
-- **[infiniflow/ragflow](https://github.com/infiniflow/ragflow)** ⭐86,441 — 领先的开源 RAG 引擎，融合了 Agent 能力，为 LLM 构建优质上下文层。
-- **[milvus-io/milvus](https://github.com/milvus-io/milvus)** ⭐45,433 — 高性能、云原生的向量数据库，是构建大规模 RAG 系统的关键组件。
-- **[mem0ai/mem0](https://github.com/mem0ai/mem0)** ⭐62,141 — 面向 AI Agent 的通用记忆层，让 Agent 拥有长期、短期和情景记忆，是当前 RAG 向“记忆”进化的代表。
-- **[headroomlabs-ai/headroom](https://github.com/headroomlabs-ai/headroom)** ⭐63,411 — 专注于为 LLM 提升 Token 利用效率的通用工具，通过压缩工具输出、日志等，最高节省 95% 的 JSON token，对降低成本有直接价值。
-- **[siyuan-note/siyuan](https://github.com/siyuan-note/siyuan)** ⭐45,507 — 隐私优先的个人知识管理软件，与 AI Agent 结合后，可成为强大的个人知识库。
+### 🤖 AI 智能体/工作流（Agent 框架、自动化、多智能体）
 
-#### 3. 趋势信号分析
+- **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** ⭐222,866  
+  可成长的智能体框架，支持记忆、工具调用与持续学习，是当前 agent 领域最热门项目之一。
 
-今日热榜释放出强烈信号：**“为 AI Agent 构建基础设施”是当前社区的核心焦点。**
+- **[langchain-ai/langgraph](https://github.com/langchain-ai/langgraph)** ⭐38,521  
+  构建弹性 agent 的图计算框架，广泛应用于复杂工作流编排。
 
-- **爆发性关注领域：Agent 的“生产工具”和“记忆体”。**
-    - `ECC`、`claude-mem`、`mem0` 等项目的火爆，表明社区已不满足于基础的 Agent 对话能力，而是追求更强的性能、更低的 Token 消耗（如 `headroom`）和更持久的记忆。这标志着 Agent 正在从 Demo 阶段进入工程优化阶段。
-    - 由 `different-ai/openwork` 领衔的“Coding Agent 替代方案”激增，反映出开发者对探索更开放、更灵活的 AI 编程工具有着强烈需求。
+- **[different-ai/openwork](https://github.com/different-ai/openwork)** ⭐0 (+916 today)  
+  开源替代 Claude Cowork，支持多种 CLI 代理（opencode 驱动），今日 stars 增量最高，代表“去平台化”代理趋势。
 
-- **新兴技术栈首次登榜：语音 Agent 和 MCP 协议整合。**
-    - `huggingface/speech-to-speech` 的登场，是语音 AI 在 Agent 方向的重要里程碑。它不只做语音识别，而是让模型直接输出语音，构成了完整的语音 Agent 链路。
-    - `ChromeDevTools/chrome-devtools-mcp` 的上榜，体现了 MCP (Model Context Protocol) 作为 AI Agent 与外部工具交互标准的接受度正在快速提高，智能体开始具备原本属于人类高级用户的浏览器调试能力。
+- **[affaan-m/ECC](https://github.com/affaan-m/ECC)** ⭐236,193 (+810 today)  
+  Agent 性能优化系统（技能、记忆、安全），适配 Claude Code、Codex、Cursor 等主流代理，star 总数惊人。
 
-- **与行业事件的关联：** 今日榜单未显示与大型模型发布有直接关联，但 `ECC`、`claude-mem` 等大量基于 Claude Code 生态的项目涌现，暗示了 Anthropic 与 GitHub Copilot 等产品在 C端市场的激烈竞争，开发者社区正在积极为这些平台构建“外挂”和“补丁”，以提升其易用性和能力上限。
+- **[mvanhorn/last30days-skill](https://github.com/mvanhorn/last30days-skill)** ⭐0 (+377 today)  
+  AI agent 技能：自动从 Reddit、Twitter、YouTube 等平台检索并生成主题摘要，解决代理“信息时效性”痛点。
 
-#### 4. 社区关注热点
+- **[CopilotKit/CopilotKit](https://github.com/CopilotKit/CopilotKit)** ⭐36,375  
+  前端 Agent UI 框架，支持 React、Angular 等，让开发者快速将 AI 代理嵌入应用界面。
 
-- **Agent 记忆与上下文管理（`mem0`, `claude-mem`）**：这是当前 Agent 能力突破的关键卡点。如何让 Agent 记住你是谁、你在做什么，并持续提供有效帮助，是社区最核心的需求。
-- **编码 Agent 的“性能调优”和“代理控制器”（`ECC`, `openwork`）**：随着 AI 编码工具普及（如 Claude Code, Codex），如何管理它们的权限、优化性能、提供安全沙箱成为了一个新兴的、巨大的蓝海市场。
-- **“Token 经济”与成本优化（`headroom`, `caveman`）**：在 AI 应用规模化过程中，Token 成本是核心瓶颈。`caveman` 甚至提出用“原始人”对话风格减少 Token，说明社区在探索各种降低成本的极端方案。
-- **低代码 Agent 构建（`Flowise`, `Cherry Studio`）**：这一方向热度不减，说明将 Agent 能力交到非专业开发者手中是明确的行业趋势，降低复杂度是推动 AI 民主化的关键。
-- **开源语音 AI 的新范式（`huggingface/speech-to-speech`）**：语音 UI 被认为可能是继图形界面后的下一代交互方式。这个项目提供了一个高质量、易上手的起点，值得所有关注人机交互的开发者跟进。
+- **[CherryHQ/cherry-studio](https://github.com/CherryHQ/cherry-studio)** ⭐49,168  
+  AI 生产力工作室，集成智能聊天、自主代理与 300+ 助手，统一对接前沿大模型。
+
+---
+
+### 📦 AI 应用（具体应用产品、垂直场景解决方案）
+
+- **[huggingface/speech-to-speech](https://github.com/huggingface/speech-to-speech)** ⭐0 (+627 today)  
+  基于开源模型的本地语音代理，可构建语音对话机器人，今日热度标志语音 AI 进入实用阶段。
+
+- **[harry0703/MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo)** ⭐100,657  
+  AI 短视频生成工具，根据主题自动生成高清视频，持续霸榜 AI 应用领域。
+
+- **[ZhuLinsen/daily_stock_analysis](https://github.com/ZhuLinsen/daily_stock_analysis)** ⭐59,613  
+  LLM 驱动的多市场股票智能分析系统，支持实时行情、决策看板与自动推送，量化投资者的实用工具。
+
+- **[hugohe3/ppt-master](https://github.com/hugohe3/ppt-master)** ⭐42,016  
+  将文档或主题自动转化为原生 PPT 的 AI 工具，支持图表、动画与语音旁白，适合办公场景。
+
+- **[santifer/career-ops](https://github.com/santifer/career-ops)** ⭐62,313  
+  开源 AI 求职助手：扫描职位、评分简历、优化申请，完全本地运行。
+
+- **[OpenBB-finance/OpenBB](https://github.com/OpenBB-finance/OpenBB)** ⭐71,198  
+  AI 增强的开源金融数据平台，支持分析师、量化团队与 AI 代理对接。
+
+- **[browser-use/browser-use](https://github.com/browser-use/browser-use)** ⭐107,332  
+  让 AI 代理自动操作浏览器的工具，适用于网页自动化任务，社区关注度极高。
+
+---
+
+### 🧠 大模型/训练（模型权重、训练框架、微调工具）
+
+- **[rasbt/LLMs-from-scratch](https://github.com/rasbt/LLMs-from-scratch)** ⭐100,180  
+  从零实现类 ChatGPT 的 LLM（PyTorch），是深度学习领域最受欢迎的教学项目之一。
+
+- **[ultralytics/ultralytics](https://github.com/ultralytics/ultralytics)** ⭐60,058  
+  YOLO 系列目标检测模型的官方库，最新版本支持 YOLO26，兼顾训练与推理。
+
+- **[open-compass/opencompass](https://github.com/open-compass/opencompass)** ⭐7,248  
+  开源大模型评测平台，支持 Llama3、Qwen、GLM 等数十款模型，是社区基准测试的首选。
+
+- **[tensorflow/tensorflow](https://github.com/tensorflow/tensorflow)** ⭐196,618  
+  Google 的机器学习框架，虽热度略有下降，仍是生产环境的重要选择。
+
+- **[keras-team/keras](https://github.com/keras-team/keras)** ⭐64,189  
+  高层次的深度学习 API，现集成于 TensorFlow，也支持 JAX 后端，入门友好。
+
+- **[Eigenwise/atomic-agents](https://github.com/Eigenwise/atomic-agents)** ⭐6,099  
+  以“原子化”方式构建 AI agent 的框架，强调模块化与可组合性。
+
+- **[AarambhDevHub/aarambh-studio](https://github.com/AarambhDevHub/aarambh-studio)** ⭐51  
+  纯 Rust 实现的 decoder-only LLM（基于 Candle），支持多种注意力机制与 MoE，属于新兴的低资源训练方向。
+
+---
+
+### 🔍 RAG/知识库（向量数据库、检索增强、知识管理）
+
+- **[langgenius/dify](https://github.com/langgenius/dify)** ⭐150,837  
+  全栈 RAG 平台，支持 agentic 工作流、多模型接入，团队协作友好，是 RAG 领域的标杆。
+
+- **[infiniflow/ragflow](https://github.com/infiniflow/ragflow)** ⭐86,442  
+  领先的开源 RAG 引擎，融合 Agent 能力，提供强大的上下文层构建。
+
+- **[milvus-io/milvus](https://github.com/milvus-io/milvus)** ⭐45,433  
+  高性能云原生向量数据库，专为大规模向量检索设计，是 RAG 系统的核心基础设施。
+
+- **[Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify)** ⭐99,095  
+  “无向量”代码知识图方案，通过 AST 解析将代码库转化为查询图，近期非常火爆。
+
+- **[mem0ai/mem0](https://github.com/mem0ai/mem0)** ⭐62,143  
+  通用 AI agent 记忆层，为代理提供持久化上下文，是 RAG 与记忆结合的代表。
+
+- **[VectifyAI/PageIndex](https://github.com/VectifyAI/PageIndex)** ⭐34,922  
+  基于推理（非向量）的文档索引方案，适用于“无向量 RAG”场景。
+
+- **[meilisearch/meilisearch](https://github.com/meilisearch/meilisearch)** ⭐58,801  
+  快速搜索引擎，内置 AI 混合搜索能力，为网站和应用提供智能检索。
+
+---
+
+## 趋势信号分析
+
+今日数据释放出三个强烈信号：
+
+1. **“代理工坊”爆发式增长**：`different-ai/openwork`（+916）、`affaan-m/ECC`（+810）等项目单日新增 stars 均超 600，社区正从“使用单一代理”转向“自定义、多代理协作的开发环境”。这背后是 Claude Code、Codex、Cursor 等工具普及带来的“代理化开发”浪潮，开源社区正积极构建可替代商业方案的底层基础设施。
+
+2. **语音代理成为 next frontier**：Hugging Face 的 `speech-to-speech` 项目在未积累大量 stars 的情况下即获 627 新增，表明语音交互 + 本地模型组合已具备实用价值。结合 `browser-use`、`firecrawl` 等 Web 自动化工具，语音代理有望成为新的交互范式。
+
+3. **RAG 技术路线分化**：传统向量数据库（Milvus、Qdrant）仍占主导，但 `Graphify-Labs/graphify`（99k stars）和 `VectifyAI/PageIndex`（34k stars）代表的“无向量/推理式”方案正在崛起，尤其适用于代码、文档等结构化领域。同时 `headroomlabs-ai/headroom`（63k stars）聚焦 token 压缩，体现 RAG 场景中对成本与效率的极致追求。
+
+---
+
+## 社区关注热点
+
+- **openwork (different-ai/openwork)**：作为 Claude Cowork 的开源替代，今日 stars 增量最大，值得开发者第一时间尝试，有望成为多代理协同的默认选择。
+- **ECC (affaan-m/ECC)**：虽然 star 总数巨大，但其“agent 性能优化”定位独特，可显著降低 token 消耗、提升代理响应速度，适合所有使用 Claude Code/Codex 的团队。
+- **speech-to-speech (huggingface/speech-to-speech)**：Hugging Face 官方出品，本地语音代理的实现范例，适合探索语音交互与智能家居、客服等场景的开发者。
+- **last30days-skill (mvanhorn/last30days-skill)**：聚焦“实时信息检索”，弥补当前代理知识滞后缺陷，对于需要跟踪舆情、市场数据的应用有直接价值。
+- **Graphify (Graphify-Labs/graphify)**：代码知识图的构建方式颠覆了传统 RAG 思路，对开发者效率提升显著，尤其适用于大型代码库的智能导航与问答。
 
 ---
 *本日报由 [Big Model Radar](https://github.com/junlinzhao327-oss/big_model_radar) 自动生成。*
