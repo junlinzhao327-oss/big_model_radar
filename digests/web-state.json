@@ -1,6 +1,6 @@
 {
   "anthropic": {
-    "lastChecked": "2026-08-05T22:36:11.997Z",
+    "lastChecked": "2026-08-05T23:26:06.411Z",
     "seenUrls": {
       "https://www.anthropic.com/news/responsible-scaling-policy-v3": "2026-02-25T23:57:06.000Z",
       "https://www.anthropic.com/research/deprecation-updates-opus-3": "2026-02-25T20:58:11.000Z",
@@ -439,7 +439,7 @@
     }
   },
   "openai": {
-    "lastChecked": "2026-08-05T22:36:14.698Z",
+    "lastChecked": "2026-08-05T23:26:09.238Z",
     "seenUrls": {
       "https://openai.com/index/arvind-kc-chief-people-officer/": "2026-07-25T07:19:31.944Z",
       "https://openai.com/index/put-ai-to-work-for-your-product-team/": "2026-07-29T03:13:44.572Z",
@@ -1079,7 +1079,7 @@
       "https://openai.com/index/teen-safety-policies-gpt-oss-safeguard/": "2026-07-28T18:08:53.646Z",
       "https://openai.com/index/update-on-the-openai-foundation/": "2026-06-04T12:09:15.020Z",
       "https://openai.com/index/safety-bug-bounty/": "2026-06-05T07:45:12.750Z",
-      "https://openai.com/index/our-approach-to-the-model-spec/": "2026-06-19T05:06:48.584Z",
+      "https://openai.com/index/our-approach-to-the-model-spec/": "2026-08-05T23:21:03.269Z",
       "https://openai.com/index/accelerating-the-next-phase-ai/": "2026-07-10T18:11:43.054Z",
       "https://openai.com/index/codex-flexible-pricing-for-teams/": "2026-07-23T22:55:17.161Z",
       "https://openai.com/index/openai-acquires-tbpn/": "2026-07-25T07:05:08.568Z",
