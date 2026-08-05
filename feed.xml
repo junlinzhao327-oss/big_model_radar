@@ -6,7 +6,42 @@
     <description>AI 开源生态每日简报 · Daily AI ecosystem digest</description>
     <language>zh-CN</language>
     <atom:link href="https://junlinzhao327-oss.github.io/big_model_radar/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Tue, 04 Aug 2026 23:32:51 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2026 22:41:49 +0000</lastBuildDate>
+    <item>
+      <title>AI CLI 工具社区动态日报 2026-08-06</title>
+      <link>https://junlinzhao327-oss.github.io/big_model_radar/#2026-08-06/ai-cli</link>
+      <guid isPermaLink="true">https://junlinzhao327-oss.github.io/big_model_radar/#2026-08-06/ai-cli</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
+      <description>AI CLI 工具社区动态日报 2026-08-06</description>
+    </item>
+    <item>
+      <title>AI Agents 生态日报 2026-08-06</title>
+      <link>https://junlinzhao327-oss.github.io/big_model_radar/#2026-08-06/ai-agents</link>
+      <guid isPermaLink="true">https://junlinzhao327-oss.github.io/big_model_radar/#2026-08-06/ai-agents</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
+      <description>AI Agents 生态日报 2026-08-06</description>
+    </item>
+    <item>
+      <title>AI 官方内容追踪报告 2026-08-06</title>
+      <link>https://junlinzhao327-oss.github.io/big_model_radar/#2026-08-06/ai-web</link>
+      <guid isPermaLink="true">https://junlinzhao327-oss.github.io/big_model_radar/#2026-08-06/ai-web</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
+      <description>AI 官方内容追踪报告 2026-08-06</description>
+    </item>
+    <item>
+      <title>AI 开源趋势日报 2026-08-06</title>
+      <link>https://junlinzhao327-oss.github.io/big_model_radar/#2026-08-06/ai-trending</link>
+      <guid isPermaLink="true">https://junlinzhao327-oss.github.io/big_model_radar/#2026-08-06/ai-trending</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
+      <description>AI 开源趋势日报 2026-08-06</description>
+    </item>
+    <item>
+      <title>Hacker News AI 社区动态日报 2026-08-06</title>
+      <link>https://junlinzhao327-oss.github.io/big_model_radar/#2026-08-06/ai-hn</link>
+      <guid isPermaLink="true">https://junlinzhao327-oss.github.io/big_model_radar/#2026-08-06/ai-hn</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
+      <description>Hacker News AI 社区动态日报 2026-08-06</description>
+    </item>
     <item>
       <title>AI CLI 工具社区动态日报 2026-08-05</title>
       <link>https://junlinzhao327-oss.github.io/big_model_radar/#2026-08-05/ai-cli</link>
@@ -181,41 +216,6 @@
       <guid isPermaLink="true">https://junlinzhao327-oss.github.io/big_model_radar/#2026-08-01/ai-trending</guid>
       <pubDate>Sat, 01 Aug 2026 00:00:00 +0000</pubDate>
       <description>AI 开源趋势日报 2026-08-01</description>
-    </item>
-    <item>
-      <title>Hacker News AI 社区动态日报 2026-08-01</title>
-      <link>https://junlinzhao327-oss.github.io/big_model_radar/#2026-08-01/ai-hn</link>
-      <guid isPermaLink="true">https://junlinzhao327-oss.github.io/big_model_radar/#2026-08-01/ai-hn</guid>
-      <pubDate>Sat, 01 Aug 2026 00:00:00 +0000</pubDate>
-      <description>Hacker News AI 社区动态日报 2026-08-01</description>
-    </item>
-    <item>
-      <title>AI 工具生态月报 2026-08-01</title>
-      <link>https://junlinzhao327-oss.github.io/big_model_radar/#2026-08-01/ai-monthly</link>
-      <guid isPermaLink="true">https://junlinzhao327-oss.github.io/big_model_radar/#2026-08-01/ai-monthly</guid>
-      <pubDate>Sat, 01 Aug 2026 00:00:00 +0000</pubDate>
-      <description>AI 工具生态月报 2026-08-01</description>
-    </item>
-    <item>
-      <title>AI CLI 工具社区动态日报 2026-07-31</title>
-      <link>https://junlinzhao327-oss.github.io/big_model_radar/#2026-07-31/ai-cli</link>
-      <guid isPermaLink="true">https://junlinzhao327-oss.github.io/big_model_radar/#2026-07-31/ai-cli</guid>
-      <pubDate>Fri, 31 Jul 2026 00:00:00 +0000</pubDate>
-      <description>AI CLI 工具社区动态日报 2026-07-31</description>
-    </item>
-    <item>
-      <title>AI Agents 生态日报 2026-07-31</title>
-      <link>https://junlinzhao327-oss.github.io/big_model_radar/#2026-07-31/ai-agents</link>
-      <guid isPermaLink="true">https://junlinzhao327-oss.github.io/big_model_radar/#2026-07-31/ai-agents</guid>
-      <pubDate>Fri, 31 Jul 2026 00:00:00 +0000</pubDate>
-      <description>AI Agents 生态日报 2026-07-31</description>
-    </item>
-    <item>
-      <title>AI 官方内容追踪报告 2026-07-31</title>
-      <link>https://junlinzhao327-oss.github.io/big_model_radar/#2026-07-31/ai-web</link>
-      <guid isPermaLink="true">https://junlinzhao327-oss.github.io/big_model_radar/#2026-07-31/ai-web</guid>
-      <pubDate>Fri, 31 Jul 2026 00:00:00 +0000</pubDate>
-      <description>AI 官方内容追踪报告 2026-07-31</description>
     </item>
   </channel>
 </rss>
