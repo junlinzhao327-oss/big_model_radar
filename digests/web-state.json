@@ -1,6 +1,6 @@
 {
   "anthropic": {
-    "lastChecked": "2026-08-10T22:36:18.345Z",
+    "lastChecked": "2026-08-10T23:00:27.379Z",
     "seenUrls": {
       "https://www.anthropic.com/news/responsible-scaling-policy-v3": "2026-02-25T23:57:06.000Z",
       "https://www.anthropic.com/research/deprecation-updates-opus-3": "2026-02-25T20:58:11.000Z",
@@ -55,7 +55,7 @@
       "https://www.anthropic.com/research/next-generation-constitutional-classifiers": "2026-06-05T15:19:41.000Z",
       "https://www.anthropic.com/engineering/contextual-retrieval": "2026-01-07T15:00:44.000Z",
       "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents": "2026-01-06T15:31:12.000Z",
-      "https://www.anthropic.com/engineering/building-effective-agents": "2026-04-13T17:46:47.000Z",
+      "https://www.anthropic.com/engineering/building-effective-agents": "2026-08-10T22:57:30.000Z",
       "https://www.anthropic.com/news/prompting-long-context": "2026-01-06T15:23:18.000Z",
       "https://www.anthropic.com/engineering/multi-agent-research-system": "2026-01-06T15:09:32.000Z",
       "https://www.anthropic.com/engineering/writing-tools-for-agents": "2026-01-06T15:05:23.000Z",
@@ -437,11 +437,11 @@
       "https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals": "2026-08-03T14:36:32.000Z",
       "https://www.anthropic.com/news/tino-cuellar": "2026-08-04T17:40:15.000Z",
       "https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards": "2026-08-07T03:05:42.000Z",
-      "https://www.anthropic.com/research/riemann-zeta": "2026-08-10T18:32:06.000Z"
+      "https://www.anthropic.com/research/riemann-zeta": "2026-08-10T22:34:13.000Z"
     }
   },
   "openai": {
-    "lastChecked": "2026-08-10T22:36:20.402Z",
+    "lastChecked": "2026-08-10T23:00:29.958Z",
     "seenUrls": {
       "https://openai.com/index/arvind-kc-chief-people-officer/": "2026-07-25T07:19:31.944Z",
       "https://openai.com/index/put-ai-to-work-for-your-product-team/": "2026-07-29T03:13:44.572Z",
@@ -1187,7 +1187,7 @@
       "https://openai.com/business/guides-and-resources/a-practical-guide-to-building-with-ai/": "2026-07-28T02:04:56.101Z",
       "https://openai.com/business/guides-and-resources/how-openai-uses-codex/": "2026-07-28T02:04:55.166Z",
       "https://openai.com/index/gpt-5-6-frontier-intelligence-efficiency/": "2026-08-09T13:32:02.805Z",
-      "https://openai.com/index/chatgpt-for-academic-researchers/": "2026-08-10T22:11:02.828Z",
+      "https://openai.com/index/chatgpt-for-academic-researchers/": "2026-08-10T22:53:21.545Z",
       "https://openai.com/index/how-two-settings-tripled-our-arc-agi-3-scores/": "2026-08-04T21:40:07.084Z",
       "https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/": "2026-08-07T23:58:02.759Z",
       "https://openai.com/index/building-abundant-intelligence/": "2026-08-10T09:09:42.400Z",
@@ -1196,7 +1196,7 @@
       "https://openai.com/index/learn-teach-chatgpt-work-codex/": "2026-08-10T13:13:02.452Z",
       "https://openai.com/index/apple-is-getting-this-wrong/": "2026-08-06T14:10:10.360Z",
       "https://openai.com/index/introducing-the-openai-economic-research-exchange/": "2026-08-09T10:41:14.921Z",
-      "https://openai.com/index/how-the-world-is-putting-chatgpt-to-work/": "2026-08-10T21:39:47.233Z",
+      "https://openai.com/index/how-the-world-is-putting-chatgpt-to-work/": "2026-08-10T22:59:38.052Z",
       "https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt/": "2026-08-10T19:12:03.233Z",
       "https://openai.com/index/openai-and-apa-partner-to-advance-responsible-ai/": "2026-08-10T22:35:30.664Z",
       "https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/": "2026-08-10T21:50:05.228Z",
