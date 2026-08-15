@@ -1,6 +1,6 @@
 {
   "anthropic": {
-    "lastChecked": "2026-08-14T22:44:26.446Z",
+    "lastChecked": "2026-08-15T22:35:25.684Z",
     "seenUrls": {
       "https://www.anthropic.com/news/responsible-scaling-policy-v3": "2026-02-25T23:57:06.000Z",
       "https://www.anthropic.com/research/deprecation-updates-opus-3": "2026-02-25T20:58:11.000Z",
@@ -439,12 +439,12 @@
       "https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards": "2026-08-07T03:05:42.000Z",
       "https://www.anthropic.com/research/riemann-zeta": "2026-08-13T23:32:23.000Z",
       "https://www.anthropic.com/research/reviewing-the-evidence-on-worker-retraining-programs": "2026-08-14T17:26:28.000Z",
-      "https://www.anthropic.com/research/multiagent-systems": "2026-08-13T01:33:05.000Z",
-      "https://www.anthropic.com/news/claude-text-watermark": "2026-08-14T20:06:43.000Z"
+      "https://www.anthropic.com/research/multiagent-systems": "2026-08-15T16:06:32.000Z",
+      "https://www.anthropic.com/news/claude-text-watermark": "2026-08-15T05:53:01.000Z"
     }
   },
   "openai": {
-    "lastChecked": "2026-08-14T22:44:30.062Z",
+    "lastChecked": "2026-08-15T22:35:28.682Z",
     "seenUrls": {
       "https://openai.com/index/arvind-kc-chief-people-officer/": "2026-07-25T07:19:31.944Z",
       "https://openai.com/index/put-ai-to-work-for-your-product-team/": "2026-07-29T03:13:44.572Z",
@@ -458,7 +458,7 @@
       "https://openai.com/news/": "2026-08-14T13:51:44.755Z",
       "https://openai.com/news/engineering/": "2026-08-14T13:51:57.812Z",
       "https://openai.com/news/safety-alignment/": "2026-08-14T13:51:54.763Z",
-      "https://openai.com/news/product-releases/": "2026-08-14T21:49:56.892Z",
+      "https://openai.com/news/product-releases/": "2026-08-14T23:27:10.067Z",
       "https://openai.com/news/company-announcements/": "2026-08-14T13:51:45.512Z",
       "https://openai.com/index/openai-scholars/": "2026-08-13T23:10:05.326Z",
       "https://openai.com/index/special-projects/": "2026-06-03T18:57:49.093Z",
@@ -1166,7 +1166,7 @@
       "https://openai.com/index/economic-research-exchange/": "2026-07-14T17:38:43.002Z",
       "https://openai.com/index/openai-frontier-models-and-codex-are-now-available-on-aws/": "2026-06-12T09:31:28.021Z",
       "https://openai.com/index/advancing-youth-safety-and-opportunity-through-global-leadership/": "2026-08-14T02:11:43.596Z",
-      "https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense/": "2026-08-13T23:27:21.825Z",
+      "https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense/": "2026-08-15T11:20:14.400Z",
       "https://openai.com/index/openai-frontier-governance-framework/": "2026-06-04T08:13:48.422Z",
       "https://openai.com/index/introducing-gpt-live/": "2026-08-13T20:42:29.494Z",
       "https://openai.com/index/separating-signal-from-noise-coding-evaluations/": "2026-07-16T15:59:29.772Z",
@@ -1201,15 +1201,15 @@
       "https://openai.com/index/introducing-the-openai-economic-research-exchange/": "2026-08-11T11:31:10.090Z",
       "https://openai.com/index/how-the-world-is-putting-chatgpt-to-work/": "2026-08-13T21:16:02.520Z",
       "https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt/": "2026-08-12T21:21:09.298Z",
-      "https://openai.com/index/openai-and-apa-partner-to-advance-responsible-ai/": "2026-08-14T13:51:44.067Z",
+      "https://openai.com/index/openai-and-apa-partner-to-advance-responsible-ai/": "2026-08-15T12:34:45.266Z",
       "https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/": "2026-08-14T17:30:02.593Z",
       "https://openai.com/index/premium-seats-chatgpt-business/": "2026-08-14T10:23:01.730Z",
       "https://openai.com/index/putting-frontier-cyber-models-in-more-trusted-hands/": "2026-08-14T17:33:05.064Z",
       "https://openai.com/index/building-an-ai-native-finance-function/": "2026-08-14T17:11:08.605Z",
       "https://openai.com/index/daybreak-models-are-now-available-on-aws/": "2026-08-13T22:04:01.124Z",
-      "https://openai.com/index/how-enterprises-put-ai-to-work/": "2026-08-14T21:33:06.061Z",
-      "https://openai.com/index/dali-rajic-chief-revenue-officer/": "2026-08-14T21:56:01.896Z",
-      "https://openai.com/index/previewing-ultrafast/": "2026-08-14T22:14:02.850Z"
+      "https://openai.com/index/how-enterprises-put-ai-to-work/": "2026-08-15T05:23:03.602Z",
+      "https://openai.com/index/dali-rajic-chief-revenue-officer/": "2026-08-15T19:40:30.084Z",
+      "https://openai.com/index/previewing-ultrafast/": "2026-08-15T16:19:06.258Z"
     }
   }
 }
