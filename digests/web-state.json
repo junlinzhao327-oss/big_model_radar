@@ -1,6 +1,6 @@
 {
   "anthropic": {
-    "lastChecked": "2026-08-26T22:35:54.369Z",
+    "lastChecked": "2026-08-27T03:22:56.953Z",
     "seenUrls": {
       "https://www.anthropic.com/news/responsible-scaling-policy-v3": "2026-02-25T23:57:06.000Z",
       "https://www.anthropic.com/research/deprecation-updates-opus-3": "2026-02-25T20:58:11.000Z",
@@ -448,7 +448,7 @@
     }
   },
   "openai": {
-    "lastChecked": "2026-08-26T22:35:42.055Z",
+    "lastChecked": "2026-08-27T03:23:00.411Z",
     "seenUrls": {
       "https://openai.com/index/arvind-kc-chief-people-officer/": "2026-08-25T20:41:45.451Z",
       "https://openai.com/index/put-ai-to-work-for-your-product-team/": "2026-08-25T20:41:41.003Z",
@@ -459,11 +459,11 @@
       "https://openai.com/index/inside-our-in-house-data-agent/": "2026-08-13T23:57:09.908Z",
       "https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/": "2026-06-04T10:37:00.451Z",
       "https://openai.com/index/openai-deutschland/": "2026-08-25T20:41:42.080Z",
-      "https://openai.com/news/": "2026-08-26T21:47:01.676Z",
-      "https://openai.com/news/engineering/": "2026-08-26T21:47:54.898Z",
-      "https://openai.com/news/safety-alignment/": "2026-08-26T21:48:56.493Z",
-      "https://openai.com/news/product-releases/": "2026-08-26T21:47:17.391Z",
-      "https://openai.com/news/company-announcements/": "2026-08-26T21:47:42.686Z",
+      "https://openai.com/news/": "2026-08-27T01:55:28.081Z",
+      "https://openai.com/news/engineering/": "2026-08-27T01:55:29.816Z",
+      "https://openai.com/news/safety-alignment/": "2026-08-27T01:55:30.142Z",
+      "https://openai.com/news/product-releases/": "2026-08-27T01:55:29.766Z",
+      "https://openai.com/news/company-announcements/": "2026-08-27T01:55:29.965Z",
       "https://openai.com/index/openai-scholars/": "2026-08-25T20:41:38.820Z",
       "https://openai.com/index/special-projects/": "2026-08-25T20:41:49.483Z",
       "https://openai.com/index/team-update/": "2026-08-25T20:41:45.685Z",
@@ -516,7 +516,7 @@
       "https://openai.com/index/first-proof-submissions/": "2026-07-30T01:22:06.319Z",
       "https://openai.com/index/confidence-building-measures-for-artificial-intelligence/": "2026-08-25T21:58:10.615Z",
       "https://openai.com/research/index/": "2026-08-25T22:09:40.065Z",
-      "https://openai.com/news/research/": "2026-08-26T21:48:47.668Z",
+      "https://openai.com/news/research/": "2026-08-27T01:55:30.278Z",
       "https://openai.com/index/new-result-theoretical-physics/": "2026-08-26T15:25:35.426Z",
       "https://openai.com/index/advancing-independent-research-ai-alignment/": "2026-06-12T20:11:37.206Z",
       "https://openai.com/index/introducing-deep-research/": "2026-07-25T07:21:25.253Z",
@@ -687,7 +687,7 @@
       "https://openai.com/index/building-more-helpful-chatgpt-experiences-for-everyone/": "2026-08-14T13:51:46.578Z",
       "https://openai.com/index/building-towards-age-prediction/": "2026-08-14T13:51:44.987Z",
       "https://openai.com/index/teen-safety-freedom-and-privacy/": "2026-08-14T13:51:45.308Z",
-      "https://openai.com/index/our-approach-to-age-prediction/": "2026-08-25T16:46:46.412Z",
+      "https://openai.com/index/our-approach-to-age-prediction/": "2026-08-26T22:49:21.998Z",
       "https://openai.com/index/ai-literacy-resources-for-teens-and-parents/": "2026-08-14T13:51:45.513Z",
       "https://openai.com/index/updating-model-spec-with-teen-protections/": "2026-08-14T13:51:45.476Z",
       "https://openai.com/index/introducing-data-residency-in-asia/": "2026-08-18T23:15:06.169Z",
@@ -774,7 +774,7 @@
       "https://openai.com/index/concrete-ai-safety-problems/": "2026-06-01T19:21:41.996Z",
       "https://openai.com/index/economic-impacts/": "2026-07-15T18:28:56.990Z",
       "https://openai.com/index/semi-supervised-knowledge-transfer-for-deep-learning-from-private-training-data/": "2026-06-01T19:21:37.638Z",
-      "https://openai.com/index/understanding-the-source-of-what-we-see-and-hear-online/": "2026-08-26T21:37:05.460Z",
+      "https://openai.com/index/understanding-the-source-of-what-we-see-and-hear-online/": "2026-08-27T00:00:09.989Z",
       "https://openai.com/index/introducing-chatgpt-and-whisper-apis/": "2026-06-14T06:28:10.331Z",
       "https://openai.com/index/text-and-code-embeddings-by-contrastive-pre-training/": "2026-08-26T15:25:30.013Z",
       "https://openai.com/index/generative-language-modeling-for-automated-theorem-proving/": "2026-08-26T15:25:39.820Z",
@@ -974,7 +974,7 @@
       "https://openai.com/index/chatgpt-agent-system-card/": "2026-08-26T15:25:44.891Z",
       "https://openai.com/index/gpt-oss-model-card/": "2026-08-26T15:25:43.733Z",
       "https://openai.com/index/estimating-worst-case-frontier-risks-of-open-weight-llms/": "2026-08-26T15:25:38.013Z",
-      "https://openai.com/index/gpt-5-safe-completions/": "2026-08-26T22:11:42.044Z",
+      "https://openai.com/index/gpt-5-safe-completions/": "2026-08-27T01:24:09.453Z",
       "https://openai.com/index/openai-anthropic-safety-evaluation/": "2026-07-25T07:07:42.672Z",
       "https://openai.com/index/introducing-parental-controls/": "2026-07-13T18:02:30.377Z",
       "https://openai.com/index/gpt-5-system-card-addendum-gpt-5-1/": "2026-08-26T15:25:40.874Z",
@@ -1221,9 +1221,9 @@
       "https://openai.com/index/chatgpt-ads-expands-across-europe/": "2026-08-26T16:46:28.946Z",
       "https://openai.com/index/offering-zero-data-retention-for-frontier-models/": "2026-08-25T23:55:39.476Z",
       "https://openai.com/index/gpt-5-6-in-kiro/": "2026-08-26T19:58:45.269Z",
-      "https://openai.com/index/jalapeno-first-results/": "2026-08-26T22:35:04.627Z",
-      "https://openai.com/index/the-full-stack-behind-abundant-intelligence/": "2026-08-26T22:35:09.173Z",
-      "https://openai.com/index/hugging-face-incident-and-the-road-ahead/": "2026-08-26T22:31:10.223Z",
+      "https://openai.com/index/jalapeno-first-results/": "2026-08-27T03:14:04.257Z",
+      "https://openai.com/index/the-full-stack-behind-abundant-intelligence/": "2026-08-27T03:13:06.484Z",
+      "https://openai.com/index/hugging-face-incident-and-the-road-ahead/": "2026-08-27T03:22:01.422Z",
       "https://openai.com/index/bringing-chatgpt-for-teachers-to-more-us-school-districts/": "2026-08-26T20:15:52.856Z",
       "https://openai.com/index/learning-never-stops/": "2026-08-26T17:02:55.468Z"
     }
