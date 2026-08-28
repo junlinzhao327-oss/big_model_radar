@@ -1,6 +1,6 @@
 {
   "anthropic": {
-    "lastChecked": "2026-08-28T04:06:07.761Z",
+    "lastChecked": "2026-08-28T06:10:57.447Z",
     "seenUrls": {
       "https://www.anthropic.com/news/responsible-scaling-policy-v3": "2026-02-25T23:57:06.000Z",
       "https://www.anthropic.com/research/deprecation-updates-opus-3": "2026-02-25T20:58:11.000Z",
@@ -450,7 +450,7 @@
     }
   },
   "openai": {
-    "lastChecked": "2026-08-28T04:06:00.803Z",
+    "lastChecked": "2026-08-28T06:11:00.725Z",
     "seenUrls": {
       "https://openai.com/index/arvind-kc-chief-people-officer/": "2026-08-25T20:41:44.933Z",
       "https://openai.com/index/put-ai-to-work-for-your-product-team/": "2026-08-25T20:41:40.324Z",
@@ -668,7 +668,7 @@
       "https://openai.com/index/chatgpt-plus/": "2026-08-14T20:54:25.505Z",
       "https://openai.com/index/whisper/": "2026-08-19T00:21:24.471Z",
       "https://openai.com/index/gpt-4/": "2026-08-14T20:24:53.357Z",
-      "https://openai.com/index/introducing-codex/": "2026-08-28T03:41:43.250Z",
+      "https://openai.com/index/introducing-codex/": "2026-08-28T04:58:00.714Z",
       "https://openai.com/index/chatgpt/": "2026-08-14T20:20:32.658Z",
       "https://openai.com/index/introducing-chatgpt-search/": "2026-08-14T20:26:26.838Z",
       "https://openai.com/index/healthbench/": "2026-08-26T15:25:42.954Z",
@@ -1226,9 +1226,9 @@
       "https://openai.com/index/jalapeno-first-results/": "2026-08-27T21:39:15.031Z",
       "https://openai.com/index/the-full-stack-behind-abundant-intelligence/": "2026-08-27T21:39:14.954Z",
       "https://openai.com/index/hugging-face-incident-and-the-road-ahead/": "2026-08-28T00:23:01.616Z",
-      "https://openai.com/index/bringing-chatgpt-for-teachers-to-more-us-school-districts/": "2026-08-28T02:04:06.646Z",
-      "https://openai.com/index/learning-never-stops/": "2026-08-28T03:09:12.196Z",
-      "https://openai.com/index/what-students-gain-from-chatgpt-critical-thinking-training/": "2026-08-28T03:05:52.004Z",
+      "https://openai.com/index/bringing-chatgpt-for-teachers-to-more-us-school-districts/": "2026-08-28T06:10:01.793Z",
+      "https://openai.com/index/learning-never-stops/": "2026-08-28T05:57:37.650Z",
+      "https://openai.com/index/what-students-gain-from-chatgpt-critical-thinking-training/": "2026-08-28T05:31:20.405Z",
       "https://openai.com/index/expanding-our-presence-in-brazil/": "2026-08-27T19:58:19.471Z"
     }
   }
