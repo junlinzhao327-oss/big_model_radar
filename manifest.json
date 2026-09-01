@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-01T01:23:45.861Z",
+  "generated": "2026-09-01T07:28:09.119Z",
   "dates": [
     {
       "date": "2026-09-01",
@@ -8,7 +8,8 @@
         "ai-agents",
         "ai-web",
         "ai-trending",
-        "ai-hn"
+        "ai-hn",
+        "ai-monthly"
       ]
     },
     {
