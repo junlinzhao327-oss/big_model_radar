@@ -1,6 +1,6 @@
 {
   "anthropic": {
-    "lastChecked": "2026-09-02T22:35:53.426Z",
+    "lastChecked": "2026-09-03T00:21:54.040Z",
     "seenUrls": {
       "https://www.anthropic.com/news/responsible-scaling-policy-v3": "2026-02-25T23:57:06.000Z",
       "https://www.anthropic.com/research/deprecation-updates-opus-3": "2026-02-25T20:58:11.000Z",
@@ -453,7 +453,7 @@
     }
   },
   "openai": {
-    "lastChecked": "2026-09-02T22:35:55.443Z",
+    "lastChecked": "2026-09-03T00:21:56.260Z",
     "seenUrls": {
       "https://openai.com/index/arvind-kc-chief-people-officer/": "2026-08-31T19:59:23.196Z",
       "https://openai.com/index/put-ai-to-work-for-your-product-team/": "2026-09-02T00:20:45.696Z",
@@ -1129,7 +1129,7 @@
       "https://openai.com/index/new-ways-to-buy-chatgpt-ads/": "2026-05-22T19:11:20.545Z",
       "https://openai.com/index/gpt-5-5-instant-system-card/": "2026-05-22T19:27:50.474Z",
       "https://openai.com/index/introducing-chatgpt-futures-class-of-2026/": "2026-06-12T04:04:35.223Z",
-      "https://openai.com/index/introducing-b2b-signals/": "2026-09-02T22:20:17.780Z",
+      "https://openai.com/index/introducing-b2b-signals/": "2026-09-02T23:25:27.746Z",
       "https://openai.com/index/mrc-supercomputer-networking/": "2026-06-03T20:07:21.954Z",
       "https://openai.com/index/introducing-trusted-contact-in-chatgpt/": "2026-05-22T18:54:52.010Z",
       "https://openai.com/index/advancing-voice-intelligence-with-new-models-in-the-api/": "2026-09-02T19:00:20.700Z",
@@ -1216,14 +1216,14 @@
       "https://openai.com/index/putting-frontier-cyber-models-in-more-trusted-hands/": "2026-09-02T14:23:44.007Z",
       "https://openai.com/index/building-an-ai-native-finance-function/": "2026-08-31T19:59:33.786Z",
       "https://openai.com/index/daybreak-models-are-now-available-on-aws/": "2026-09-02T19:00:12.146Z",
-      "https://openai.com/index/how-enterprises-put-ai-to-work/": "2026-09-02T22:34:03.205Z",
+      "https://openai.com/index/how-enterprises-put-ai-to-work/": "2026-09-03T00:17:33.910Z",
       "https://openai.com/index/dali-rajic-chief-revenue-officer/": "2026-09-02T14:23:42.668Z",
       "https://openai.com/index/previewing-ultrafast/": "2026-09-02T19:00:10.543Z",
       "https://openai.com/index/openai-joins-ports-pike-project/": "2026-09-02T14:23:43.440Z",
       "https://openai.com/index/partnering-with-codeai/": "2026-09-02T14:23:38.307Z",
       "https://openai.com/index/pacing-model-development-cyber-capabilities/": "2026-09-02T14:23:40.461Z",
       "https://openai.com/index/chatgpt-for-teens/": "2026-09-02T15:04:09.972Z",
-      "https://openai.com/index/chatgpt-ads-expands-across-europe/": "2026-09-02T22:24:24.417Z",
+      "https://openai.com/index/chatgpt-ads-expands-across-europe/": "2026-09-02T23:25:26.444Z",
       "https://openai.com/index/offering-zero-data-retention-for-frontier-models/": "2026-09-02T14:23:41.717Z",
       "https://openai.com/index/gpt-5-6-in-kiro/": "2026-09-02T19:00:10.053Z",
       "https://openai.com/index/jalapeno-first-results/": "2026-09-02T14:23:41.595Z",
@@ -1238,7 +1238,7 @@
       "https://openai.com/index/expanding-access-to-ai-with-chatgpt-ads/": "2026-09-02T19:00:08.140Z",
       "https://openai.com/signals/enterprise-data/": "2026-09-02T22:26:16.291Z",
       "https://openai.com/index/path-to-astra/": "2026-09-02T20:51:02.300Z",
-      "https://openai.com/index/chatgpt-connects-health-records-and-healthcare-sources/": "2026-09-02T21:18:00.619Z",
+      "https://openai.com/index/chatgpt-connects-health-records-and-healthcare-sources/": "2026-09-02T23:26:00.942Z",
       "https://openai.com/index/supporting-california-bill-advance-ai-youth-safety/": "2026-09-02T21:29:22.682Z"
     }
   }
