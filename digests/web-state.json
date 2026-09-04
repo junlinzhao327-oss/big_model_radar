@@ -1,6 +1,6 @@
 {
   "anthropic": {
-    "lastChecked": "2026-09-03T22:36:04.140Z",
+    "lastChecked": "2026-09-04T00:10:02.199Z",
     "seenUrls": {
       "https://www.anthropic.com/news/responsible-scaling-policy-v3": "2026-02-25T23:57:06.000Z",
       "https://www.anthropic.com/research/deprecation-updates-opus-3": "2026-02-25T20:58:11.000Z",
@@ -453,7 +453,7 @@
     }
   },
   "openai": {
-    "lastChecked": "2026-09-03T22:36:06.794Z",
+    "lastChecked": "2026-09-04T00:10:04.954Z",
     "seenUrls": {
       "https://openai.com/index/arvind-kc-chief-people-officer/": "2026-08-31T19:59:23.196Z",
       "https://openai.com/index/put-ai-to-work-for-your-product-team/": "2026-09-02T00:20:45.696Z",
@@ -1240,8 +1240,8 @@
       "https://openai.com/index/path-to-astra/": "2026-09-03T18:32:34.459Z",
       "https://openai.com/index/chatgpt-connects-health-records-and-healthcare-sources/": "2026-09-03T21:30:14.160Z",
       "https://openai.com/index/supporting-california-bill-advance-ai-youth-safety/": "2026-09-03T17:10:07.593Z",
-      "https://openai.com/index/gpt-6-astra/": "2026-09-03T22:35:30.658Z",
-      "https://openai.com/index/safety-overview-gpt-6-astra/": "2026-09-03T21:09:19.024Z"
+      "https://openai.com/index/gpt-6-astra/": "2026-09-03T23:32:44.402Z",
+      "https://openai.com/index/safety-overview-gpt-6-astra/": "2026-09-03T23:30:49.552Z"
     }
   }
 }
