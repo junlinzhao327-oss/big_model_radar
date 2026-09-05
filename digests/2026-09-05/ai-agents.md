@@ -1,6 +1,6 @@
 # OpenClaw 生态日报 2026-09-05
 
-> Issues: 500 | PRs: 500 | 覆盖项目: 6 个 | 生成时间: 2026-09-04 22:35 UTC
+> Issues: 500 | PRs: 500 | 覆盖项目: 6 个 | 生成时间: 2026-09-05 00:11 UTC
 
 - [OpenClaw](https://github.com/openclaw/openclaw)
 - [Hermes Agent](https://github.com/NousResearch/hermes-agent)
@@ -13,76 +13,113 @@
 
 ## OpenClaw 项目深度报告
 
+# OpenClaw 项目动态日报 — 2026-09-05
 
+## 今日速览
+
+过去24小时内 OpenClaw 仓库继续保持极高的社区活跃度：新增/活跃 Issue 439 条、PR 更新 500 条，评论密集集中于 P1 级 Bug（会话状态丢失、消息静默丢弃、多代理编排不稳）与长期悬而未决的产品决策议题。虽然今日无新版本发布，但维护者提交了近 20 个高优先级修复 PR（涉及 Codex 推理恢复、会话 yield 历史保留、SQLite 事务优化等），整体呈现“高活跃度、高积压、快修复”并行的态势——Issue 中大量存在 `no-new-fix-pr` + `needs-maintainer-review` 标签的积压问题，同时新一轮 PR 链正在快速形成闭环。核心关键词：**稳定性修复密集推进，版本节奏暂缓，社区对数据丢失/消息丢失类 Bug 关注度极高**。
+
+---
+
+## 项目进展
+
+今日无新版本发布（0 个 Releases），合并/关闭 PR 152 个。以下聚焦接近合并或已完成维护者审查的高价值 PR：
+
+- **[#138372 [CLOSED] chore(i18n): refresh native locales](https://github.com/openclaw/openclaw/pull/138372)** — 机器人 PR，刷新 21 种原生应用语言（Android phone/Wear、iOS/watchOS、macOS），覆盖 47 个新增字符串。唯一已合并的 PR。
+- **[#138697 fix: recover stale Windows owners when exited PIDs return EPERM](https://github.com/openclaw/openclaw/pull/138697)**（P2, proof: sufficient, ready for maintainer look）— 修复 Windows 上已退出进程 PID 仍返回 EPERM 导致陈旧锁/数据库租约无法恢复的问题。来自真实 Gateway 恢复事故。
+- **[#138334 fix(sessions): keep custom session icon across /reset](https://github.com/openclaw/openclaw/pull/138334)**（P2, proof: sufficient, proof: telegram-e2e, ready for maintainer look）— 修复 `/reset` 后自定义会话图标丢失，保留操作者自定义外观。
+- **[#138710 fix(sqlite): avoid writes when reacquiring data-free coordinators](https://github.com/openclaw/openclaw/pull/138710)**（P2, ready for maintainer look）— 避免空协调器锁获取时产生无谓 SQLite journal 写放大。
+- **[#138655 improve(gateway): reduce work for oversized chat history updates](https://github.com/openclaw/openclaw/pull/138655)**（P3, proof: sufficient, ready for maintainer look）— 针对超大聊天历史追更进行 CPU/临时内存优化。
+
+另有大量 P1/P2 PR 处于 `📣 needs proof` 状态，集中在 Codex 推理恢复（[#138595](https://github.com/openclaw/openclaw/pull/138595)）、全权限任务重启后丢工具（[#138701](https://github.com/openclaw/openclaw/pull/138701)）、递归子代理会话（[#138059](https://github.com/openclaw/openclaw/pull/138059)）等方向。整体来看，**项目正密集修复 2026.7.x ~ 2026.9.x 线路上积累的会话状态与消息投递质量问题。**
+
+---
+
+## 社区热点
+
+今日讨论最热的 5 条 Issue（按评论数排序），深层共同指向 **“会话状态可靠性与信令完整性”**：
+
+- **[#44925 [P1, diamond lobster] Subagent completion silently lost — no retry, no notification, no auto-restart on timeout](https://github.com/openclaw/openclaw/issues/44925)**（评论 26，👍 2）— 子代理任务在 E31/E42/E45 等多种失败模式下结果静默丢失，无重试、无通知、无自动重启。**诉求：为子代理完成通知建立端到端确认与恢复机制。** 已打 `needs-product-decision` 标签，无 fix PR。
+- **[#22438 [P2] feat: Tiered bootstrap file loading for progressive context control](https://github.com/openclaw/openclaw/issues/22438)**（评论 18）— 大型工作区用户请求分级加载 bootstrap 文件以节省上下文窗口。**诉求：对 token 成本敏感的生产用户群体日益庞大。** 已打 `linked-pr-open`，说明已有实现进行中。
+- **[#38327 [P1, diamond lobster] "Cannot convert undefined or null to object" in 2026.3.2 with google-vertex/gemini-3.1-pro-preview](https://github.com/openclaw/openclaw/issues/38327)**（评论 16，👍 3）— 升级后 Gemini 3.1 pro preview 用户完全不可用。**诉求：尽快定位回归源并发布 hotfix，已持续 6 个月仍无 fix PR。**
+- **[#43367 [P1, gold shrimp] Multi-agent orchestration is unstable](https://github.com/openclaw/openclaw/issues/43367)**（评论 15）— 并发 `agents add` 配置互相覆盖、session-lock 失败、子任务游离。**诉求：并发安全的多代理 API。** 已有 `linked-pr-open` 但需 info。
+- **[#53628 [P3, diamond lobster] ${XDG_CONFIG_HOME} not processed when installing a skill](https://github.com/openclaw/openclaw/issues/53628)**（评论 15）— Docker 场景下安装 skill 时 XDG_CONFIG_HOME 环境变量未被解析。**诉求：容器部署已成为重要使用场景，相关体验问题应优先修复。**
+
+PR 侧评论区热度较低，但 [#137381 fix: sessions_yield keeps long transcript history available](https://github.com/openclaw/openclaw/pull/137381)（P1，等待作者）、[#138199 chore(deps): refresh seven-day-cooled dependencies](https://github.com/openclaw/openclaw/pull/138199)、[#138713 fix(ui): open Dashboard directly and simplify panel controls](https://github.com/openclaw/openclaw/pull/138713) 值得关注（关联 UI 体验与长会话可用性）。
+
+---
+
+## Bug 与稳定性
+
+按严重程度排列今日最值得关注的 Bug：
+
+**🔴 P0 — 文档与版本脱节**
+- **[#48920 [P0, platinum hermit] Live Docs are ahead of release](https://github.com/openclaw/openclaw/issues/48920)** — `IsolatedSessions` 已在 docs 中但 2026.3.13 尚未支持，用户按文档配置即失败。更新于 2026-09-04，无 fix PR。**文档发布流程需要与版本发布流程绑定。**
+
+**🟠 P1 — 消息丢失 / 静默失败（高危）**
+- **[#92241 [P1, diamond lobster] Gateway holds stale module import paths after update/rollback — inbound messages silently dropped (ERR_MODULE_NOT_FOUND)](https://github.com/openclaw/openclaw/issues/92241)** — 回滚后进程仍持有旧模块路径，systemd 显示 active 但消息全部静默丢弃。**已有 `linked-pr-open`，这是生产环境最危险的状态之一。**
+- **[#44925 [P1] Subagent completion silently lost](https://github.com/openclaw/openclaw/issues/44925)** — 见上文社区热点。
+- **[#119992 [P1] Per-turn send budget for the message tool](https://github.com/openclaw/openclaw/issues/119992)** — 单轮内消息工具调用无预算限制，agent 可重复发送改写答案，导致重复消息风暴。已有 `linked-pr-open`。
+- **[#135111 [P1] Intermittent "Provider completed tool call with malformed JSON arguments" on v2026.8.1](https://github.com/openclaw/openclaw/issues/135111)**（claude-sonnet-5，回归）— 升级后间歇性失败约 6 次，无具体文件/工具关联，定位困难。
+
+**🟠 P1 — 会话状态 / 崩溃循环**
+- **[#71689 [P1, diamond lobster] Tasks registry restore fails on malformed SQLite image](https://github.com/openclaw/openclaw/issues/71689)** — SQLite 损坏导致 Gateway 启动反复失败。
+- **[#114234 [P1] Usage-cost refresh lock is never releasable after restart that reuses owner PID (containers)](https://github.com/openclaw/openclaw/issues/114234)** — PID 复用导致锁永久冻结。
+- **[#119720 [P1] Synchronous SQLite agent.write transactions block gateway event loop at scale](https://github.com/openclaw/openclaw/issues/119720)** — 同步写阻塞事件循环，ANALYZE 从未运行，复现数据：36.7s → 809ms。
+- **[#97616 [P1] Leaks unreaped hook/tool child processes (zombies)](https://github.com/openclaw/openclaw/issues/97616)** — 僵尸进程累积导致运行时性能退化。
+
+**🟡 P2 — 功能回归 / 兼容性**
+- **[#107814 [CLOSED] gpt-5.3-codex-spark emits empty arguments for required tool calls](https://github.com/openclaw/openclaw/issues/107814)** — 已关闭，原始 issue 于 7/14 创建，今日关闭。修复方向见 [#138714 fix(openai): honor disabled reasoning effort for mapped models](https://github.com/openclaw/openclaw/pull/138714) 与 [#138682 fix(exec): keep gateway exec open for legacy GitHub profile ids](https://github.com/openclaw/openclaw/pull/138682)。
+- **[#120162 [P1] qualityGuard audit retry shares timeout budget and is killed by same abort signal](https://github.com/openclaw/openclaw/issues/120162)** — 慢速模型下保护性压缩的审计重试被同一 abort 信号杀死，整个压缩失败。
+
+**值得注意的趋势**：今日大量 P1/P2 Issue 同时带有 `needs-maintainer-review` + `needs-product-decision` 标签且更新日期停留在 2026-09-04，说明维护者已开始集中审视但尚未给出明确结论，可能进入批量产品决策阶段。
+
+---
+
+## 功能请求与路线图信号
+
+- **上下文 / Token 优化三连**：
+  - [#14785 Reduce tool schema token overhead (~3,500 tok/session)](https://github.com/openclaw/openclaw/issues/14785)（P2，needs-maintainer-review）
+  - [#22438 Tiered bootstrap file loading](https://github.com/openclaw/openclaw/issues/22438)（已有 linked PR）
+  - [#38568 Inject context window % into system prompt runtime section](https://github.com/openclaw/openclaw/issues/38568)
+  
+  三者共同指向 **token 经济性**——随着生产环境大规模使用，用户开始精细化管理上下文窗口的每一部分。
+- **Agent 自治能力演进：**
+  - [#6757 Agent-triggered context compaction (self-compact tool)](https://github.com/openclaw/openclaw/issues/6757)（创建于 2026-02-02，已积压 7 个月，评论 8 条）
+  - [#33975 Fallback approval mode + model attribution in messages](https://github.com/openclaw/openclaw/issues/33975)——主模型故障时静默 fallback 需要用户可见性与审批控制。
+  - [#45390 Session TTL / max lifetime for automatic rotation](https://github.com/openclaw/openclaw/issues/45390)——6+ 天不轮换导致 171k/200k token 和 71 次超时。
+  - [#13219 Per-model usage logging for cost tracking](https://github.com/openclaw/openclaw/issues/13219)——需要原生按模型用量统计。
+- **合规 / 安全边界：**
+  - [#44289 Generate secretref reference docs from secret target registry metadata](https://github.com/openclaw/openclaw/issues/44289)——安全文档自动化。
+  - [#134898 [PR] feat(plugin-sdk): expose the external verification approvals surface](https://github.com/openclaw/openclaw/pull/134898)——插件外部验证审批面，已在 RFC 阶段。
+
+**路线图信号最强的 PR**：`#138059 feat(agents): allow bounded recursive session spawning by default`（P2）将子代理递归深度默认设为 5，配合 `#130741 fix(agents): reconcile subagents through scoped session owner`，表明 **子代理体系正在从“能跑”走向“可管、可控、可恢复”**。
+
+---
+
+## 用户反馈摘要
+
+- **最强烈的负面情绪集中在“静默丢失”类问题**。#44925 的原帖作者详细列举了三种失败模式（完成通知失败、超时、交付镜像消费失败），并称“结果是静默丢失”，评论区大量用户附议生产事故。#92241 描述回滚后消息被静默丢弃但进程“看起来健康”，这种状态让运营者最不放心。
+- **对“文档领先于版本”表达了明确不满**。#48920 用户直接指出“Live docs are ahead of release”，认为 docs 应该严格对应可安装版本，否则缺乏可信度（👍 4，为今日最高）。这对发布流程提出了脚本化校验的诉求。
+- **本地化/国产模型用户反馈积极**：#88079 指出 Kimi Code 与 DeepSeek Reasoner 的推理内容在 WebChat 不渲染（仅 MiniMax 可工作），说明国产模型集成是增长点但工程质量仍不稳定；#42591 是一份用中文提交的 install.sh 可维护性优化建议（79KB/2498 行单体需拆分），开发者群体开始关注工程可维护性。
+- **多代理场景的可靠性被反复提及**：#43367 描述并行 `agents add` 会覆盖配置、session-lock 失败，说明用户正在尝试将 OpenClaw 真正用于并行任务编排，但当前 API 的并发安全性尚未达到生产预期。
+- 正面反馈：暂无直接表扬类 Issue，但 #88079 中用户特别标注“MiniMax works”，间接认可了部分模型适配的完成度。
+
+---
+
+## 待处理积压
+
+以下为长期未响应/未修复且影响重大的项目，提醒维护者优先处理：
+
+- **[#38327 [P1] google-vertex/gemini-3.1-pro-preview "Cannot convert undefined or null to object"（2026-03-06 创建，持续 6 个月，👍 3）](https://github.com/openclaw/openclaw/issues/38327)** — 无任何 fix PR，打满 `diamond lobster` + regression + auth-provider 标签。
+- **[#6767 [P2] Agent-triggered self-compact tool（2026-02-02 创建，7 个月）](https://github.com/openclaw/openclaw/issues/6757)** — 评论 8 条，早期路线图信号，后来没有下文。
+- **[#6757 [P2] Feature
 
 ---
 
 ## 横向生态对比
 
-# 横向对比分析报告（2026-09-05）
 
-> ⚠️ **数据完整性声明**：本次输入仅有 **Temporal** 仓库包含完整动态数据；OpenClaw、Hermes Agent、OpenHands SDK、Pi、LiteLLM 五栏内容为空。为遵守不虚构与不推测原则，凡涉及其余项目之量化对比均标注为「本期无数据」。结论仅基于 Temporal 数据展开，横向判断待数据补齐后另行出具。
-
----
-
-## 1. 生态全景
-
-本次可见的生态信号集中在"执行基础设施"层：以 Temporal 为代表的工作流/编排引擎正处于 **1.32.0 发布收尾 + Worker-variant Callbacks 大功能待合入** 的关键窗口，社区议题已从"能否编排"转向"失败是否可诊断、数据是否不丢失"。NDC 冲突解决静默丢事件、Ringpop 升级后成员震荡等问题表明：**自主智能体走向生产环境的核心矛盾，正从模型能力转向分布式执行下的确定性、可观测性与数据权威性**。其余五项目动态缺失，无法验证此前它们是否也在这条主线上同步演进。
-
-## 2. 各项目活跃度对比
-
-| 项目 | Issues | PRs | Release | 健康度判断 |
-|---|---|---|---|---|
-| Temporal | 3 条新增（均为 Open） | 59 条（31 待合并，28 已合并/关闭） | 0（1.32.0 Backport 推进中） | 健康度高：功能开发与发布准备并行，回归处理及时（#11941 快速 revert #11698） |
-| OpenClaw | 本期无数据 | 本期无数据 | 本期无数据 | 无法评估 |
-| Hermes Agent | 本期无数据 | 本期无数据 | 本期无数据 | 无法评估 |
-| OpenHands SDK | 本期无数据 | 本期无数据 | 本期无数据 | 无法评估 |
-| Pi | 本期无数据 | 本期无数据 | 本期无数据 | 无法评估 |
-| LiteLLM | 本期无数据 | 本期无数据 | 本期无数据 | 无法评估 |
-
-## 3. OpenClaw 在生态中的定位
-
-**本期无法评估**——输入中 OpenClaw 节无任何数据，无从判断其 Issues/PR 节奏、社区规模或技术路线变化。仅从 Temporal 活跃度之高可侧面推断：底层编排能力的竞争与加固仍在加速，尚未进入平台期。若要形成有效定位分析，至少需补充：OpenClaw 本周 PR 合入趋势、Issue 主题聚类、与其他 Agent 框架的集成动向（例如其是否接入 Temporal/LiteLLM 作为执行与模型网关）。
-
-## 4. 共同关注的技术方向
-
-由于五项目无数据，无法确证多项目共同涌现的需求。仅在 Temporal 内部可观察到三条主线，**待其他项目数据补充后可做交叉验证**：
-
-| 技术方向 | 涉及项目（可见） | 具体诉求 |
-|---|---|---|
-| **数据完整性与正确性** | Temporal | #11932 指出 NDC 冲突解决时 loser-branch 非 signal 事件静默丢失；#10224 指出 replication task 僵尸积压 |
-| **版本升级稳定性** | Temporal | #9987：1.30.x 升级后 Ringpop 成员震荡 3 个月未决，跨服务调用间歇失败 |
-| **可观测性标签细化** | Temporal | #11348 合并：Workflow/Activity 指标增加 `worker_deployment_name` 与 `worker_build_id` 标签，向 deployment 维度定位问题 |
-
-## 5. 差异化定位分析
-
-本期仅能为 Temporal 单项目画像，五项目画像待数据补全。
-
-**Temporal 的行为特征**：定位为通用分布式编排底座，今日的动作集中在 release 分支管理（Backport 12 个 PR）、回调系统收敛（Nexus 与 CHASM 错误路径统一）、以及大规模功能整合（Worker-variant callbacks 栈式 PR 未直接进 main）。用户群更贴近平台/基础设施团队，而非应用层 Agent 开发者。社区语言是"历史分支、failover version、分片、replication task"——这是**执行层的语言，而非模型层的语言**。
-
-## 6. 社区热度与成熟度
-
-本期可见项目中：
-
-- **Temporal（质量巩固 + 发布冲刺阶段）**：99 条 Issue/PR 更新量级显示重度开发，但无新功能落地、无新版本发布，主力工作聚焦 release/v1.32.x Backport、CHASM 重构与回归 revert。特征符合"大版本发布前夜的收紧期"。有两批长期遗留问题并列存在：一批 Open 数月的高关注 bug（#9987），一批需要清理的长期 Open PR——「功能推进快、技术债清理慢」是其当前结构性状态。
-
-- 其余五项目活跃度分层**本期无法判断**。
-
-## 7. 值得关注的趋势信号
-
-对 AI 智能体开发者/决策者最有参考价值的信号来自数据层：
-
-1. **分布式 Agent 状态的数据权威性成为核心痛点**：#11932 刚提交即指向"高 failover version 总是胜出 + loser 分支非 signal 事件静默丢弃"，且为 0 评论、0 关联 PR——这是一个有具体代码位置却暂无修复预案的深度数据完整性问题。**建议所有自研多节点 Agent 编排系统的团队自查冲突消解逻辑**是否同样存在"胜者通吃、败者静默"的隐患。
-
-2. **升级稳定性与集群收敛问题长期悬置**：#9987 自 2026-04-18 提出至 2026-09-04 仍活跃，三个月未修复直接影响升级用户的服务稳定性。行业含义：**当基础组件升级的回归风险超过功能收益时，平台团队应将"升级的平滑性"视为一等公民特性**，而非仅依赖快速回滚。
-
-3. **动态配置的运维友好度被提上日程**：#11722 新增 `tdbg dc describe/get/dump` 子命令——生产排障时"当前生效配置到底是什么"的诉求正从 FAQ 转变为 CLI 功能。Agent 类产品若包含动态配置体系，应同步提供可审计、可查询的运维通道。
-
-4. **回归管理与 revert 循环值得警惕**：#11698 → #11941 revert 的过程说明，即使是合并过的 PR 也可能引入难以预料的 NDE。**对复杂分布式系统，改动传播失败路径时应默认保守**。
-
----
-
-*备注：如需完整横向对比（OpenClaw vs Hermes Agent vs Pi 的技术路线差异等），请补充对应项目的 2026-09-05 数据，或注明「可按历史知识库补全」并允许分析师在报告中区分「当日数据」与「既有认知」。*
 
 ---
 
@@ -112,23 +149,18 @@
 <details>
 <summary><strong>LiteLLM</strong> — <a href="https://github.com/BerriAI/litellm">BerriAI/litellm</a></summary>
 
+# LiteLLM 项目动态日报 — 2026-09-05
 
+## 今日速览
+
+过去 24 小时项目处于**高活跃、零发布**状态：Issues 更新 73 条（新开/活跃 44 条，关闭 29 条），PR 更新 283 条（待合并 180 条，已合并/关闭 103 条）。仓库正在经历一轮明显的**积压清理**——多个
 
 </details>
 
 <details>
 <summary><strong>Temporal</strong> — <a href="https://github.com/temporalio/temporal">temporalio/temporal</a></summary>
 
-{
-  "date": "2026-09-05",
-  "report": {
-    "今日速览": "过去24小时 Temporal 主仓库保持较高活跃度，Issues 更新 3 条（均为 Open），PR 更新 59 条，其中 31 条待合并、28 条已合并或关闭，无新版本发布。开发主力集中在 Worker-variant callbacks 大功能、1.32.0 发布分支 Backport、CHASM 回调/活动代码重构，以及若干稳定性修复与回归处理。社区侧最受关注的是 #9987 升级 ringpop 成员震荡问题（10 条评论、4 👍），同时新提交的 #11932 NDC 冲突解决潜在丢事件问题值得警惕。整体上项目处于功能推进与发布准备并行、健康度良好但有一批长期 Open PR 需要清理的状态。",
-    "版本发布": "今日无新版本发布（Releases 为 0）。但 Release/1.32.0 的 Backport 工作仍在进行：#11938 正在补齐尚未进入 release/v1.32.x 的 12 个已合并 PR，说明 1.32.0 已进入发布收尾阶段。",
-    "项目进展": "今日合并或关闭的 PR 多聚焦在监控可观测性、Nexus/Callback 错误一致性、CHASM 代码组织等基础面，虽无大功能落地，但对内部一致性和可维护性的推进较为明显。\n\n1. 可观测性增强：#11348 已合并（Closed），为 Workflow Task / Activity 的完成、失败、超时、调度延迟等指标添加 worker_deployment_name 与 worker_build_id 标签，将有助于定位 Worker 版本/部署维度的问题。链接：https://github.com/temporalio/temporal/pull/11348\n2. Nexus Operation 错误处理统一：#11896 已合并（Closed），统一 nexusoperation 与 CHASM internal-completion 两条路径的 OperationError→failure 转换逻辑，修复后者忽略 OriginalFailure 导致错误信息不准确的问题。链接：https://github.com/temporalio/temporal/pull/11896\n3. CHASM 测试基础设施：#11895 修复 MockContext 注册的 context 值从未被读取/传播的 bug；#11899 抽取 callback invocation-task 测试脚手架，减少冗余代码。均为测试可靠性提升。链接：https://github.com/temporalio/temporal/pull/11895 、 https://github.com/temporalio/temporal/pull/11899\n4. CHASM 代码组织：#11446 已合并（Closed），纯文件拆分重组 chasm/lib/activity，无功能变更，低风险。链接：https://github.com/temporalio/temporal/pull/11446\n5. 反向后调整：#11698 已关闭（Closed），但它引入的 NDE（非确定性错误）问题迫使 #11941 提出 revert 该 PR，回归到删除传播失败时仍正常推进的状态。说明这个方向尚未稳定，仍在迭代中。链接：https://github.com/temporalio/temporal/pull/11698 、 https://github.com/temporalio/temporal/pull/11941",
-    "社区热点": "1. #9987 `[potential-bug] Ringpop membership churn after upgrade to v1.30.x`（10 条评论、4 👍 ）：用户 @shankarkc 从 1.29 升级到 1.30 后出现 ringpop 成员关系震荡——各个服务看到的成员列表持续变化引起 gRPC 调用不稳定。这是长期存在的升级回归问题，讨论至今仍活跃，诉求集中在升级稳定性与集群收敛。链接：https://github.com/temporalio/temporal/issues/9987\n2. #11932 NDC conflict resolution silently drops loser-branch non-signal events（0 评论但刚提交）：用户定位到 nDCConflictResolver.go 中高 failover version 总是胜出，且 loser-branch 的非 signal 事件（如 TimerFired）会被静默丢弃，可能导致 History/NDC 数据权威性问题。由于涉及数据层面正确性，预计会引发较多讨论。链接：https://github.com/temporalio/temporal/issues/11932",
-    "Bug 与稳定性": "按严重程度排序：\n\n1. 高 — NDC 冲突解决丢失 loser-branch 事件（#11932，Open，2026-09-04）：NDC 冲突解决时，非 signal 事件在 failover 后可能被静默丢弃，构成数据完整性风险。用户已提供具体代码位置，暂无关联 fix PR。链接：https://github.com/temporalio/temporal/issues/11932\n2. 中/高 — Ringpop 成员震荡回归（#9987，Open，2026-04-18 创建，2026-09-04 仍在更新）：1.30.x 升级后 Ringpop 节点反复上下线，影响所有跨服务调用的稳定性，长期未解决，社区关注度高。暂无针对性 fix PR。链接：https://github.com/temporalio/temporal/issues/9987\n3. 中 — Pull replication 清理失效（#10224，Open，2026-09-04 更新）：当源/目标集群分片数量不一致时，已 ack 的 replication task 不会在源端清理，可能造成积压。作者分析了清理循环的条件逻辑。暂无 fix PR。链接：https://github.com/temporalio/temporal/issues/10224\n4. 低/中 — Version workflow 保持开启的 NDE 回归：#11698 在合并后引入了 counter 未递减导致的 NDE，#11941 已提交 revert 修复。这是一次典型的改 regession 后回滚的动作。链接：https://github.com/temporalio/temporal/pull/11941\n5. 测试工具 bug — MockContext 未传播注册的 context 值（#11895，已合并修复），属于开发内建测试问题，已有修复。链接：https://github.com/temporalio/temporal/pull/11895",
-    "功能请求与路线图信号": "1. Worker-variant callbacks 大功能正在合并爬坡：#11589（Worker 回调实现本体，900+ 行关键逻辑）与 #11567（SANOs 添加 completion callbacks）仍 Open，两者都是 feature/worker-callbacks 栈式 PR 的一部分，明确指出不会直接进入 main，等待整个功能代码完成后合入。这意味着 Worker 回调功能进入主线的条件大约在：整套栈 PR 全部自合并 + 功能完成。链接：https://github.com/temporalio/temporal/pull/11589 、 https://github.com/temporalio/temporal/pull/11567\n2. tdbg 动态配置 CLI：#11722 Open，新增 `tdbg dc describe/get/dump` 子命令，方便查询/描述动态配置 key 的约束与当前合并值。这对运维排障有强信号价值，可能随未来版本进入 main。链接：https://github.com/temporalio/temporal/pull/11722\n3. CHASM 内部回调 namespace 绑定约束：#11876 Open，新增 `callback.internal.sameNamespaceArchetypes` 动态配置，默认约束 Scheduler 的内部回调必须发往源 namespace。属于 CHASM/回调系统的合规性约束。链接：https://github.com/temporalio/temporal/pull/11876\n4. HTTP 故障注入能力：#11892 Open，在 Server 功能测试中加入 HTTP fault injection（当前覆盖 callbacks/CHASM、Nexus）。链接：https://github.com/temporalio/temporal/pull/11892\n5. Branch mismatch 的 API 语义收敛：#11940 Open，将历史分支错配时的报错从 `CurrentBranchChanged` 改为通用无效页 token，属 API 行为清理。链接：https://github.com/temporalio/temporal/pull/11940",
-    "用户反馈摘要": "1. 升级 Storm：1.30.x 引入 ringpop 稳定性问题（#9987 评论），用户反映升级后服务间调用出现间歇性失败，核心痛点是『
+
 
 </details>
 
