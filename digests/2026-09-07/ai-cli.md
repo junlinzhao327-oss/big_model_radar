@@ -1,6 +1,6 @@
 # AI CLI 工具社区动态日报 2026-09-07
 
-> 生成时间: 2026-09-06 22:35 UTC | 覆盖工具: 7 个
+> 生成时间: 2026-09-07 00:03 UTC | 覆盖工具: 7 个
 
 - [Claude Code](https://github.com/anthropics/claude-code)
 - [OpenAI Codex](https://github.com/openai/codex)
@@ -28,70 +28,7 @@
 
 > 数据来源: [anthropics/skills](https://github.com/anthropics/skills)
 
-# Claude Code Skills 社区热点报告
 
-*数据来源：github.com/anthropics/skills | 数据截止：2026-09-07*
-
----
-
-## 一、热门 Skills（PR）排行
-
-按仓库评论热度排序，当前展示的 PR 均处于 **Open** 状态，以下是关注度最高的 8 个：
-
-### 1. skill-creator：run_eval.py 评测召回率恒为 0% 的修复 [PR #1298]
-- **功能**：修复 `run_eval.py` 对所有 Skill 描述一律报 `recall=0%` 的严重缺陷，打通「评测 → 优化描述」闭环。根因是评测产物未真正安装为 skill，同时修复 Windows 流读取、触发检测与并行 worker 问题（关联 Issue #556，12 条评论、7 👍）。
-- **社区热点**：这是 skill-creator 工具链当前最大的可靠性痛点，Issue #556 已有 10+ 独立复现报告，直接影响所有技能的自动化优化。
-- **状态**：OPEN（2026-06-10 创建，06-23 更新）
-- 链接：https://github.com/anthropics/skills/pull/1298
-
-### 2. document-typography：AI 生成文档的排版质量控制 [PR #514]
-- **功能**：新增面向文档排版的技能，解决 AI 生成文档的典型问题——孤词换行、标题滞留页尾（寡妇段）、编号错位等。
-- **社区热点**：这类"用户很少主动要求但影响专业度"的隐性质量问题引发讨论，被视为提升 AI 文档交付质量的基础能力。
-- **状态**：OPEN（2026-03-04 创建，03-13 更新）
-- 链接：https://github.com/anthropics/skills/pull/514
-
-### 3. scnet-hpc：HPC 集群运维技能 [PR #1615]
-- **功能**：通过 profile 化 SSH 与 Slurm 工作流操作 SCNet HPC 集群，覆盖连接管理、分区/内存/模块配置、Slurm 作业生成、集群发现等场景。
-- **社区热点**：代表了将 Claude Code 从日常开发扩展到科学计算/高性能计算领域的社区诉求。
-- **状态**：OPEN（2026-08-20 创建，08-24 更新）
-- 链接：https://github.com/anthropics/skills/pull/1615
-
-### 4. ODT：OpenDocument 创建/填充/转换技能 [PR #486]
-- **功能**：支持 .odt/.ods 文件的创建、模板填充、读取，并可将 ODT 解析为 HTML，覆盖 LibreOffice 及 ISO 标准格式需求。
-- **社区热点**：文档类技能（DOCX/PDF/ODT）持续热门，表明办公文档处理是 Claude Code 生态的高频刚需。
-- **状态**：OPEN（2026-03-01 创建，04-14 更新）
-- 链接：https://github.com/anthropics/skills/pull/486
-
-### 5. frontend-design 技能优化 [PR #210]
-- **功能**：修订 frontend-design 技能，提升清晰度与可执行性，确保每条指令可在单次对话内落地，并让指导足够具体以约束模型行为。
-- **社区热点**：讨论围绕"技能指令应可行动而非描述性文字"，与 #202（skill-creator 应更新为最佳实践）形成呼应。
-- **状态**：OPEN（2026-01-05 创建，03-07 更新）
-- 链接：https://github.com/anthropics/skills/pull/210
-
-### 6. skill-quality-analyzer + skill-security-analyzer 元技能 [PR #83]
-- **功能**：向 marketplace 新增两个元技能——质量分析器（结构/文档、示例、资源等五维度评估）与安全分析器，用于对 Claude Skills 本身做体检。
-- **社区热点**：反映了社区开始关注"技能的质量度量与安全治理"这一上层议题，呼应 #492 的安全信任边界讨论。
-- **状态**：OPEN（2025-11-06 创建，2026-01-07 更新，最老牌的活跃 PR 之一）
-- 链接：https://github.com/anthropics/skills/pull/83
-
-### 7. Hivemind：零成本多智能体编排 [PR #1628]
-- **功能**：让 Claude Code 将机械性工作委托给运行免费模型的 headless opencode worker，Claude 仅担任规划、评审与合并角色，以"省上下文"为核心卖点。
-- **社区热点**：多智能体协作与成本优化方向热度上升，讨论集中在"昂贵模型的上下文才是最稀缺资源"这一理念。
-- **状态**：OPEN（2026-08-21 创建，08-24 更新）
-- 链接：https://github.com/anthropics/skills/pull/1628
-
-### 8. ServiceNow 平台技能 [PR #568]
-- **功能**：覆盖 ServiceNow 全平台的助手型技能，含 ITSM、ITOM、ITAM/SAM、FSM、HRSD、SPM、CSDM、IntegrationHub 等模块。
-- **社区热点**：讨论点在于"平台级广度技能"与"窄脚本助手"的定位取舍，以及企业级软件领域的技能设计模式。
-- **状态**：OPEN（2026-03-08 创建，08-12 仍在更新，长线活跃）
-- 链接：https://github.com/anthropics/skills/pull/568
-
----
-
-## 二、社区需求趋势（来自 Issues）
-
-### 1. 技能的安全与信任边界（热度最高）
-Issue #492（43 条评论）揭露：社区技能在 `anthropic/`
 
 ---
 
@@ -102,143 +39,14 @@ Issue #492（43 条评论）揭露：社区技能在 `anthropic/`
 <details>
 <summary><strong>OpenAI Codex</strong> — <a href="https://github.com/openai/codex">openai/codex</a></summary>
 
-## 今日速览
 
-- 过去 24 小时无新版本 Release，但 PR 合并活跃，机器人提交集中在 TUI managed worktree、voice-host 音频管线与 MCP user verification 等领域。
-- 社区 Issue 热点集中在 Windows 桌面端：宠物（Pets）点击穿透、应用启动失败、项目上下文同步失败等问题密集发酵，其中宠物交互问题已有多个高赞重复报告。
-- Codex 配额/用量异常继续聚集，多个独立 Issue 指向同一用户可见症状，已形成跨报告追踪 Issue。
-
-## 社区热点 Issues
-
-### 1. [bug, windows-os, app, app-server] Windows 26.820：Codex Desktop 无法启动——bundled codex.exe 从 WindowsApps 重定位失败
-- 评论 44 | 👍 2 | #40700
-- 涉及 Windows 桌面端启动级故障，影响用户无法进入应用，评论区讨论热烈但点赞不高，说明问题真实但可能影响范围有限。
-- https://github.com/openai/codex/issues/40700
-
-### 2. [bug, windows-os, app, pets] Windows 浮动宠物点击穿透且无法拖动
-- 评论 21 | 👍 33 | #41465
-- 33 个 👍 是今日最高，说明大量用户受“宠物不可交互”困扰。同类报告还有 #41513、#41960，已形成明显 Issue 簇。
-- https://github.com/openai/codex/issues/41465
-
-### 3. [bug, app, session] macOS：服务端已删除的对话重新出现在 Recents 且无法移除
-- 评论 22 | 👍 16 | #40219
-- 会话状态与远端不一致，用户删除后仍“复活”，直接影响聊天记录可信度，点赞数较高。
-- https://github.com/openai/codex/issues/40219
-
-### 4. [bug, rate-limits] Codex 配额/用量异常跨报告追踪
-- 评论 22 | 👍 10 | #41220
-- 被社区用作汇总帖，收集“配额消耗速度远超预期”“与本地 token 证据不符”等报告，属于高敏感计费/配额问题。
-- https://github.com/openai/codex/issues/41220
-
-### 5. [bug, windows-os, app] Windows ChatGPT Work：项目上下文同步反复失败
-- 评论 16 | 👍 0 | #42215
-- 在已有 ChatGPT Project 中无法启动本地 Work 聊天，失败发生在文件系统同步阶段，阻断正常开发流。
-- https://github.com/openai/codex/issues/42215
-
-### 6. [bug, windows-os, exec, CLI, tool-calls] WSL2 下 codex-code-mode-host 0.147.0 每次 shell exec 崩溃（SIGTRAP），0.146.1 正常
-- 评论 13 | 👍 0 | #38417
-- 影响 WSL2 用户的 CLI 高频操作路径，是一次明显的版本回归，开发者关注度高。
-- https://github.com/openai/codex/issues/38417
-
-### 7. [bug, app] macOS：首条消息后 Composer 消失，需重启窗口才能恢复
-- 评论 9 | 👍 7 | #42583
-- 较新版本中出现，输入框直接消失会中断对话，用户已确认与键盘焦点无关，疑似 UI 状态机问题。
-- https://github.com/openai/codex/issues/42583
-
-### 8. [bug, app] Linux 应用更新后在 libqxcb 中启动崩溃
-- 评论 5 | 👍 0 | #42148
-- Ubuntu 24.04 上从 26.820.60940 升级到 26.831.20005 后无法启动，Qt 插件级崩溃，影响 Linux 桌面用户。
-- https://github.com/openai/codex/issues/42148
-
-### 9. [bug, windows-os, app] 新 ChatGPT Windows 桌面版向免费/Go 用户显示“GPT 5.6 Sol”模型，造成误导
-- 评论 2 | 👍 0 | #41631
-- 模型选择器对无权限用户展示高规格模型，用户在较低订阅层级下会误以为自己可以使用该模型。
-- https://github.com/openai/codex/issues/41631
-
-### 10. [bug, iOS, app, session, remote] iOS Remote 项目列表与 Codex Desktop 未同步
-- 评论 6 | 👍 0 | #36454
-- Remote 场景下项目列表没有以 Desktop 为数据源，导致 iOS 端看到的项目内容不一致，影响跨端工作流。
-- https://github.com/openai/codex/issues/36454
-
-## 重要 PR 进展
-
-### 1. Add a managed worktree browser to the TUI
-- #43286
-- 为 `/worktree` 增加可搜索的 “Browse worktrees” 入口，可查看 owner metadata 并支持恢复 owner thread 或复制工作树路径。
-- https://github.com/openai/codex/pull/43286
-
-### 2. Defer managed worktree transitions to fresh TUI loop iterations
-- #43298
-- 将 managed worktree 的 setup/checkout 等阶段拆分为独立事件循环迭代，避免在 ChatWidget 构造函数中同步执行大任务。
-- https://github.com/openai/codex/pull/43298
-
-### 3. Include linked worktrees in TUI session discovery
-- #43279
-- 目录级会话发现会遗漏同一仓库 linked worktrees 中的会话；该 PR 将 linked worktrees 纳入发现范围。
-- https://github.com/openai/codex/pull/43279
-
-### 4. Add managed worktree creation to TUI session commands
-- #43120
-- 新增 `/worktree` 命令支持在新会话或 fork 当前会话时创建 managed checkout，并优化 `/new` 与 `/fork` 交互。
-- https://github.com/openai/codex/pull/43120
-
-### 5. Show read-only conversations when resume encounters an active writer
-- #43253
-- 当恢复的会话在其他端被占用时，不再直接报错，而是提供只读历史视图，用户可关闭占用端后重试。
-- https://github.com/openai/codex/pull/43253
-
-### 6. Use server defaults when starting TUI background tasks
-- #43261
-- 从 agents overview 启动后台任务时改用服务端默认配置，避免客户端模型设置覆盖正确目的目录配置。
-- https://github.com/openai/codex/pull/43261
-
-### 7. Connect voice-host RTP audio to speaker playback
-- #43248
-- 将 voice host 收到的 RTP 音频包接入解码与扬声器输出，配合 speaker suppression 边界管理，补齐语音播放链路。
-- https://github.com/openai/codex/pull/43248
-
-### 8. Add bounded GStreamer playback components to the voice host
-- #43244
-- 增加带边界的 GStreamer 播放组件，支持部分写入、播放 epoch 变化取消及延迟统计，提升音频播放健壮性。
-- https://github.com/openai/codex/pull/43244
-
-### 9. Add capability-gated MCP user-verification handling
-- #43289
-- 当客户端声明支持 `userVerification` 时，通过 `openai/elicitation/create` 处理验证请求，并校验字段、大小限制与 base64url 编码。
-- https://github.com/openai/codex/pull/43289
-
-### 10. Add experimental user verification API contracts
-- #43265
-- 新增 `userVerification/status`、`enroll`、`delete`、`verify` 实验性 API 契约，并导出 schema
 
 </details>
 
 <details>
 <summary><strong>Gemini CLI</strong> — <a href="https://github.com/google-gemini/gemini-cli">google-gemini/gemini-cli</a></summary>
 
-# Gemini CLI 社区动态日报
 
-**日期：2026-09-07**  
-数据来源：[github.com/google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli)
-
----
-
-## 1. 今日速览
-
-昨日发布 v0.60.0 nightly 新版本，但社区讨论焦点集中在 **P1 级可靠性 bug** 上：子代理在超时后误报 GOAL 成功、通用代理无限挂起、Shell 命令结束后卡在等待输入等。此外，围绕 **Auto Memory 自动记忆系统** 的安全与重试机制问题形成了密集的 issue 簇，建议关注这些对日常自动化工作流有直接影响的稳定性缺陷。
-
----
-
-## 2. 版本发布
-
-**v0.60.0-nightly.20260906.g85aca163f**  
-- 常规 nightly 更新。[查看完整变更日志](https://github.com/google-gemini/gemini-cli/compare/v0.60.0-nightly.20260905.g85aca163f...v0.60.0-nightly.20260906.g85aca163f)
-
----
-
-## 3. 社区热点 Issues
-
-以下按讨论热度与影响范围筛选出
 
 </details>
 
@@ -252,7 +60,61 @@ Issue #492（43 条评论）揭露：社区技能在 `anthropic/`
 <details>
 <summary><strong>Kimi Code CLI</strong> — <a href="https://github.com/MoonshotAI/kimi-cli">MoonshotAI/kimi-cli</a></summary>
 
+# Kimi Code CLI 社区动态日报（2026-09-07）
 
+## 今日速览
+
+过去 24 小时内，Kimi Code CLI 无新版本发布；共有 5 个 Issue 和 1 个 PR 发生更新。最受关注的是 #1282「远程控制本地会话」功能请求（👍 32），以及 #2252 希望对标 Codex/Claude Code 增加 `/goal` 命令并支持将 coding plan 导入 Codex。PR 方面，#2513 正在修复 Moonshot API 工具调用参数双重编码导致的校验失败问题。
+
+## 社区热点 Issues
+
+过去 24 小时共更新 5 个 Issue，以下全部收录。
+
+- [#1282 [enhancement] Remote Control - Continue local sessions from any device](https://github.com/MoonshotAI/kimi-cli/issues/1282)  
+  作者 @CatKang | 开放中 | 👍 32 | 评论 13  
+  **亮点**：建议增加「远程控制」能力，让用户从手机、平板或任意浏览器继续本地 Kimi Code CLI 会话，保持完整本地环境的同时实现跨设备工作流无缝衔接。这是当前社区关注度最高的需求，32 个 👍 说明用户对「随时离开工位、又不中断编码上下文」的场景有较强刚需。
+
+- [#2252 [enhancement] 希望增加 /goal 命令并允许 coding plan 导入到 Codex 中使用](https://github.com/MoonshotAI/kimi-cli/issues/2252)  
+  作者 @DuskLin | 已关闭 | 👍 2 | 评论 9  
+  **亮点**：用户希望参考 Codex 的 `/goal` 命令，并指出 Claude Code 在 138 版本已跟进该功能；同时认为 Kimi coding plan 不支持导入 Codex 难以理解。该 Issue 已关闭但仍有讨论，反映社区对「跨 AI 编程工具互操作」和「任务目标管理」的需求。
+
+- [#1284 [bug] Does not launch in Zed IDE ACP panel in Windows](https://github.com/MoonshotAI/kimi-cli/issues/1284)  
+  作者 @prashanth057 | 已关闭 | 👍 0 | 评论 1  
+  **关注点**：在 Windows 平台（版本 1.14.0）中，Kimi Code CLI 无法在 Zed IDE 的 ACP 面板中启动。涉及 IDE 集成、Windows 平台兼容性，虽然是已关闭 Issue，但仍在近期被更新，说明该问题对 Zed + Windows 用户有持续影响。
+
+- [#1350 [bug] 频繁出现 Authorization failed, please check your login status](https://github.com/MoonshotAI/kimi-cli/issues/1350)  
+  作者 @dapeng1162 | 已关闭 | 👍 0 | 评论 0  
+  **关注点**：在 Debian 12 上使用 `/login` 登录后，使用 `kimi-for-coding` 模型时频繁出现 `Authorization failed`。认证稳定性直接影响日常开发，值得官方持续关注；0 条评论也说明该问题可能仍未获得充分反馈处理。
+
+- [#1349 [bug] shell prompt no longer shows cwd/git branch; request configurable display](https://github.com/MoonshotAI/kimi-cli/issues/1349)  
+  作者 @Sirfetch-d | 已关闭 | 👍 0 | 评论 0  
+  **关注点**：近期版本中 shell prompt 不再显示当前工作目录（cwd）和 git 分支，只显示 `✨ / 💫 / $` 等符号，导致交互式编码时难以确认上下文。用户希望恢复或提供可配置显示选项，这属于 CLI 使用体验的关键细节。
+
+## 重要 PR 进展
+
+过去 24 小时更新的 PR 共 1 条，已收录。
+
+- [#2513 fix(kosong): recursively decode double-encoded tool-call arguments](https://github.com/MoonshotAI/kimi-cli/pull/2513)  
+  作者 @nitishagar | 开放中 | 更新于 2026-09-06  
+  **内容**：Moonshot API 返回的 `function.arguments` 中，嵌套数组/对象值可能以 JSON 字符串形式出现（即双重编码）。单次 `json.loads` 后类似 `todos` 的值仍是字符串，进而导致 Pydantic 校验失败（`Input should be a valid list`）。该 PR 新增共享的 `decode_tool_arguments` 工具函数进行递归解码，以正确处理嵌套结构。该修复对工具调用稳定性较为关键，尤其是依赖结构化参数的编码场景。
+
+## 功能需求趋势
+
+从本期更新的 Issues 中可以看出几个方向：
+
+1. **远程控制与跨设备工作流**（#1282）：用户希望打破本地终端会话的设备绑定，支持手机、平板、浏览器远程接入。这是当前呼声最高、点赞最多的功能方向。
+2. **跨 AI 工具生态互操作**（#2252）：社区希望 Kimi CLI 能与 Codex、Claude Code 等主流 agent 生态兼容，如补齐 `/goal` 命令，并允许 coding plan 导入其他平台。
+3. **终端交互信息可配置性**（#1349）：用户对 shell prompt 的信息密度敏感，期望保留 `cwd`、git branch 等关键上下文，并提供自定义能力。
+4. **IDE 集成完善**（#1284）：Zed + Windows 等特定组合下仍存在启动问题，开发者希望 Kimi Code CLI 在主流 IDE 的 ACP/插件面板中稳定运行。
+5. **认证/登录稳定性**（#1350）：跨 Linux 环境下出现频繁 `Authorization failed`，认证链路可靠性是阻塞日常使用的心智痛点。
+
+## 开发者关注点
+
+- **认证失败高频出现**（#1350）：用户使用 `/login` 后仍频繁掉登录态，浪费大量时间在重新认证上，且反馈响应不足。
+- **跨平台兼容仍显不足**（#1284）：Windows 下 Zed IDE 无法启动 ACP 面板，说明官方在非主流开发环境上的适配仍需投入。
+- **上游 API 数据解析异常需快速兜底**（#2513）：工具参数双重编码会导致结构化调用失败，开发者希望 CLI 侧能透明地兼容这类服务端边界情况。
+- **对标竞品功能成为一种诉求**（#2252）：社区会以 Codex / Claude Code 的功能为基准，反向要求 Kimi CLI 补齐规划、导入/导出等能力。
+- **远程无缝续跑需求明显**（#1282）：本地会话与远程设备之间的连续工作流，已成为 Coding Agent 工具的重要使用场景，开发者期待尽早落地。
 
 </details>
 
@@ -266,120 +128,149 @@ Issue #492（43 条评论）揭露：社区技能在 `anthropic/`
 <details>
 <summary><strong>Qwen Code</strong> — <a href="https://github.com/QwenLM/qwen-code">QwenLM/qwen-code</a></summary>
 
-## Qwen Code 社区动态日报 — 2026-09-07
+# Qwen Code 社区动态日报 — 2026-09-07
 
-### 1. 今日速览
-今日发布预览版 v0.23.1-preview.1，主要包含 Web Shell 动态工作流运行可视化与性能优化。社区层面，数据隐私与安全问题集中爆发（Raw 工具错误文本上传、技能安全钩子在 `--continue` 后失效），同时 Web Shell 的性能与功能增强成为 PR 主力方向。
+## 今日速览
 
----
+昨日共发布 3 个版本（含 1 个 preview 与 2 个 nightly），核心工作集中在 Web Shell 动态工作流可视化；社区最热议题聚焦于导出文件体积优化、工具调度取消竞态，以及一个 P1 级遥测隐私泄露问题（可追溯至文本上传至 RUM 时未脱敏）。此外，CI 可靠性问题持续攀升，多起 release workflow 超时/失败引发关注。
 
-### 2. 版本发布
 
-#### v0.23.1-preview.1
-[Release 链接](https://github.com/QwenLM/qwen-code/releases) | 基于 `release/v0.23.1-preview.1` 分支生成。
+## 版本发布
 
-**更新内容**
-- **feat(web-shell): visualize and manage dynamic workflow runs** by @qqqys in [#10594](https://github.com/QwenLM/qwen-code/pull/10594)
-- **perf(web-shell): derive the session workflow project** (性能优化)
+### v0.23.1-preview.1
+> Release notes generated using configuration in .github/release.yml at release/v0.23.1-preview.1
 
-> 注：同时存在 v0.23.0-nightly 构建，携带相同变更集。
+**What's Changed**
+- **feat(web-shell):** visualize and manage dynamic workflow runs by [@qqqys](https://github.com/qqqys) ([#10594](https://github.com/QwenLM/qwen-code/pull/10594))
+- **perf(web-shell):** derive the session workflow project
 
----
+> ⚠️ 该版本的 release workflow 发生失败——失败任务：`integration_docker`。详见 issue [#11185](https://github.com/QwenLM/qwen-code/issues/11185)
 
-### 3. 社区热点 Issues（10 个）
+### v0.23.0-nightly.20260906.92a8a8d179 / v0.23.0-nightly.20260905.0c945a6136
 
-1. **遥测上传未脱敏的原始工具错误文本（含 Shell 命令行）**
-   - **优先级**: P1 | 安全/数据隐私
-   - **概要**: 默认启用的 usage-statistics 通道将原始工具错误文本上传至 RUM 端点，无任何脱敏处理，涉及 Shell 错误详情。这是 `main` 上已存在的问题，影响面大于此前 #10916 的单个字段。
-   - [Issue 链接](https://github.com/QwenLM/qwen-code/issues/11198)
-
-2. **技能 `PreToolUse` 钩子在 `--continue` 后停止执行**
-   - **优先级**: P1 | 安全
-   - **概要**: SKILL.md 声明的 `PreToolUse` 钩子作为安全闸门，在断点续跑后不再执行，而技能指令仍在上下文中。安全门禁失效可能导致授权命令在缺失 session ID 时被执行。
-   - [Issue 链接](https://github.com/QwenLM/qwen-code/issues/11180)
-
-3. **导出 HTML 不再内嵌 Web Shell 运行时后，mermaid（~6MB）仍被扁平化**
-   - **状态**: 已关闭 | 性能
-   - **概要**: #9812 已修复 HTML 内联渲染器问题（改为 SRI 引用的外部脚本），但 mermaid 库（约 6 MB）仍被打包进导出文件，导致文件体量异常。
-   - [Issue 链接](https://github.com/QwenLM/qwen-code/issues/11091)
-
-4. **停止在每个 HTML 文件中嵌入 Web Shell 运行时**
-   - **状态**: 已关闭 | P1 | 性能
-   - **概要**: `/export html` 当前将整个浏览器依赖图（React + Web Shell 运行时）嵌入导出文件，即使空会话也会生成 **19.5 MB** 的 HTML。此问题已修复。
-   - [Issue 链接](https://github.com/QwenLM/qwen-code/issues/11031)
-
-5. **将 TUI 渲染层从 ink 迁移至 OpenTUI（跟踪）**
-   - **状态**: OPEN | P3 | 增强
-   - **概要**: 当前 TUI 基于 ink 7 + React 19，附带大量自定义补丁（含 1037 行的 `ink+7.0.3.patch`）与虚拟视口模式。存在闪烁等结构性缺陷，难以在 ink 内修复。跟踪 issue 共收到 30 条评论，是社区长期关注的基础设施重构方向。
-   - [Issue 链接](https://github.com/QwenLM/qwen-code/issues/8662)
-
-6. **Release 流程重复干活，且某 20 分钟步骤零验证**
-   - **优先级**: P2 | CI/CD | 开发
-   - **概要**: `release.yml` 大量占用墙钟时间重复劳动，且一个耗时 20 分钟的步骤实际无任何验证作用。今日已有两次 release run 超时（[run1](https://github.com/QwenLM/qwen-code/actions/runs/33957952281), [run2](https://github.com/QwenLM/qwen-code/actions/runs/33963757913)）。
-   - [Issue 链接](https://github.com/QwenLM/qwen-code/issues/11109)
-
-7. **核心调度器：预中止的工具请求可能在无关的活跃批次后等待**
-   - **优先级**: P2 | Bug
-   - **概要**: `CoreToolScheduler.schedule()` 在调度器忙时会将已取消的请求加入队列。若该请求在信号中止后未能及时移出队列，会阻塞在无关批次之后，导致取消操作无法及时生效。
-   - [Issue 链接](https://github.com/QwenLM/qwen-code/issues/11146)
-
-8. **WebShell 切换后恢复 VS Code 消息编辑与回退能力**
-   - **状态**: OPEN | 功能请求 | IDE 集成
-   - **概要**: WebShell 切换（#9811）有意未恢复旧版 VS Code 逐条消息编辑/回退交互。但嵌入式 VS Code Host 仍以 ACP 为运行时边界，二者存在功能落差，需设计统一的编辑/回退体验。
-   - [Issue 链接](https://github.com/QwenLM/qwen-code/issues/9911)
-
-9. **SDK 规范器在转录回放时丢弃用户 `resource_link` 附件**
-   - **优先级**: P2 | SDK | Bug
-   - **概要**: TypeScript daemon 的 UI 规范化器在 `user_message_chunk` 事件中静默丢弃 ACP 的 `resource_link` 内容，导致基于 SDK 重建历史视图时附件卡片消失。
-   - [Issue 链接](https://github.com/QwenLM/qwen-code/issues/11178)
-
-10. **`/effort` 命令未传播至通用 OpenAI 兼容后端**
-    - **优先级**: P2 | Bug | 兼容性
-    - **概要**: 使用本地 NInfer（OpenAI 兼容 API）时，`/effort` 更新了 Qwen Code 内的设置，但未作为参数传递至 HTTP 请求，导致推理强度调整无效。
-    - [Issue 链接](https://github.com/QwenLM/qwen-code/issues/11227)
+两个 nightly 的变更内容相同（指向同一 PR 集）：
+- **feat(web-shell):** visualize and manage dynamic workflow runs ([#10594](https://github.com/QwenLM/qwen-code/pull/10594))
+- **perf(web-shell):** derive the session workflow project。
 
 ---
 
-### 4. 重要 PR 进展（10 个）
+## 社区热点 Issues（10 条）
 
-1. **fix(vscode): 规范化工作区路径**
-   - 在启动 WebShell daemon、持久化活跃会话、启动内嵌 shell 及导出来前，对 VS Code 工作区路径做符号链接解析（如 macOS `/tmp` → `/private/tmp`），避免路径不一致引发会话错乱。
-   - [PR 链接](https://github.com/QwenLM/qwen-code/pull/11201)
+### 🔥 P1 安全/隐私类
 
-2. **feat: 将子智能体回合委托给外部 ACP 智能体（优先支持 Claude Code）**
-   - 子智能体定义可声明 `executor` 命令块，回合通过 ACP 协议派发给外部编码智能体执行，并将执行过程重新发布为该子智能体的内部事件。这对多智能体生态有重要扩展意义。
-   - [PR 链接](https://github.com/QwenLM/qwen-code/pull/11003)
+**1. Usage-statistics telemetry 向 RUM 上传未脱敏的工具错误文本** ⭐ 重点关注
+- **Issue:** [#11198](https://github.com/QwenLM/qwen-code/issues/11198)（`P1` / `security` / `data-privacy` / `credential-security`）
+- **为什么重要：** 默认开启的使用统计通道将工具错误的原始文本（含 shell 命令行）不由分说地上传至 RUM 端点。该问题在 `main` 分支上已存在，范围比先前 #10916 中标记的单个字段更大。对使用私有环境或涉及敏感命令的开发者来说，这属于数据泄露级别的隐患。
 
-3. **fix(ci): 为瞬时全部绿灯的 macOS E2E 分片死机增加一次重试**
-   - 为 macOS E2E 增加与 Linux `sandbox:none` 相同的单次、预算限制重试机制，提升 CI 稳定性。
-   - [PR 链接](https://github.com/QwenLM/qwen-code/pull/11134)
+**2. skill 的 PreToolUse hook 在 `--continue` 后失效**
+- **Issue:** [#11180](https://github.com/QwenLM/qwen-code/issues/11180)（`P1` / `security` / `hooks-events`）
+- **为什么重要：** skill 的 SKILL.md 中声明的 `PreToolUse` 安全门在普通会话中可正常工作，但在 `--continue` 恢复会话后则不再执行，而 skill 的指令仍保留在上下文中——意味着“安全门可能被静默跳过”，安全语义被打破。与 [#11067](https://github.com/QwenLM/qwen-code/issues/11067)（`/<skill-name>` 启动时不运行 PreToolUse）属于同类问题，指向 hooks 生命周期管理的系统缺陷。
 
-4. **fix(core): 捕获工具结果脚手架与系统提示回显泄漏**
-   - 消灭 #10797 中两种绕过现有泄漏防御的用户可见输出：a) 回复以工具结果 XML 标签开头；b) 系统提示回显型泄漏。仍处于开放讨论中。
-   - [PR 链接](https://github.com/QwenLM/qwen-code/pull/11189)
+### 🐞 工具调度 / 取消竞态
 
-5. **fix(core): 在 Ctrl+Y 不可用时自动重试瞬时网络错误**
-   - 将实为网络层故障的 4xx（如 `400 network error ... EOF`）归类为可重试传输错误，使有限次自动重试机制生效，而非直接 fail-fast。
-   - [PR 链接](https://github.com/QwenLM/qwen-code/pull/10347)
+**3. 已取消的工具请求仍会阻塞在无关的活动批次之后**
+- **Issue:** [#11146](https://github.com/QwenLM/qwen-code/issues/11146)（`P2` / `core` / `tools`）
+- **为什么重要：** `CoreToolScheduler.schedule()` 在调度器正在运行或正在收尾一个批次时，会将已 abort 的请求也排入队列，且该请求会一直等待与该请求无关的活动批次完成后才会被清理。会导致取消操作无法及时生效。
 
-6. **feat(web-shell): gzip 压缩会话加载响应**
-   - 针对 #6181 的 serve 层优化：对 `POST /session/:id/load` 等大型转录加载响应启用 gzip，压缩体积以缓解移动端会话切换卡顿。
-   - [PR 链接](https://github.com/QwenLM/qwen-code/pull/11220)
+**4. CLI 常规排队工具取消时跳过了完成清理（completion cleanup）**
+- **Issue:** [#11162](https://github.com/QwenLM/qwen-code/issues/11162)（`P2` / `cli` / `tools`）
+- **为什么重要：** 常规交互调度分支在 `CoreToolScheduler` 因信号中断拒绝一个排队请求时会静默返回，阻止调用方的完成处理器（completion handler）执行。与 #11146 同根，会影响工具调用的资源释放。
 
-7. **feat(web-shell): 在右侧栏增加 Context Usage 标签页**
-   - 新增会话级 `context_usage` 面板，实时展示上下文窗口占用，提供堆叠层图标入口，与现有 Token Usage 标签页并列。
-   - [PR 链接](https://github.com/QwenLM/qwen-code/pull/11177)
+### 📦 导出架构 / 体积优化
 
-8. **feat(web-shell): 增加有界历史转录视窗**
-   - 实现 2B 阶段的会话级上下文回溯：可在只读历史窗口内浏览超页记录、恢复被逐出的间隙，并返回实时尾部。适合长会话翻查，显著提升 Web Shell 的大会话可用性。
-   - [PR 链接](https://github.com/QwenLM/qwen-code/pull/11208)
+**5. mermaid (~6 MB) 仍被打进导出的 transcript 渲染器**
+- **Issue:** [#11091](https://github.com/QwenLM/qwen-code/issues/11091)（`P2` / `build-system` / `web-shell` / 已关闭）
+- **为什么重要：** #9812 合并后导出的 HTML 不再内联渲染器，但 `@qwen-code/qwen-code` 的 `export-transcript-document.js` 中仍将 mermaid（约 6 MB）整体打入。该 issue 关联 #11038 / #11031，是导出瘦身系列的后续收尾。社区评论 7 条，显示对产物体积优化有较高关注度。
 
-9. **feat(serve): 支持具备会话栅栏的并发独立守护进程**
-   - 在保留 #10924 单写者租约的前提下，允许多个守护进程共享 Conversations 存储并并发运行独立会话。将为高级多会话工作流提供基础。
-   - [PR 链接](https://github.com/QwenLM/qwen-code/pull/11207)
+**6. 导出的 transcript 入口仍携带 daemon hook 运行时**
+- **Issue:** [#11100](https://github.com/QwenLM/qwen-code/issues/11100)（`P2` / `build-system` / `web-shell`）
+- **为什么重要：** `@qwen-code/web-shell/transcript` 虽然是只读 transcript 入口，但其静态值导入图中仍通过三个真实渲染的组件可达 `daemon-react-sdk`。即只读导出文档依旧带着完整的 daemon React 运行时，与 #11031 的优化目标背道而驰。
 
-10. **fix(vscode): 关闭权限 Diff 后交还编辑权**
-    - 修复用户手动关闭 Host 拥有的权限 Diff 后，因 `DiffManager.cancelDiff` 触发 `ide/diffClosed`
+### ⚙️ CI / 工程效率
+
+**7. release.yml 重复执行已有工作，一步 20 分钟的检查形同虚设**
+- **Issue:** [#1109](https://github.com/QwenLM/qwen-code/issues/11109)（`P2` / `ci-cd` / `github-actions`）
+- **为什么重要：** 昨日两次 release 运行超时（[33957952281](https://github.com/QwenLM/qwen-code/actions/runs/33957952281)、[33963757913](https://github.com/QwenLM/qwen-code/actions/runs/33963757913)）。release.yml 大量时间在重复同一 run 已完成的工作，且其中一步耗时 20 分钟的检查“什么也没有验证”，是纯工程浪费。评论中有较多讨论，是 CI 可靠性的集中代表。
+
+**8. web-shell E2E Smoke 是 ECS 池中唯一仍用固定超时的任务**
+- **Issue:** [#11209](https://github.com/QwenLM/qwen-code/issues/11209)（`P2` / `ci-cd` / 已关闭）
+- **为什么重要：** 与其他三个已接入动态预算的任务不同，`web-shell E2E Smoke` 仍使用 `timeout-minutes: 20`，导致在 PR 完全不涉及待测代码时也因资源争抢被杀掉并报告为 `cancelled`。直接拖慢了 CI 的反馈速度。
+
+### 🎨 架构级追踪
+
+**9. 将 TUI 渲染层从 ink 迁移至 OpenTUI（tracking）**
+- **Issue:** [#8662](https://github.com/QwenLM/qwen-code/issues/8662)（`P3` / `ui` / `terminal-ux` / 评论 30 条）
+- **为什么重要：** 这是当前社区评论最多的 issue。qwen-code 现有 TUI 基于 **ink 7 + React 19**，带有一个 1037 行的重度补丁渲染器（`patches/ink+7.0.3.patch`）和自研 Virtual Viewport 模式，引发了闪烁等一系列结构性难题。30 条评论说明该话题在开发者社区关注度高、讨论充分，是中期重要的架构演进方向。
+
+### 🤖 自动化 / Bot 生态
+
+**10. Fleet Shepherd Dashboard（自动维护）**
+- **Issue:** [#7167](https://github.com/QwenLM/qwen-code/issues/7167)（`ci-cd`）
+- **为什么重要：** 该 issue 为 Fleet Shepherd 工作流自动维护的机器人舰队看板，每日更新。从数据中可看到 bot PR 状态（如 #11134 处于 idle），用于追踪自动化生产的 PR 的实时健康度。
+
+
+## 重要 PR 进展（10 条）
+
+**1. feat(serve): scope extensions to workspace runtimes**
+- **PR:** [#11086](https://github.com/QwenLM/qwen-code/pull/11086)（`autofix/takeover` / 更新时间 09-07）
+- **内容：** 将全局扩展目录通过各 workspace 选定的 runtime 提供；协调扩展状态到活跃的 workspace runtime，暴露 workspace 限定的 daemon/SDK 访问，并更新扩展管理、composer add 菜单及 `@` 引用。
+- **点评：** 属于服务端扩展体系的重要架构调整，更新时间为今日，值得关注。
+
+**2. fix(vscode): canonicalize workspace paths**
+- **PR:** [#11201](https://github.com/QwenLM/qwen-code/pull/11201)（更新时间 09-07）
+- **内容：** 在启动 Web Shell daemon、持久化活跃 session key、引导嵌入式 shell 及导出 session 前，对 VS Code workspace 路径做规范化。例如 macOS 上 `/tmp` 是指向 `/private/tmp` 的符号链接，可能导致路径不一致问题。
+- **点评：** 修复跨平台路径解析不一致，影响所有 macOS 用户，实用价值高。
+
+**3. feat(web-shell): add a context usage tab to the right sidebar**
+- **PR:** [#11177](https://github.com/QwenLM/qwen-code/pull/11177)（更新时间 09-07）
+- **内容：** 在 Web Shell 右侧边栏新增 Context Usage 入口，与现有 Token Usage 并列；通过 opt-in 的 header action（stacked-layers 图标）打开会话级别的 `context_usage` 面板，展示实时 context-window 占用情况。
+- **点评：** 上下文占用可视化是开发者长期诉求，此 PR 直接补上了可观测性短板。
+
+**4. fix(cli): prevent dialog clipping in short terminals**
+- **PR:** [#9040](https://github.com/QwenLM/qwen-code/pull/9040)（`review/self-reported` / 更新时间 09-07）
+- **内容：** 防止 `/statusline` 与 `/skills` 配置对话框在终端高度受限时渲染出界。`/statusline` 在低于 16 行时使用可选择的紧凑布局；`/skills` 仅在存在高度预算时限制锁定行。
+- **点评：** 小屏/小终端用户的高频痛点修复，等待 review 的时间较长。
+
+**5. feat(core): auto-retry transient network errors (EOF) where Ctrl+Y is unavailable**
+- **PR:** [#10347](https://github.com/QwenLM/qwen-code/pull/10347)（`review/self-reported` / `autofix/needs-human`）
+- **内容：** 将实际为底层网络错误的 4xx（如 `400 network error ... EOF`、peer 在请求中途关闭连接）分类为可重试的传输错误，使现有有界自动重试生效——此前这类错误被当作快速失败的客户端错误。
+- **点评：** 对使用不稳定网络的开发者极有价值，自动重试可显著减少手动干预。
+
+**6. fix(ci): retry the transient all-green macOS E2E shard death once**
+- **PR:** [#11134](https://github.com/QwenLM/qwen-code/pull/11134)（`review/self-reported` / `autofix/needs-human`）
+- **内容：** macOS E2E 新增与 Linux `sandbox:none` 相同的单次预算门控重试机制：shard 命令进入 `run_shard()`，仅在失败后执行第二次，且受剩余 job 预算限制。
+- **点评：** 直接缓解 macOS CI 偶发全绿死亡的痛点，提升 CI 可信度。
+
+**7. feat(dingtalk): show dynamic lifecycle tags**
+- **PR:** [#10504](https://github.com/QwenLM/qwen-code/pull/10504)（`autofix/takeover` / `review/self-reported`）
+- **内容：** 为钉钉集成添加本地化的生命周期反馈，不暴露原始工具输入/输出/推理；turn 活跃期间，源消息保持 `👀` 并附加 Thinking、Reading、Searching、Running、Editing、Retrying 等状态反应。
+- **点评：** 对钉钉重度用户是直观体验提升；不泄露原始内容的设计很到位。
+
+**8. feat(core): preserve prompt cache for deferred tools**
+- **PR:** [#10410](https://github.com/QwenLM/qwen-code/pull/10410)（`autofix/takeover`）
+- **内容：** 用稳定的两步桥替代延迟工具的 schema 揭示：`tool_search` 允许模型在声明工具列表不变的情况下查看延迟工具 schema；`tool_call` 负责校验并调用该延迟工具。
+- **点评：** 可节省大量 prompt 缓存重算成本，对带延迟工具的长会话有直接收益。
+
+**9. fix(cli): guard channel pidfiles against PID reuse**
+- **PR:** [#10687](https://github.com/QwenLM/qwen-code/pull/10687)（`autofix/takeover` / `review/self-reported`）
+- **内容：** Channel 服务的 pidfile 现在持久化 Linux process-start token，并在读取、信号或等待该进程时进行校验。PID 被回收但进程仍在运行的情况被视为过期，不会向新进程误发信号；standalone 与 `qwen serve` 共享同一套实现。
+- **点评：** 守护进程管理中的经典坑，修复方式严谨，值得肯定。
+
+**10. refactor(daemon): decouple extension activation refresh**
+- **PR:** [#10991](https://github.com/QwenLM/qwen-code/pull/10991)（`autofix/takeover`）
+- **内容：** 扩展激活操作在激活策略持久化完成后即算完成，不再直接刷新所有活跃会话；新增 `extension_activation_explicit_refresh` capability 以区分新旧 daemon 的契约差异。Web Shell 相应适配。
+- **点评：** 斩断扩展激活与全局刷新的耦合，提升扩展激活性能与稳定性。
+
+
+## 功能需求趋势
+
+从全部 issue 中可提炼出如下社区聚焦方向：
+
+1. **数据导出体积与架构（Export Data Redesign）：** 围绕 #11031、#11091、#11100 组成的系列工作，目标是将单个导出 HTML 从 19.5 MB 级别压缩到可接受范围，此方向是当前 Web Shell 最活跃的工程主题。
+2. **TUI 架构现代化：** #8662 提出的 ink → OpenTUI 迁移（30 条评论）代表底层渲染层的重构意愿，与 dialog 裁剪（#9040）等终端体验优化共同支撑 roadmap/terminal-ux。
+3. **安全与隐私加固：** 包括 telemetry 脱敏（#11198）、PreToolUse hook 一致性问题（#11180、#11067）、本地文件桥信任边界（#11169）等，security 类 P1/P2 issue 密度在上升。
+4. **工具调用与任务调度的可靠性：** 多条 issue（#11146、#11162）指向 tool scheduler 的取消竞态与资源清理行为；同时 #10347 在尝试让网络层瞬时错误自动重试。社区对 agent 工具层的健壮性容忍度正在降低。
+5. **CI/CD 稳定性与效率：** release.yml 重复劳动（#11109）、E2E 超时误杀（#11209）、macOS 偶发死亡（#11134）等多点开花，反映
 
 </details>
 
