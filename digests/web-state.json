@@ -1,6 +1,6 @@
 {
   "anthropic": {
-    "lastChecked": "2026-09-07T22:35:31.171Z",
+    "lastChecked": "2026-09-08T00:30:32.575Z",
     "seenUrls": {
       "https://www.anthropic.com/news/responsible-scaling-policy-v3": "2026-02-25T23:57:06.000Z",
       "https://www.anthropic.com/research/deprecation-updates-opus-3": "2026-02-25T20:58:11.000Z",
@@ -454,7 +454,7 @@
     }
   },
   "openai": {
-    "lastChecked": "2026-09-07T22:35:33.560Z",
+    "lastChecked": "2026-09-08T00:30:35.456Z",
     "seenUrls": {
       "https://openai.com/index/arvind-kc-chief-people-officer/": "2026-08-31T19:59:23.196Z",
       "https://openai.com/index/put-ai-to-work-for-your-product-team/": "2026-09-02T00:20:45.696Z",
@@ -940,7 +940,7 @@
       "https://openai.com/index/dall-e-3/": "2026-08-14T20:31:35.961Z",
       "https://openai.com/devday/": "2026-09-07T16:35:57.825Z",
       "https://openai.com/index/introducing-gpt-realtime/": "2026-08-07T18:49:37.339Z",
-      "https://openai.com/index/introducing-gpt-oss-safeguard/": "2026-09-02T19:00:09.805Z",
+      "https://openai.com/index/introducing-gpt-oss-safeguard/": "2026-09-08T00:17:23.237Z",
       "https://openai.com/index/introducing-agentkit/": "2026-06-05T12:39:10.159Z",
       "https://openai.com/index/mental-health-litigation-approach/": "2026-05-22T19:02:40.838Z",
       "https://openai.com/index/introducing-apps-in-chatgpt/": "2026-08-14T21:41:09.139Z",
@@ -1241,7 +1241,7 @@
       "https://openai.com/index/path-to-astra/": "2026-09-07T21:42:36.946Z",
       "https://openai.com/index/chatgpt-connects-health-records-and-healthcare-sources/": "2026-09-04T14:01:01.116Z",
       "https://openai.com/index/supporting-california-bill-advance-ai-youth-safety/": "2026-09-07T18:20:39.390Z",
-      "https://openai.com/index/gpt-6-astra/": "2026-09-07T22:18:02.970Z",
+      "https://openai.com/index/gpt-6-astra/": "2026-09-08T00:27:01.426Z",
       "https://openai.com/index/safety-overview-gpt-6-astra/": "2026-09-07T12:05:46.285Z",
       "https://openai.com/index/an-alien-mind/": "2026-09-07T20:14:08.462Z",
       "https://openai.com/index/research-acceleration-view-inside-openai/": "2026-09-06T15:01:11.338Z"
