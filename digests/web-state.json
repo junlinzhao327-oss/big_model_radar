@@ -1,6 +1,6 @@
 {
   "anthropic": {
-    "lastChecked": "2026-09-12T00:22:48.762Z",
+    "lastChecked": "2026-09-12T22:35:43.023Z",
     "seenUrls": {
       "https://www.anthropic.com/news/responsible-scaling-policy-v3": "2026-02-25T23:57:06.000Z",
       "https://www.anthropic.com/research/deprecation-updates-opus-3": "2026-09-09T21:14:42.000Z",
@@ -459,7 +459,7 @@
     }
   },
   "openai": {
-    "lastChecked": "2026-09-12T00:22:51.905Z",
+    "lastChecked": "2026-09-12T22:35:45.239Z",
     "seenUrls": {
       "https://openai.com/index/arvind-kc-chief-people-officer/": "2026-08-31T19:59:23.196Z",
       "https://openai.com/index/put-ai-to-work-for-your-product-team/": "2026-09-02T00:20:45.696Z",
@@ -474,7 +474,7 @@
       "https://openai.com/news/engineering/": "2026-09-11T19:21:33.022Z",
       "https://openai.com/news/safety-alignment/": "2026-09-11T19:21:32.719Z",
       "https://openai.com/news/product-releases/": "2026-09-11T19:21:32.165Z",
-      "https://openai.com/news/company-announcements/": "2026-09-11T23:38:51.647Z",
+      "https://openai.com/news/company-announcements/": "2026-09-12T08:48:37.649Z",
       "https://openai.com/index/openai-scholars/": "2026-09-02T00:20:44.159Z",
       "https://openai.com/index/special-projects/": "2026-08-25T20:41:49.483Z",
       "https://openai.com/index/team-update/": "2026-08-25T20:41:45.685Z",
@@ -1234,7 +1234,7 @@
       "https://openai.com/index/gpt-5-6-in-kiro/": "2026-09-11T16:28:05.125Z",
       "https://openai.com/index/jalapeno-first-results/": "2026-09-11T16:28:11.289Z",
       "https://openai.com/index/the-full-stack-behind-abundant-intelligence/": "2026-09-11T16:28:06.153Z",
-      "https://openai.com/index/hugging-face-incident-and-the-road-ahead/": "2026-09-12T00:22:43.871Z",
+      "https://openai.com/index/hugging-face-incident-and-the-road-ahead/": "2026-09-12T00:48:07.659Z",
       "https://openai.com/index/bringing-chatgpt-for-teachers-to-more-us-school-districts/": "2026-09-11T16:28:06.750Z",
       "https://openai.com/index/learning-never-stops/": "2026-09-11T16:28:01.241Z",
       "https://openai.com/index/what-students-gain-from-chatgpt-critical-thinking-training/": "2026-09-11T16:28:05.334Z",
@@ -1246,23 +1246,23 @@
       "https://openai.com/index/path-to-astra/": "2026-09-11T16:28:00.438Z",
       "https://openai.com/index/chatgpt-connects-health-records-and-healthcare-sources/": "2026-09-11T16:27:56.316Z",
       "https://openai.com/index/supporting-california-bill-advance-ai-youth-safety/": "2026-09-11T16:27:57.915Z",
-      "https://openai.com/index/gpt-6-astra/": "2026-09-11T23:05:20.972Z",
+      "https://openai.com/index/gpt-6-astra/": "2026-09-12T05:23:04.889Z",
       "https://openai.com/index/safety-overview-gpt-6-astra/": "2026-09-11T16:28:00.584Z",
-      "https://openai.com/index/an-alien-mind/": "2026-09-11T19:35:37.751Z",
-      "https://openai.com/index/research-acceleration-view-inside-openai/": "2026-09-11T23:15:02.375Z",
-      "https://openai.com/index/introducing-chatgpt-images-2-5/": "2026-09-11T16:27:55.747Z",
+      "https://openai.com/index/an-alien-mind/": "2026-09-12T03:40:25.418Z",
+      "https://openai.com/index/research-acceleration-view-inside-openai/": "2026-09-12T21:45:29.606Z",
+      "https://openai.com/index/introducing-chatgpt-images-2-5/": "2026-09-12T21:07:03.699Z",
       "https://openai.com/index/the-work-now-within-reach/": "2026-09-08T20:48:41.432Z",
       "https://openai.com/index/supporting-journalism-from-classrooms-to-newsrooms/": "2026-09-11T14:18:50.033Z",
       "https://openai.com/index/navier-stokes-solution/": "2026-09-11T03:07:01.815Z",
       "https://openai.com/index/teen-development-research-grants/": "2026-09-11T21:46:03.159Z",
-      "https://openai.com/index/gpt-6-astra-next-generation-work/": "2026-09-11T23:05:19.958Z",
-      "https://openai.com/index/paul-christiano-joins-openai-foundation-board/": "2026-09-11T23:49:10.410Z",
+      "https://openai.com/index/gpt-6-astra-next-generation-work/": "2026-09-12T05:24:01.862Z",
+      "https://openai.com/index/paul-christiano-joins-openai-foundation-board/": "2026-09-12T15:59:01.806Z",
       "https://openai.com/index/introducing-the-agents-api/": "2026-09-11T15:43:42.968Z",
       "https://openai.com/index/introducing-chatgpt-financial-services/": "2026-09-11T23:41:13.520Z",
       "https://openai.com/devday/2025/": "2026-09-10T21:14:31.253Z",
       "https://openai.com/index/introducing-gpt-live-1-in-the-api/": "2026-09-11T21:49:35.362Z",
       "https://openai.com/index/put-data-to-work/": "2026-09-10T23:49:16.380Z",
-      "https://openai.com/index/scaling-storage-one-billion-users-part-one/": "2026-09-11T19:29:10.865Z"
+      "https://openai.com/index/scaling-storage-one-billion-users-part-one/": "2026-09-12T02:19:32.976Z"
     }
   }
 }
