@@ -1,6 +1,6 @@
 # Hacker News AI 社区动态日报 2026-09-13
 
-> 数据来源: [Hacker News](https://news.ycombinator.com/) | 共 30 条 | 生成时间: 2026-09-12 22:35 UTC
+> 数据来源: [Hacker News](https://news.ycombinator.com/) | 共 30 条 | 生成时间: 2026-09-13 00:03 UTC
 
 ---
 
